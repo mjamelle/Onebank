@@ -1,2 +1,2 @@
 # Onebank
-Project to show case differente SPARK integrations. 
+Project to show case differente Cisco SPARK integrations for the finacial industry
