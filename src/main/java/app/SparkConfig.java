@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package root;
+package app;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

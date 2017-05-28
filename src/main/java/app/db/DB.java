@@ -1,4 +1,4 @@
-package root;
+package app.db;
 
 import org.sql2o.*;
 

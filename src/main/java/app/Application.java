@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package root;
+package app;
 
 
 import java.io.File;
@@ -38,7 +38,7 @@ import org.json.simple.JSONObject;
  *
  * @author mjamelle
  */
-public class Server {
+public class Application {
     
     //public static final Logger logger = LogManager.getLogger();
     
@@ -48,16 +48,18 @@ public class Server {
         //setup logging infrastructure
         System.setProperty("log4j.configurationFile","config/log4j2.xml");
         Logger logger = LogManager.getLogger();
-        //Configurator.setLevel("root.Server", Level.DEBUG);
+        //Configurator.setLevel("root.Application", Level.DEBUG);
         
-        //print the absolute location path on OS
-        File jarPath=new File(Server.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+        //absolute location path on OS
+        File jarPath=new File(Application.class.getProtectionDomain().getCodeSource().getLocation().getPath());
         String locationPath=jarPath.getParentFile().getAbsolutePath();
         logger.info("Location Path : " + locationPath);
         
         //start Spark web server and set defaults
-        staticFiles.externalLocation(locationPath + SparkConfig.WEBFILELOCATION);
-        String layout = locationPath + SparkConfig.LAYOUT;
+        //staticFiles.externalLocation(locationPath + SparkConfig.WEBFILELOCATION);
+        //String layout = locationPath + SparkConfig.LAYOUT;
+        staticFileLocation(SparkConfig.WEBFILELOCATION);
+        String layout = SparkConfig.LAYOUT;
         port(SparkConfig.PORT);
         
         //general inits
