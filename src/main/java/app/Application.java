@@ -17,7 +17,9 @@
 package app;
 
 
+import app.book.BookDao;
 import app.bot.BotLogic;
+import app.user.UserDao;
 import app.util.CiscoSpark;
 import app.util.VelocityTemplateEngine;
 import app.util.Config;
@@ -45,10 +47,12 @@ import org.json.simple.JSONObject;
 public class Application {
     
     //public static final Logger logger = LogManager.getLogger();
+    public static BookDao bookDao;  //Test for webtemplate migration
+    public static UserDao userDao;  //Test for webtemplate migration
     
     public static void main(String[] args) throws MalformedURLException, URISyntaxException {
         
-        
+                
         //setup logging infrastructure
         System.setProperty("log4j.configurationFile","config/log4j2.xml");
         Logger logger = LogManager.getLogger();
