@@ -14,8 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package app;
+package app.bot;
 
+import app.util.CiscoSpark;
+import app.util.Config;
 import com.ciscospark.Message;
 import java.io.StringReader;
 import javax.json.Json;
@@ -62,7 +64,7 @@ public class BotLogic {
         receive = CiscoSpark.getMessage(messageID);
         response.setRoomId(receive.getRoomId());
         
-        if (!receive.getPersonEmail().equals(SparkConfig.BOTNAME)) {
+        if (!receive.getPersonEmail().equals(Config.BOTNAME)) {
             ++botrequestcounter;  //counts the Bot requests
             if (receive.getText().toUpperCase().contains("TRANSLATE")) {mytranslate(receive,response,messageRoomType, Language.English);}
             else if ((receive.getText().toUpperCase().contains("ÜBERSETZE")) 

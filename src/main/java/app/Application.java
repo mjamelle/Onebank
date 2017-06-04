@@ -17,6 +17,10 @@
 package app;
 
 
+import app.bot.BotLogic;
+import app.util.CiscoSpark;
+import app.util.VelocityTemplateEngine;
+import app.util.Config;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -56,15 +60,15 @@ public class Application {
         logger.info("Location Path : " + locationPath);
         
         //start Spark web server and set defaults
-        //staticFiles.externalLocation(locationPath + SparkConfig.WEBFILELOCATION);
-        //String layout = locationPath + SparkConfig.LAYOUT;
-        staticFileLocation(SparkConfig.WEBFILELOCATION);
-        String layout = SparkConfig.LAYOUT;
-        port(SparkConfig.PORT);
+        //staticFiles.externalLocation(locationPath + Config.WEBFILELOCATION);
+        //String layout = locationPath + Config.LAYOUT;
+        staticFileLocation(Config.WEBFILELOCATION);
+        String layout = Config.LAYOUT;
+        port(Config.PORT);
         
         //general inits
         BotLogic.initranslate();
-        SparkConfig config = new SparkConfig ();  //config file ini
+        Config config = new Config ();  //config file ini
         CiscoSpark.setWebhookMessageLink(config.getWebhookMessageLink());
         CiscoSpark.setWebhookRoomsLink(config.getWebhookRoomsLink());       
         CiscoSpark.ciscoSparkIni(config.getAccessToken()); // Spark Object ini and access code from config file    

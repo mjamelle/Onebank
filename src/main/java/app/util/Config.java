@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package app;
+package app.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -34,7 +34,7 @@ import org.json.simple.parser.ParseException;
  *
  * @author mjamelle
  */
-public class SparkConfig {
+public class Config {
     
     private static final Logger logger = LogManager.getLogger();
     
@@ -52,11 +52,11 @@ public class SparkConfig {
     private String ServerPort;
     
     
-    SparkConfig() {
+    public Config() {
        loadconfig();
     }
     
-    SparkConfig(String mFilename) {
+    public Config(String mFilename) {
        this.mConfigFile = mFilename; 
        loadconfig();
     }
