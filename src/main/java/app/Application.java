@@ -17,16 +17,21 @@
 package app;
 
 
+import app.book.BookController;
 import app.book.BookDao;
 import app.bot.BotLogic;
+import app.index.IndexController;
 import app.user.UserDao;
 import app.util.CiscoSpark;
 import app.util.VelocityTemplateEngine;
 import app.util.Config;
+import app.util.Filters;
+import app.util.Path;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import static spark.Spark.*;
+import static spark.debug.DebugScreen.*;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Locale;
@@ -69,6 +74,7 @@ public class Application {
         staticFileLocation(Config.WEBFILELOCATION);
         String layout = Config.LAYOUT;
         port(Config.PORT);
+        enableDebugScreen();
         
         //general inits
         BotLogic.initranslate();
@@ -80,6 +86,7 @@ public class Application {
         
         
         //web routes responses---------------------------------------------------
+        /*
         get("/", (request, response) -> {
             logger.info("/ Web request");
             logger.debug("/ Web request : " + request.body());
@@ -150,7 +157,7 @@ public class Application {
             logger.debug("/rest/config Web response : " + obj.toJSONString());
             return obj.toJSONString();  
         });
-        
+        */
         
         // New code for Onebank
         
@@ -198,10 +205,23 @@ public class Application {
             return "File uploaded";
           });
          
+        
 */
+        
+        
           get("/hello/:name", (request, response) -> {
             return "Hello: " + request.params(":name");
           });
+          
+          
+          
+          // Set up before-filters (called before each get/post)
+        before("*",                  Filters.addTrailingSlashes);
+        before("*",                  Filters.handleLocaleChange);
+        get(Path.Web.INDEX,          IndexController.serveIndexPage);
+        get(Path.Web.ONE_BOOK,       BookController.fetchOneBook);
+        
+        after("*",                   Filters.addGzipHeader);
     }
     
 }
