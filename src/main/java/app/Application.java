@@ -43,12 +43,6 @@ import org.apache.logging.log4j.core.config.Configurator;
 import org.json.simple.JSONObject;
 
 
-        
-
-/**
- *
- * @author mjamelle
- */
 public class Application {
     
     //public static final Logger logger = LogManager.getLogger();
@@ -58,17 +52,17 @@ public class Application {
     public static void main(String[] args) throws MalformedURLException, URISyntaxException {
         
                 
-        //setup logging infrastructure
+        //-------------------setup logging infrastructure-----------------------
         System.setProperty("log4j.configurationFile","config/log4j2.xml");
         Logger logger = LogManager.getLogger();
         //Configurator.setLevel("root.Application", Level.DEBUG);
         
-        //absolute location path on OS
+        //----------------get absolute location path on OS----------------------
         File jarPath=new File(Application.class.getProtectionDomain().getCodeSource().getLocation().getPath());
         String locationPath=jarPath.getParentFile().getAbsolutePath();
         logger.info("Location Path : " + locationPath);
         
-        //start Spark web server and set defaults
+        //--------------start Spark web server and set defaults-----------------
         //staticFiles.externalLocation(locationPath + Config.WEBFILELOCATION);
         //String layout = locationPath + Config.LAYOUT;
         staticFileLocation(Config.WEBFILELOCATION);
@@ -84,6 +78,16 @@ public class Application {
         CiscoSpark.ciscoSparkIni(config.getAccessToken()); // Spark Object ini and access code from config file    
         logger.info("Spark initilized");
         
+        
+        // Set up before-filters (called before each get/post)
+        before("*",                  Filters.addTrailingSlashes);
+        before("*",                  Filters.handleLocaleChange);
+        
+        //-----------------Set up Links and point to the controllers------------
+        get(Path.Web.INDEX,          IndexController.serveIndexPage);
+        get(Path.Web.ONE_BOOK,       BookController.fetchOneBook);
+        
+        after("*",                   Filters.addGzipHeader);
         
         //web routes responses---------------------------------------------------
         /*
@@ -208,20 +212,8 @@ public class Application {
         
 */
         
-        
-          get("/hello/:name", (request, response) -> {
-            return "Hello: " + request.params(":name");
-          });
           
-          
-          
-          // Set up before-filters (called before each get/post)
-        before("*",                  Filters.addTrailingSlashes);
-        before("*",                  Filters.handleLocaleChange);
-        get(Path.Web.INDEX,          IndexController.serveIndexPage);
-        get(Path.Web.ONE_BOOK,       BookController.fetchOneBook);
-        
-        after("*",                   Filters.addGzipHeader);
+
     }
     
 }

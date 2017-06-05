@@ -28,10 +28,6 @@ import org.apache.logging.log4j.Logger;
 
 
 
-/**
- *
- * @author mjamelle
- */
 public class CiscoSpark {
     
     public static final Logger logger = LogManager.getLogger();
