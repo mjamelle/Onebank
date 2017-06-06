@@ -20,6 +20,7 @@ package app;
 import app.book.BookController;
 import app.book.BookDao;
 import app.bot.BotLogic;
+import app.contact.ContactController;
 import app.index.IndexController;
 import app.user.UserDao;
 import app.util.CiscoSpark;
@@ -85,9 +86,9 @@ public class Application {
         
         //-----------------Set up Links and point to the controllers------------
         get(Path.Web.INDEX,          IndexController.serveIndexPage);
-        get(Path.Web.ONE_BOOK,       BookController.fetchOneBook);
+        get(Path.Web.CONTACT,        ContactController.serveIndexPage);
         
-        after("*",                   Filters.addGzipHeader);
+        //after("*",                   Filters.addGzipHeader);
         
         //web routes responses---------------------------------------------------
         /*
