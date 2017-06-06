@@ -39,7 +39,6 @@ public class Config {
     private final String webhookRoomsroute = "webhook/rooms";
     public static final String BOTNAME = "maja@sparkbot.io";
     public static final String WEBFILELOCATION = "/web";
-    public static final String LAYOUT = "/web/templates/layout.html";
     public static final int PORT = 4567;
     
     private String AccessToken;

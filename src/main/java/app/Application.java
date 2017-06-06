@@ -56,7 +56,6 @@ public class Application {
         //staticFiles.externalLocation(locationPath + Config.WEBFILELOCATION);
         //String layout = locationPath + Config.LAYOUT;
         staticFileLocation(Config.WEBFILELOCATION);
-        String layout = Config.LAYOUT;
         port(Config.PORT);
         enableDebugScreen();
         

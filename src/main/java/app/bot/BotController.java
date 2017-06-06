@@ -14,14 +14,14 @@ public class BotController {
         logger.debug("/webhook/messages Web request : " + request.body());
         BotLogic.webHookMessageTrigger(request);
         response.status(200);
-        return "ok";
+        return null;
     };
     public static Route serveBotRooms = (Request request, Response response) -> {
         logger.info("/webhook/rooms Web request");
         logger.debug("/webhook/rooms Web request : " + request.body());
         BotLogic.webHookRoomsTrigger(request);
         response.status(200);
-        return "ok";
+        return null;
     };
     
 }
