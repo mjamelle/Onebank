@@ -1,11 +1,10 @@
 package app.login;
 
-import app.user.*;
 import app.util.*;
 import spark.*;
 import java.util.*;
 import static app.util.RequestUtil.*;
-
+/*
 public class LoginController {
 
     public static Route serveLoginPage = (Request request, Response response) -> {
@@ -46,3 +45,4 @@ public class LoginController {
     };
 
 }
+*/

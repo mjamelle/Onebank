@@ -16,15 +16,12 @@
  */
 package app;
 
-
-import app.book.BookController;
-import app.book.BookDao;
 import app.bot.BotLogic;
+import app.bot.*;
 import app.contact.ContactController;
 import app.index.IndexController;
-import app.user.UserDao;
+import app.rest.RestController;
 import app.util.CiscoSpark;
-import app.util.VelocityTemplateEngine;
 import app.util.Config;
 import app.util.Filters;
 import app.util.Path;
@@ -33,22 +30,14 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Locale;
-import org.apache.logging.log4j.Level;
-import spark.ModelAndView;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.config.Configurator;
-import org.json.simple.JSONObject;
 
 
 public class Application {
     
     //public static final Logger logger = LogManager.getLogger();
-    public static BookDao bookDao;  //Test for webtemplate migration
-    public static UserDao userDao;  //Test for webtemplate migration
     
     public static void main(String[] args) throws MalformedURLException, URISyntaxException {
         
@@ -86,83 +75,14 @@ public class Application {
         
         //-----------------Set up Links and point to the controllers------------
         get(Path.Web.INDEX,          IndexController.serveIndexPage);
-        get(Path.Web.CONTACT,        ContactController.serveIndexPage);
+        get(Path.Web.CONTACT,        ContactController.serveContactPage);
+        post(Path.Web.BOTMESSAGE,    BotController.serveBotMessage);
+        post(Path.Web.BOTROOMS,      BotController.serveBotRooms);
+        get(Path.Web.REST,           RestController.serveRestAPI);
         
         //after("*",                   Filters.addGzipHeader);
         
-        //web routes responses---------------------------------------------------
-        /*
-        get("/", (request, response) -> {
-            logger.info("/ Web request");
-            logger.debug("/ Web request : " + request.body());
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("template", "/web/Welcome.html" );
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
-        
-        get("/setup", (request, response) -> {
-            logger.info("/setup Web request");
-            logger.debug("/setup Web request : " + request.body());
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("template", "/web/Setup_form.html");
-            model.put("AccessToken", config.getAccessToken());
-            model.put("ServerURL", config.getServerURL());
-            model.put("ServerPort", config.getServerPort());
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
- 
-        get("/setup_submit", (request, response) -> {
-            logger.info("/setup_submit Web request");
-            logger.debug("/setup_submit Web request : " + request.body());
-            config.setAccessToken(request.queryParams("AccessToken"));
-            config.setServerURL(request.queryParams("ServerURL"));
-            config.setServerPort(request.queryParams("ServerPort")); 
-            config.writeconfig();
-            response.redirect("/");
-            return "ok";
-        });
 
-        get("/info", (request, response) -> {
-            logger.info("/info Web request");
-            logger.debug("/info Web request : " + request.body());
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("template", "/web/Info_form.html");
-            model.put("Botrequestcounter", BotLogic.getBotrequestcounter());
-            model.put("Roomamount", CiscoSpark.getRoomamount());
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
-              
-        post("webhook/messages", (request, response) -> {
-            logger.info("/webhook/messages Web request");
-            logger.debug("/webhook/messages Web request : " + request.body());
-            BotLogic.webHookMessageTrigger(request);
-            response.status(200);
-            return "ok";  
-        });
-               
-        post("/webhook/rooms", (request, response) -> {
-            logger.info("/webhook/rooms Web request");
-            logger.debug("/webhook/rooms Web request : " + request.body());
-            BotLogic.webHookRoomsTrigger(request);
-            response.status(200);
-            return "ok";  
-        });
-        
-        // REST Implementation
-        get("/rest/config", (request, response) -> {
-            logger.info("/rest/config Web request");
-            logger.debug("/rest/config Web request : " + request.body());
-            response.status(200);
-            response.type("application/json");
-            
-            //load config into JSONObject
-            JSONObject obj = new JSONObject();
-            obj.put("Botrequest", BotLogic.getBotrequestcounter());
-            obj.put("Rooms", CiscoSpark.getRoomamount());
-            logger.debug("/rest/config Web response : " + obj.toJSONString());
-            return obj.toJSONString();  
-        });
-        */
         
         // New code for Onebank
         

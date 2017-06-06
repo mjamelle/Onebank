@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ContactController {
     private static final Logger logger = LogManager.getLogger();
-    public static Route serveIndexPage = (Request request, Response response) -> {
+    public static Route serveContactPage = (Request request, Response response) -> {
         logger.info("/contact/ request");
         logger.debug("/contact/ request : " + request.body());
         Map<String, Object> model = new HashMap<>();
