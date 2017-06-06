@@ -59,7 +59,7 @@ public class Application {
         port(Config.PORT);
         enableDebugScreen();
         
-        //general inits
+        //----------------General Initiations-----------------------------------
         BotLogic.initranslate();
         Config config = new Config ();  //config file ini
         CiscoSpark.setWebhookMessageLink(config.getWebhookMessageLink());
@@ -68,9 +68,15 @@ public class Application {
         logger.info("Spark initilized");
         
         
-        // Set up before-filters (called before each get/post)
+        //-------Set up before-filters (called before each get/post)------------
         before("*",                  Filters.addTrailingSlashes);
         before("*",                  Filters.handleLocaleChange);
+        
+        //-----------------Setup redirect link to index page--------------------
+        get("/", (request, response) -> {
+           response.redirect("/index"); 
+           return null;
+        });
         
         //-----------------Set up Links and point to the controllers------------
         get(Path.Web.INDEX,          IndexController.serveIndexPage);
@@ -79,7 +85,7 @@ public class Application {
         post(Path.Web.BOTROOMS,      BotController.serveBotRooms);
         get(Path.Web.REST,           RestController.serveRestAPI);
         
-        //after("*",                   Filters.addGzipHeader);
+        after("*",                   Filters.addGzipHeader);
         
 
         
