@@ -19,6 +19,7 @@ package app;
 import app.bot.BotLogic;
 import app.bot.*;
 import app.contact.ContactController;
+import app.consultant.ConsultantController;
 import app.index.IndexController;
 import app.rest.RestController;
 import app.util.CiscoSpark;
@@ -81,6 +82,7 @@ public class Application {
         //-----------------Set up Links and point to the controllers------------
         get(Path.Web.INDEX,          IndexController.serveIndexPage);
         get(Path.Web.CONTACT,        ContactController.serveContactPage);
+        get(Path.Web.CONSULTANT,     ConsultantController.serveConsultantPage);
         post(Path.Web.BOTMESSAGE,    BotController.serveBotMessage);
         post(Path.Web.BOTROOMS,      BotController.serveBotRooms);
         get(Path.Web.REST,           RestController.serveRestAPI);

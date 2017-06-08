@@ -46,7 +46,7 @@
 
                       </div>
 
-                      <div><a class="btn btn-primary" href="../remote_advisor.html">Beratung</a></div>
+                      <div><a class="btn btn-primary" href="../consultant">Beratung</a></div>
                   </div>
 
 
@@ -76,7 +76,7 @@
 
                       </div>
 
-                      <div><a class="btn btn-warning" href="../remote_advisor.html">Beratung</a></div>
+                      <div><a class="btn btn-warning" href="../consultant">Beratung</a></div>
                   </div>
 
 
@@ -118,7 +118,7 @@
                                     <p>...beraten sie gerne dort, wo sie sich am wohlsten fühlen. <br>Wozu &nbsp;uns umständlich aufsuchen...</p>
                                 </div>
 
-                                <div class="mbr-section-btn"><a class="btn btn-primary" href="../remote_advisor.html">Beratung</a></div>
+                                <div class="mbr-section-btn"><a class="btn btn-primary" href="../consultant">Beratung</a></div>
 
                             </div>
 

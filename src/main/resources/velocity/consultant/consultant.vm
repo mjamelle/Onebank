@@ -1,0 +1,82 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+
+
+<style type="text/css">
+    img {
+    border: solid white 2px;
+    cursor: pointer;
+    }
+</style>
+
+<section class="engine"><a rel="external" href="https://mobirise.com">Web Site Builder</a></section><section class="mbr-section mbr-parallax-background mbr-after-navbar" id="testimonials1-b" style="background-image: url(../assets/images/landscape2.jpg); padding-top: 120px; padding-bottom: 120px;">
+
+
+
+        <div class="mbr-section mbr-section__container mbr-section__container--middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-xs-center">
+                        <h3 class="mbr-section-title display-2">Ihr Beraterteam</h3>
+                        <small class="mbr-section-subtitle">Klicken sie auf den gewünschten Berater</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="mbr-testimonials mbr-section mbr-section-nopadding" ng-controller="JGCtrl">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xs-12 col-lg-4">
+
+                    <div class="mbr-testimonial card mbr-testimonial-lg">
+                        <div class="card-block">Immobilien und mehr</div>
+                        <div class="mbr-author card-footer">
+                            <div ng-click="clickToOpenSparkPatrick()" class="mbr-author-img"><img src="..//assets/images/paglanz-120x160.jpg" class="img-circle"></div>
+                            <div class="mbr-author-name">Patrick Glanz</div>
+                            <small class="mbr-author-desc">Berater</small>
+                        </div>
+                    </div>
+                </div><div class="col-xs-12 col-lg-4">
+
+                    <div class="mbr-testimonial card mbr-testimonial-lg">
+                        <div class="card-block">Kapitalanlagenberatung</div>
+                        <div class="mbr-author card-footer">
+                            <div ng-click="clickToOpenSparkMarko()" class="mbr-author-img"><img src="../assets/images/mjamelle-120x160.jpg" class="img-circle"></div>
+                            <div class="mbr-author-name">Marko Jamelle</div>
+                            <small class="mbr-author-desc">Berater</small>
+                        </div>
+                    </div>
+                </div><div class="col-xs-12 col-lg-4">
+
+                  <div class="mbr-testimonial card mbr-testimonial-lg">
+                      <div class="card-block">Investmentberatung</div>
+                      <div class="mbr-author card-footer">
+                          <div ng-click="clickToOpenSparkSteffen()" class="mbr-author-img"><img src="../assets/images/stelehmam-120x160.jpg" class="img-circle"></div>
+                          <div class="mbr-author-name">Steffen Lehmann</div>
+                          <small class="mbr-author-desc">Berater</small>
+                      </div>
+                  </div>
+              </div><div class="col-xs-12 col-lg-4">
+
+                    <div class="mbr-testimonial card mbr-testimonial-lg">
+                        <div class="card-block">Terminvereinbarung</div>
+                        <div class="mbr-author card-footer">
+                            <div ng-click="clickToOpenJG()" class="mbr-author-img"><img src="../assets/images/face2.jpg" class="img-circle"></div>
+                            <div class="mbr-author-name">Maja Eschborn</div>
+                            <small class="mbr-author-desc">Service Center Leitung</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+#end
