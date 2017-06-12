@@ -72,12 +72,7 @@ public class Application {
         //-------Set up before-filters (called before each get/post)------------
         before("*",                  Filters.addTrailingSlashes);
         before("*",                  Filters.handleLocaleChange);
-        
-        //-----------------Setup redirect link to index page--------------------
-        get("/", (request, response) -> {
-           response.redirect("/index"); 
-           return null;
-        });
+        before(Path.Web.SLASH,       Filters.forwardtoIndex);
         
         //-----------------Set up Links and point to the controllers------------
         get(Path.Web.INDEX,          IndexController.serveIndexPage);

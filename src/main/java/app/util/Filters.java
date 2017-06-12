@@ -12,6 +12,12 @@ public class Filters {
             response.redirect(request.pathInfo() + "/");
         }
     };
+    
+    
+    public static Filter forwardtoIndex = (Request request, Response response) -> {
+        response.redirect("/index"); 
+    };
+    
 
     // Locale change can be initiated from any page
     // The locale is extracted from the request and saved to the user's session
