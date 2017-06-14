@@ -114,13 +114,13 @@ public class User {
   }
 
   @Override
-  public boolean equals(Object otherTask){
-    if (!(otherTask instanceof User)) {
+  public boolean equals(Object otherUser){
+    if (!(otherUser instanceof User)) {
       return false;
     } else {
-      User newTask = (User) otherTask;
-      return this.getUsername().equals(newTask.getUsername()) &&
-             this.getId() == newTask.getId();
+      User newUser = (User) otherUser;
+      return this.getUsername().equals(newUser.getUsername()) &&
+             this.getId() == newUser.getId();
     }
   }
 
