@@ -29,38 +29,20 @@
         <div class="container">
             <div class="row">
 
+                #foreach ($user in $users)
+                    <div class="col-xs-12 col-lg-4">
+                        <div class="mbr-testimonial card mbr-testimonial-lg">
+                            <div class="card-block">$!user.getFunction()</div>
+                            <div class="mbr-author card-footer">
+                                <div ng-click="clickToOpenSparkPatrick()" class="mbr-author-img"><img src="$!user.getPhotolink()" class="img-circle"></div>
+                                <div class="mbr-author-name">$!user.getGivenName()  $!user.getSurName()</div>
+                                <small class="mbr-author-desc">Berater</small>
+                            </div>
+                        </div>
+                    </div>
+                #end
+                
                 <div class="col-xs-12 col-lg-4">
-
-                    <div class="mbr-testimonial card mbr-testimonial-lg">
-                        <div class="card-block">Immobilien und mehr</div>
-                        <div class="mbr-author card-footer">
-                            <div ng-click="clickToOpenSparkPatrick()" class="mbr-author-img"><img src="..//assets/images/paglanz-120x160.jpg" class="img-circle"></div>
-                            <div class="mbr-author-name">Patrick Glanz</div>
-                            <small class="mbr-author-desc">Berater</small>
-                        </div>
-                    </div>
-                </div><div class="col-xs-12 col-lg-4">
-
-                    <div class="mbr-testimonial card mbr-testimonial-lg">
-                        <div class="card-block">Kapitalanlagenberatung</div>
-                        <div class="mbr-author card-footer">
-                            <div ng-click="clickToOpenSparkMarko()" class="mbr-author-img"><img src="../assets/images/mjamelle-120x160.jpg" class="img-circle"></div>
-                            <div class="mbr-author-name">Marko Jamelle</div>
-                            <small class="mbr-author-desc">Berater</small>
-                        </div>
-                    </div>
-                </div><div class="col-xs-12 col-lg-4">
-
-                  <div class="mbr-testimonial card mbr-testimonial-lg">
-                      <div class="card-block">Investmentberatung</div>
-                      <div class="mbr-author card-footer">
-                          <div ng-click="clickToOpenSparkSteffen()" class="mbr-author-img"><img src="../assets/images/stelehmam-120x160.jpg" class="img-circle"></div>
-                          <div class="mbr-author-name">Steffen Lehmann</div>
-                          <small class="mbr-author-desc">Berater</small>
-                      </div>
-                  </div>
-              </div><div class="col-xs-12 col-lg-4">
-
                     <div class="mbr-testimonial card mbr-testimonial-lg">
                         <div class="card-block">Terminvereinbarung</div>
                         <div class="mbr-author card-footer">

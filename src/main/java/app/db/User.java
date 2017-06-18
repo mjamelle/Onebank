@@ -11,18 +11,20 @@ public class User {
   private String password;
   private String photolink;
   private String email;
+  private String function;
   private boolean jabber_use;
   private boolean spark_use;
   private boolean adminprivilege;
   
   public User(String givenName, String surName, String username, String password, String photolink,
-    String email, boolean jabber_use, boolean spark_use, boolean adminprivilege) {
+    String email, String function, boolean jabber_use, boolean spark_use, boolean adminprivilege) {
     this.givenName = givenName;
     this.surName = surName;
     this.username = username;
     this.password = password;
     this.photolink = photolink;
     this.email = email;
+    this.function = function;
     this.jabber_use = jabber_use;
     this.spark_use = spark_use;
     this.adminprivilege = adminprivilege;
@@ -80,6 +82,14 @@ public class User {
         this.email = email;
     }
 
+    public String getFunction() {
+        return function;
+    }
+
+    public void setFunction(String function) {
+        this.function = function;
+    }
+
     public boolean isJabber_use() {
         return jabber_use;
     }
@@ -107,7 +117,7 @@ public class User {
 
   public static List<User> all() {
     String sql = "SELECT id, givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
-            + "username, password FROM users";
+            + "username, password, function FROM users";
     try(Connection con = DB.sql2o.open()) {
      return con.createQuery(sql).executeAndFetch(User.class);
     }
@@ -127,8 +137,8 @@ public class User {
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO users(givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
-              + "username, password) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
-              + " :photolink, :username, :password)";
+              + "username, password, function) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
+              + " :photolink, :username, :password, :function)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("givenName", this.givenName)
         .addParameter("surName", this.surName)
@@ -139,6 +149,7 @@ public class User {
         .addParameter("photolink", this.photolink)
         .addParameter("username", this.username)
         .addParameter("password", this.password)
+        .addParameter("function", this.function)      
         .executeUpdate()
         .getKey();
     }
@@ -157,7 +168,7 @@ public class User {
   public void update(String description) {
     try(Connection con = DB.sql2o.open()) {
     String sql = "UPDATE users SET givenName = :givenName, surName = :surName, email = :email, jabber_use = :jabber_use,"
-            + "spark_use = :spark_use, adminprivilege = :adminprivilege, photolink = :photolink,"
+            + "spark_use = :spark_use, adminprivilege = :adminprivilege, photolink = :photolink, function = :function,"
             + "username = :username, password= :password WHERE id = :id";
     con.createQuery(sql)
       .addParameter("givenName", this.givenName)
@@ -169,6 +180,7 @@ public class User {
       .addParameter("photolink", this.photolink)
       .addParameter("username", this.username)
       .addParameter("password", this.password)
+      .addParameter("function", this.function)      
       .addParameter("id", id)
       .executeUpdate();
     }
