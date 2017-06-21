@@ -17,4 +17,12 @@ public class ConsultantController {
         model.put("users", User.all());
         return ViewUtil.render(request, model, Path.Template.CONSULTANT);
     };
+    
+    public static Route serveSparkWidget = (Request request, Response response) -> {
+        LOGGER.info("/sparkwidget/ request");
+        LOGGER.debug("/sparkwidget/ request : " + request.body());
+        Map<String, Object> model = new HashMap<>();
+        return ViewUtil.render(request, model, Path.Template.SPARKWIDGET);
+    };
+    
 }

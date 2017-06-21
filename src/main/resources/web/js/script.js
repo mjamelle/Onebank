@@ -1,25 +1,9 @@
 var app = angular.module('JGApp', ['ngDialog']);
 
 app.controller('JGCtrl', function ($scope, ngDialog) {
-    $scope.clickToOpenSparkPatrick  = function () {
+    $scope.clickToOpenSparkWidget  = function () {
       ngDialog.open({
-          template: '<iframe src="../SparkWidget_Patrick.html" width="620" height="420"></iframe> ',
-          plain: true,
-          width: 680,
-          height: 480
-      });
-    };
-    $scope.clickToOpenSparkMarko  = function () {
-      ngDialog.open({
-          template: '<iframe src="../SparkWidget_Marko.html" width="620" height="420"></iframe> ',
-          plain: true,
-          width: 680,
-          height: 480
-      });
-    };
-    $scope.clickToOpenSparkSteffen  = function () {
-      ngDialog.open({
-          template: '<iframe src="../SparkWidget_Steffen.html" width="620" height="420"></iframe> ',
+          template: '<iframe src="../sparkwidget/" width="620" height="420"></iframe> ',
           plain: true,
           width: 680,
           height: 480

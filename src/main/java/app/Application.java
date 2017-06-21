@@ -78,6 +78,7 @@ public class Application {
         get(Path.Web.INDEX,          IndexController.serveIndexPage);
         get(Path.Web.CONTACT,        ContactController.serveContactPage);
         get(Path.Web.CONSULTANT,     ConsultantController.serveConsultantPage);
+        get(Path.Web.SPARKWIDGET,    ConsultantController.serveSparkWidget);
         post(Path.Web.BOTMESSAGE,    BotController.serveBotMessage);
         post(Path.Web.BOTROOMS,      BotController.serveBotRooms);
         get(Path.Web.REST,           RestController.serveRestAPI);
