@@ -19,9 +19,11 @@ public class ConsultantController {
     };
     
     public static Route serveSparkWidget = (Request request, Response response) -> {
-        LOGGER.info("/sparkwidget/ request");
-        LOGGER.debug("/sparkwidget/ request : " + request.body());
+        LOGGER.info("/sparkwidget/"+request.params(":id")+" request");
+        LOGGER.debug("/sparkwidget/"+request.params(":id")+" request : " + request.body());
         Map<String, Object> model = new HashMap<>();
+        User consultant = User.find(Integer.parseInt(request.params(":id")));
+        model.put("consultant", consultant);
         return ViewUtil.render(request, model, Path.Template.SPARKWIDGET);
     };
     

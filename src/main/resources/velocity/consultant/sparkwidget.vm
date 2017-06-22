@@ -9,7 +9,7 @@
         class="ciscospark-space"
         data-toggle="ciscospark-space"
         data-access-token="NGNhZmQxYTgtYzIzNy00YzIxLThiMjAtZjBhZDA3ZWQ5MzU3Yzc5ODZmMTQtMDQ4"
-        data-to-person-email="mjamelle@cisco.com"
+        data-to-person-email="$consultant.getEmail()"
         />
       </div>
     </body>

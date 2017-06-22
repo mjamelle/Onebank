@@ -1,9 +1,9 @@
 var app = angular.module('JGApp', ['ngDialog']);
 
 app.controller('JGCtrl', function ($scope, ngDialog) {
-    $scope.clickToOpenSparkWidget  = function () {
+    $scope.clickToOpenSparkWidget  = function (UserID) {
       ngDialog.open({
-          template: '<iframe src="../sparkwidget/" width="620" height="420"></iframe> ',
+          template: '<iframe src="../sparkwidget/'+UserID+'/" width="620" height="420"></iframe> ',
           plain: true,
           width: 680,
           height: 480

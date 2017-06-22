@@ -11,7 +11,7 @@ public class Path {
         @Getter public static final String INDEX = "/index/";
         @Getter public static final String CONTACT = "/contact/";
         @Getter public static final String CONSULTANT = "/consultant/";
-        @Getter public static final String SPARKWIDGET = "/sparkwidget/";
+        @Getter public static final String SPARKWIDGET = "/sparkwidget/:id/";
         @Getter public static final String BOTMESSAGE = "/webhook/messages";
         @Getter public static final String BOTROOMS = "/webhook/rooms";
         @Getter public static final String REST = "/rest/config";
