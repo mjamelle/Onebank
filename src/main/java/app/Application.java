@@ -86,44 +86,8 @@ public class Application {
         after("*",                   Filters.addGzipHeader);
         
 
-        
-        // New code for Onebank
-        
-        /*
-           post("/tasks", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            Category category = Category.find(Integer.parseInt(request.queryParams("categoryId")));
-            String description = request.queryParams("description");
-            Consultant newTask = new Consultant(description, category.getId());
-            newTask.save();
-            model.put("category", category);
-            model.put("template", "templates/category-task-success.vtl");
-            return new ModelAndView(model, layout);
-          }, new VelocityTemplateEngine());
-
-          get("/tasks/:id", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            Consultant task = Consultant.find(Integer.parseInt(request.params(":id")));
-            model.put("task", task);
-            model.put("template", "templates/task.vtl");
-            return new ModelAndView(model, layout);
-          }, new VelocityTemplateEngine());
-
-          post("/categories", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            String name = request.queryParams("name");
-            Category newCategory = new Category(name);
-            newCategory.save();
-            model.put("template", "templates/category-success.vtl");
-            return new ModelAndView(model, layout);
-          }, new VelocityTemplateEngine());
-
-          get("/categories", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("categories", Category.all());
-            model.put("template", "templates/categories.vtl");
-            return new ModelAndView(model, layout);
-          }, new VelocityTemplateEngine());
+/*
+        New code for Onebank
           
           post("/yourUploadPath", (request, response) -> {
             request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
