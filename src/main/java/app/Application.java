@@ -54,9 +54,9 @@ public class Application {
         logger.info("Location Path : " + locationPath);
         
         //--------------start Spark web server and set defaults-----------------
-        //staticFiles.externalLocation(locationPath + Config.WEBFILELOCATION);
+        staticFiles.externalLocation(locationPath + Config.WEBFILELOCATION);
         //String layout = locationPath + Config.LAYOUT;
-        staticFileLocation(Config.WEBFILELOCATION);
+        //staticFileLocation(Config.WEBFILELOCATION);
         port(Config.PORT);
         enableDebugScreen();
         
