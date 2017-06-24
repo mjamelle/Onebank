@@ -17,7 +17,7 @@
 package app.bot;
 
 import app.util.CiscoSpark;
-import app.util.Config;
+import app.util.SystemConfig;
 import com.ciscospark.Message;
 import java.io.StringReader;
 import javax.json.Json;
@@ -64,7 +64,7 @@ public class BotLogic {
         receive = CiscoSpark.getMessage(messageID);
         response.setRoomId(receive.getRoomId());
         
-        if (!receive.getPersonEmail().equals(Config.BOTNAME)) {
+        if (!receive.getPersonEmail().equals(SystemConfig.BOTNAME)) {
             ++botrequestcounter;  //counts the Bot requests
             if (receive.getText().toUpperCase().contains("TRANSLATE")) {mytranslate(receive,response,messageRoomType, Language.English);}
             else if ((receive.getText().toUpperCase().contains("ÜBERSETZE")) 

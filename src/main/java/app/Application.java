@@ -23,7 +23,7 @@ import app.consultant.ConsultantController;
 import app.index.IndexController;
 import app.rest.RestController;
 import app.util.CiscoSpark;
-import app.util.Config;
+import app.util.SystemConfig;
 import app.util.Filters;
 import app.util.Path;
 import java.io.File;
@@ -54,15 +54,15 @@ public class Application {
         logger.info("Location Path : " + locationPath);
         
         //--------------start Spark web server and set defaults-----------------
-        staticFiles.externalLocation(locationPath + Config.WEBFILELOCATION);
-        //String layout = locationPath + Config.LAYOUT;
-        //staticFileLocation(Config.WEBFILELOCATION);
-        port(Config.PORT);
+        staticFiles.externalLocation(locationPath + SystemConfig.WEBFILELOCATION);
+        //String layout = locationPath + SystemConfig.LAYOUT;
+        //staticFileLocation(SystemConfig.WEBFILELOCATION);
+        port(SystemConfig.PORT);
         enableDebugScreen();
         
         //----------------General Initiations-----------------------------------
         BotLogic.initranslate();
-        Config config = new Config ();  //config file ini
+        SystemConfig config = new SystemConfig ();  //config file ini
         CiscoSpark.setWebhookMessageLink(config.getWebhookMessageLink());
         CiscoSpark.setWebhookRoomsLink(config.getWebhookRoomsLink());       
         CiscoSpark.ciscoSparkIni(config.getAccessToken()); // Spark Object ini and access code from config file    

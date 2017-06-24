@@ -30,7 +30,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
-public class Config {
+public class SystemConfig {
     
     private static final Logger logger = LogManager.getLogger();
     
@@ -47,11 +47,11 @@ public class Config {
     private String ServerPort;
     
     
-    public Config() {
+    public SystemConfig() {
        loadconfig();
     }
     
-    public Config(String mFilename) {
+    public SystemConfig(String mFilename) {
        this.mConfigFile = mFilename; 
        loadconfig();
     }
