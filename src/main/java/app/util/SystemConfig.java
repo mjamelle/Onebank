@@ -16,35 +16,35 @@
  */
 package app.util;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;        
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
+import org.apache.logging.log4j.Level;
 
 
 public class SystemConfig {
     
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
     
-    private String mConfigFile = "config/config.json";
-    private final String webhookMessageroute = "webhook/messages";
-    private final String webhookRoomsroute = "webhook/rooms";
-    public static final String BOTNAME = "maja@sparkbot.io";
-    public static final String WEBFILELOCATION = "/web";
-    public static final int PORT = 4567;
+    private static String mConfigFile = "config/config.properties";
+    private static String ServerURL = "www.example.com";
+    private static String botAccessToken = "Insert Access Token";
+    private static String sparkWidgetAccessToken = "Insert Access Token";
+    private static String serverPort = "4567";
+    private static String webhookMessageroute = "webhook/messages";
+    private static String webhookRoomsroute = "webhook/rooms";
+    private static String staticWebFileLocation = "/web";  
+    private static String botUserName = "maja@sparkbot.io";
     
-    private String AccessToken;
-    private String WebhookURL;
-    private String ServerURL;
-    private String ServerPort;
+
+
     
     
     public SystemConfig() {
@@ -52,86 +52,179 @@ public class SystemConfig {
     }
     
     public SystemConfig(String mFilename) {
-       this.mConfigFile = mFilename; 
+       SystemConfig.mConfigFile = mFilename; 
        loadconfig();
     }
 
-    public void setAccessToken(String AccessToken) {
-        this.AccessToken = AccessToken;
+    public static String getmConfigFile() {
+        return mConfigFile;
     }
 
+    public static void setmConfigFile(String mConfigFile) {
+        SystemConfig.mConfigFile = mConfigFile;
+    }
+
+    public static String getWebhookMessageroute() {
+        return webhookMessageroute;
+    }
+
+    public static void setWebhookMessageroute(String webhookMessageroute) {
+        SystemConfig.webhookMessageroute = webhookMessageroute;
+    }
+
+    public static String getWebhookRoomsroute() {
+        return webhookRoomsroute;
+    }
+
+    public static void setWebhookRoomsroute(String webhookRoomsroute) {
+        SystemConfig.webhookRoomsroute = webhookRoomsroute;
+    }
+
+    public static String getStaticWebFileLocation() {
+        return staticWebFileLocation;
+    }
+
+    public static void setStaticWebFileLocation(String staticWebFileLocation) {
+        SystemConfig.staticWebFileLocation = staticWebFileLocation;
+    }
+
+    public static int getServerPort() {
+        int value = Integer.parseInt(SystemConfig.serverPort);
+        return value;
+    }
+
+    public static void setServerPort(Integer serverPort) {
+        SystemConfig.serverPort = serverPort.toString();
+    }
+
+    public static String getBotAccessToken() {
+        return botAccessToken;
+    }
+
+    public static void setBotAccessToken(String botAccessToken) {
+        SystemConfig.botAccessToken = botAccessToken;
+    }
+
+    public static String getServerURL() {
+        return ServerURL;
+    }
+
+    public static void setServerURL(String ServerURL) {
+        SystemConfig.ServerURL = ServerURL;
+    }
+
+    public static String getBotUserName() {
+        return botUserName;
+    }
+
+    public static void setBotUserName(String botUserName) {
+        SystemConfig.botUserName = botUserName;
+    }
+
+    public static String getSparkWidgetAccessToken() {
+        return sparkWidgetAccessToken;
+    }
+
+    public static void setSparkWidgetAccessToken(String sparkWidgetAccessToken) {
+        SystemConfig.sparkWidgetAccessToken = sparkWidgetAccessToken;
+    }
+   
     
-    public void setServerURL(String ServerURL) {
-        this.ServerURL = ServerURL;
-    }    
-
-    public void setServerPort(String ServerPort) {
-        this.ServerPort = ServerPort;
-    }     
-    
-    public String getAccessToken() {
-        return this.AccessToken;
+    public static String getWebhookMessageLink() {
+        return "http://" + ServerURL + ":" + serverPort + "/" + webhookMessageroute;
     }
 
-    public String getServerURL() {
-        return this.ServerURL;
-    }
-
-    public String getServerPort() {
-        return this.ServerPort;
-    }      
-    
-    public String getWebhookMessageLink() {
-        this.WebhookURL = "http://" + ServerURL + ":" + ServerPort + "/" + webhookMessageroute;
-        return this.WebhookURL;
-    }
-
-    public String getWebhookRoomsLink() {
-        this.WebhookURL = "http://" + ServerURL + ":" + ServerPort + "/" + webhookRoomsroute;
-        return this.WebhookURL;
+    public static String getWebhookRoomsLink() {
+        return "http://" + ServerURL + ":" + serverPort + "/" + webhookRoomsroute;
     }    
  
-    private void loadconfig ()  {
-        try {
-        JSONParser parser = new JSONParser();
-        FileReader config = new FileReader(mConfigFile);
-           
-        Object obj = parser.parse(config);
-        JSONObject jsonObject =  (JSONObject) obj;
-        this.AccessToken = (String) jsonObject.getOrDefault("AccessToken","");
-        this.ServerURL = (String) jsonObject.getOrDefault("ServerURL", "www.example.com");
-        this.ServerPort = (String) jsonObject.getOrDefault("ServerPort","8080");
-        logger.info("loadconfig successful");
+    public static void loadconfig ()  {
         
-        } catch (FileNotFoundException e) {
-            logger.log(Level.ERROR,"Please check if config file  /config/config.json exist",e);
-        } catch (IOException e) {
-            logger.log(Level.ERROR,e);
-        } catch (ParseException e) {
-            logger.log(Level.ERROR,"Please check if config file has the right json format",e);
-        }   
-    }      
+    Properties prop = new Properties();
+	InputStream input = null;
+
+	try {
+
+		input = new FileInputStream(mConfigFile);
+
+		// load a properties file
+		prop.load(input);
+
+		// get the property values and copy to class
+                SystemConfig.ServerURL = prop.getProperty("ServerURL");
+                SystemConfig.botAccessToken = prop.getProperty("BotAccessToken");
+                SystemConfig.sparkWidgetAccessToken = prop.getProperty("SparkWidgetAccessToken");
+                SystemConfig.serverPort = prop.getProperty("ServerPort");
+                SystemConfig.staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
+                SystemConfig.webhookMessageroute = prop.getProperty("WebhookMessageroute");
+                SystemConfig.webhookRoomsroute = prop.getProperty("WebhookRoomsroute");
+                SystemConfig.botUserName = prop.getProperty("BotUserName");
+                
+        
+                LOGGER.info("loadconfig successful");
+                LOGGER.debug("Loadconfig ServerURL : " + SystemConfig.ServerURL);
+                LOGGER.debug("Loadconfig BotAccessToken : " + SystemConfig.botAccessToken);
+                LOGGER.debug("Loadconfig sparkWidgetAccessToken : " + SystemConfig.sparkWidgetAccessToken);
+                LOGGER.debug("Loadconfig serverPort : " + SystemConfig.serverPort);
+                LOGGER.debug("Loadconfig staticWebFileLocation : " + SystemConfig.staticWebFileLocation);
+                LOGGER.debug("Loadconfig webhookMessageroute : " + SystemConfig.webhookMessageroute);
+                LOGGER.debug("Loadconfig webhookRoomsroute : " + SystemConfig.webhookRoomsroute);
+                LOGGER.debug("Loadconfig botUserName : " + SystemConfig.botUserName);
+                
+	} catch (IOException ex) {
+		ex.printStackTrace();
+	} finally {
+		if (input != null) {
+			try {
+				input.close();
+			} catch (IOException e) {
+				LOGGER.log(Level.ERROR,e);
+			}
+		}
+	}
+    } 
+
    
-    public void writeconfig () { 
-        
-        //load config into JSONObject
-        JSONObject obj = new JSONObject();
-        obj.put("Name", "Sparkbot");
-        obj.put("AccessToken", AccessToken);
-	obj.put("ServerURL", ServerURL);
-        obj.put("ServerPort", ServerPort);    
-        // save into file 
-        try {
-        FileWriter configFile = new FileWriter(mConfigFile);
-        configFile.write(obj.toJSONString());
-        configFile.flush();
-        configFile.close();    
-        
-        } catch (Exception e) {
-            logger.log(Level.ERROR,"could'nt write config file ",e);
-        }      
-            logger.info("Write Config File");
-            logger.debug("Write Config File : " + obj);
-    }
+    public static void writeconfig () { 
     
+        Properties prop = new Properties();
+	OutputStream output = null;
+
+	try {
+
+		output = new FileOutputStream(mConfigFile);
+                
+
+		// set the properties value
+                prop.setProperty("ServerURL", SystemConfig.ServerURL);
+                prop.setProperty("BotAccessToken", SystemConfig.botAccessToken);
+                prop.setProperty("SparkWidgetAccessToken", SystemConfig.sparkWidgetAccessToken);
+                prop.setProperty("BotUserName", SystemConfig.botUserName);
+                prop.setProperty("ServerPort", SystemConfig.serverPort);
+                prop.setProperty("StaticWebFileLocation", SystemConfig.staticWebFileLocation);
+		prop.setProperty("WebhookMessageroute", SystemConfig.webhookMessageroute);
+                prop.setProperty("WebhookRoomsroute", SystemConfig.webhookRoomsroute);
+
+                
+                
+		// save properties to project config folder
+		prop.store(output, null);
+                
+                LOGGER.info("Config file written");
+                LOGGER.debug("Config file written : " + output);
+                
+
+	} catch (IOException io) {
+		io.printStackTrace();
+	} finally {
+		if (output != null) {
+			try {
+                            output.close();
+			} catch (IOException e) {
+                            LOGGER.log(Level.ERROR,"could'nt write config file ",e);
+			}
+		}
+
+	}
+    }
 }

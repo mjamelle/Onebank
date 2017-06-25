@@ -64,7 +64,7 @@ public class BotLogic {
         receive = CiscoSpark.getMessage(messageID);
         response.setRoomId(receive.getRoomId());
         
-        if (!receive.getPersonEmail().equals(SystemConfig.BOTNAME)) {
+        if (!receive.getPersonEmail().equals(SystemConfig.getBotUserName())) {
             ++botrequestcounter;  //counts the Bot requests
             if (receive.getText().toUpperCase().contains("TRANSLATE")) {mytranslate(receive,response,messageRoomType, Language.English);}
             else if ((receive.getText().toUpperCase().contains("ÜBERSETZE")) 

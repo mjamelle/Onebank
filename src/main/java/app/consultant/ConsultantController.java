@@ -1,6 +1,5 @@
 package app.consultant;
 
-import app.contact.*;
 import app.db.User;
 import app.util.*;
 import spark.*;
@@ -24,6 +23,7 @@ public class ConsultantController {
         Map<String, Object> model = new HashMap<>();
         User consultant = User.find(Integer.parseInt(request.params(":id")));
         model.put("consultant", consultant);
+        model.put("data-access-token", SystemConfig.getSparkWidgetAccessToken());
         return ViewUtil.render(request, model, Path.Template.SPARKWIDGET);
     };
     

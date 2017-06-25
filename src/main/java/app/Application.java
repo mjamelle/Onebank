@@ -33,7 +33,6 @@ import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.config.Configurator;
 
 
 public class Application {
@@ -53,20 +52,21 @@ public class Application {
         String locationPath=jarPath.getParentFile().getAbsolutePath();
         logger.info("Location Path : " + locationPath);
         
-        //--------------start Spark web server and set defaults-----------------
-        staticFiles.externalLocation(locationPath + SystemConfig.WEBFILELOCATION);
-        //String layout = locationPath + SystemConfig.LAYOUT;
-        //staticFileLocation(SystemConfig.WEBFILELOCATION);
-        port(SystemConfig.PORT);
-        enableDebugScreen();
         
         //----------------General initiations-----------------------------------
+        SystemConfig.loadconfig();
         BotLogic.initranslate();
-        SystemConfig config = new SystemConfig ();  //config file ini
-        CiscoSpark.setWebhookMessageLink(config.getWebhookMessageLink());
-        CiscoSpark.setWebhookRoomsLink(config.getWebhookRoomsLink());       
-        CiscoSpark.ciscoSparkIni(config.getAccessToken()); // Spark Object ini and access code from config file    
+        CiscoSpark.setWebhookMessageLink(SystemConfig.getWebhookMessageLink());
+        CiscoSpark.setWebhookRoomsLink(SystemConfig.getWebhookRoomsLink());    
+        CiscoSpark.ciscoSparkIni(SystemConfig.getBotAccessToken()); // Spark Object ini and access code from config file    
         logger.info("Spark initialized");
+        
+        //--------------start Spark web server and set defaults-----------------
+        staticFiles.externalLocation(locationPath + SystemConfig.getStaticWebFileLocation());
+        //String layout = locationPath + SystemConfig.LAYOUT;
+        //staticFileLocation(SystemConfig.WEBFILELOCATION);
+        port(SystemConfig.getServerPort());
+        enableDebugScreen();
         
         
         //-------Set up before-filters (called before each get/post)------------
