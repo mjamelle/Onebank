@@ -60,13 +60,13 @@ public class Application {
         port(SystemConfig.PORT);
         enableDebugScreen();
         
-        //----------------General Initiations-----------------------------------
+        //----------------General initiations-----------------------------------
         BotLogic.initranslate();
         SystemConfig config = new SystemConfig ();  //config file ini
         CiscoSpark.setWebhookMessageLink(config.getWebhookMessageLink());
         CiscoSpark.setWebhookRoomsLink(config.getWebhookRoomsLink());       
         CiscoSpark.ciscoSparkIni(config.getAccessToken()); // Spark Object ini and access code from config file    
-        logger.info("Spark initilized");
+        logger.info("Spark initialized");
         
         
         //-------Set up before-filters (called before each get/post)------------
