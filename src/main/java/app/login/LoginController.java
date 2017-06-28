@@ -1,13 +1,19 @@
 package app.login;
 
+import app.user.UserController;
 import app.util.*;
 import spark.*;
 import java.util.*;
 import static app.util.RequestUtil.*;
-/*
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class LoginController {
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static Route serveLoginPage = (Request request, Response response) -> {
+        LOGGER.info("/login/ get request");
+        LOGGER.debug("/login/ get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         model.put("loggedOut", removeSessionAttrLoggedOut(request));
         model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
@@ -15,6 +21,8 @@ public class LoginController {
     };
 
     public static Route handleLoginPost = (Request request, Response response) -> {
+        LOGGER.info("/login/ post request");
+        LOGGER.debug("/login/ post request : " + request.body());        
         Map<String, Object> model = new HashMap<>();
         if (!UserController.authenticate(getQueryUsername(request), getQueryPassword(request))) {
             model.put("authenticationFailed", true);
@@ -45,4 +53,3 @@ public class LoginController {
     };
 
 }
-*/

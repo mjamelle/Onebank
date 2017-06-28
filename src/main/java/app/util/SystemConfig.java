@@ -42,6 +42,8 @@ public class SystemConfig {
     private static String webhookRoomsroute = "webhook/rooms";
     private static String staticWebFileLocation = "/web";  
     private static String botUserName = "maja@sparkbot.io";
+    private static String postgresUser = "postgres";
+    private static String postgresPassword = "postgrespassword";
     
 
 
@@ -128,7 +130,24 @@ public class SystemConfig {
     public static void setSparkWidgetAccessToken(String sparkWidgetAccessToken) {
         SystemConfig.sparkWidgetAccessToken = sparkWidgetAccessToken;
     }
+
+    public static String getPostgresUser() {
+        return postgresUser;
+    }
+
+    public static void setPostgresUser(String postgresUser) {
+        SystemConfig.postgresUser = postgresUser;
+    }
+
+    public static String getPostgresPassword() {
+        return postgresPassword;
+    }
+
+    public static void setPostgresPassword(String postgresPassword) {
+        SystemConfig.postgresPassword = postgresPassword;
+    }
    
+    
     
     public static String getWebhookMessageLink() {
         return "http://" + ServerURL + ":" + serverPort + "/" + webhookMessageroute;
@@ -159,6 +178,8 @@ public class SystemConfig {
                 SystemConfig.webhookMessageroute = prop.getProperty("WebhookMessageroute");
                 SystemConfig.webhookRoomsroute = prop.getProperty("WebhookRoomsroute");
                 SystemConfig.botUserName = prop.getProperty("BotUserName");
+                SystemConfig.postgresUser = prop.getProperty("PostgresUser");
+                SystemConfig.postgresPassword = prop.getProperty("PostgresPassword");
                 
         
                 LOGGER.info("loadconfig successful");
@@ -170,6 +191,8 @@ public class SystemConfig {
                 LOGGER.debug("Loadconfig webhookMessageroute : " + SystemConfig.webhookMessageroute);
                 LOGGER.debug("Loadconfig webhookRoomsroute : " + SystemConfig.webhookRoomsroute);
                 LOGGER.debug("Loadconfig botUserName : " + SystemConfig.botUserName);
+                LOGGER.debug("Loadconfig postgresUser : " + SystemConfig.postgresUser);
+                LOGGER.debug("Loadconfig postgresPassword : " + SystemConfig.postgresPassword);
                 
 	} catch (IOException ex) {
 		ex.printStackTrace();
@@ -204,6 +227,8 @@ public class SystemConfig {
                 prop.setProperty("StaticWebFileLocation", SystemConfig.staticWebFileLocation);
 		prop.setProperty("WebhookMessageroute", SystemConfig.webhookMessageroute);
                 prop.setProperty("WebhookRoomsroute", SystemConfig.webhookRoomsroute);
+                prop.setProperty("PostgresUser", SystemConfig.postgresUser);
+                prop.setProperty("PostgresPassword", SystemConfig.postgresPassword);
 
                 
                 

@@ -21,6 +21,7 @@ import app.bot.*;
 import app.contact.ContactController;
 import app.consultant.ConsultantController;
 import app.index.IndexController;
+import app.login.LoginController;
 import app.rest.RestController;
 import app.util.CiscoSpark;
 import app.util.SystemConfig;
@@ -82,6 +83,9 @@ public class Application {
         post(Path.Web.BOTMESSAGE,    BotController.serveBotMessage);
         post(Path.Web.BOTROOMS,      BotController.serveBotRooms);
         get(Path.Web.REST,           RestController.serveRestAPI);
+        get(Path.Web.LOGIN,          LoginController.serveLoginPage);
+        post(Path.Web.LOGIN,         LoginController.handleLoginPost);
+        post(Path.Web.LOGOUT,        LoginController.handleLogoutPost);
         
         after("*",                   Filters.addGzipHeader);
         

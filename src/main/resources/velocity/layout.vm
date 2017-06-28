@@ -53,7 +53,7 @@
                       <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">Angebote</a>
                         <div class="dropdown-menu"><a class="dropdown-item" href="../index/#msg-box6-1">Kapitalanlagen</a><a class="dropdown-item" href="../index/#msg-box7-2">Traumhäuser</a><a class="dropdown-item" href="../index/#header2-3">Mitarbeiter</a></div></li>
                       <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">Hilfe</a><div class="dropdown-menu"><a class="dropdown-item" href="https://youtu.be/4eFHB-xKxNM?list=PL1D0EC047B2C903A1">Tutorials</a><a class="dropdown-item" href="../contact">Kontakt</a></div></li>
-                      <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="../index">Anmelden</a></li>
+                      <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="../login/">Anmelden</a></li>
                     </ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
@@ -86,7 +86,7 @@
   <script src="../assets/jarallax/jarallax.js"></script>
   <script src="../assets/jquery-mb-ytplayer/jquery.mb.ytplayer.min.js"></script>
   <script src="../assets/theme/js/script.js"></script>
-  <script src="../js/sparkcare.js"></script>
+
 
 
   <input name="animation" type="hidden">
