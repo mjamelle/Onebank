@@ -3,7 +3,7 @@
 
 <section class="engine"><a rel="external" href="https://mobirise.com">Mobirise Web Creator</a></section><section class="mbr-section mbr-section-md-padding mbr-footer footer2 mbr-after-navbar" id="contacts2-a" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
 
-    <form id="loginForm" method="post">
+    <form id="loginForm" method="post" action="/login/">
         #if($authenticationFailed)
             <p class="bad notification">$msg.get("LOGIN_AUTH_FAILED")</p>
         #elseif($authenticationSucceeded)
