@@ -63,9 +63,9 @@ public class Application {
         logger.info("Spark initialized");
         
         //--------------start Spark web server and set defaults-----------------
-        staticFiles.externalLocation(locationPath + SystemConfig.getStaticWebFileLocation());
+        //staticFiles.externalLocation(locationPath + SystemConfig.getStaticWebFileLocation());
         //String layout = locationPath + SystemConfig.LAYOUT;
-        //staticFileLocation(SystemConfig.WEBFILELOCATION);
+        staticFileLocation(SystemConfig.getStaticWebFileLocation());
         port(SystemConfig.getServerPort());
         enableDebugScreen();
         

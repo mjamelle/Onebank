@@ -30,16 +30,19 @@ public class LoginController {
         }
         model.put("authenticationSucceeded", true);
         request.session().attribute("currentUser", getQueryUsername(request));
-        if (getQueryLoginRedirect(request) != null) {
+        /*if (getQueryLoginRedirect(request) != null) {
             response.redirect(getQueryLoginRedirect(request));
-        }
+        }*/
+        response.redirect(Path.Web.INDEX);
         return ViewUtil.render(request, model, Path.Template.LOGIN);
     };
 
     public static Route handleLogoutPost = (Request request, Response response) -> {
+        LOGGER.info("/logout/ post request");
+        LOGGER.debug("/logout/ post request : " + request.body());
         request.session().removeAttribute("currentUser");
         request.session().attribute("loggedOut", true);
-        response.redirect(Path.Web.LOGIN);
+        response.redirect(Path.Web.INDEX);
         return null;
     };
 

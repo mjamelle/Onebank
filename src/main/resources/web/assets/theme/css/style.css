@@ -2174,10 +2174,12 @@ html.is-builder .article .lead:not([data-app-remove-it]) + div .btn {
 	left: -2400px;
 }
 
-/*# Markos extension for language buttons */
+/* Markos extensions */
+
+
 #chooseLanguage {
-    top: 5px;
-    right: 5px;
+    top: 1px;
+    right: 0px;
     position: absolute;
 }
 
@@ -2187,7 +2189,7 @@ html.is-builder .article .lead:not([data-app-remove-it]) + div .btn {
 
 #chooseLanguage button {
     cursor: pointer;
-    margin-left: 8px;
+    margin-left: 10px;
     width: 18px;
     height: 18px;
     border-radius: 9px;
@@ -2199,3 +2201,9 @@ html.is-builder .article .lead:not([data-app-remove-it]) + div .btn {
 #chooseLanguage button:hover {
     opacity: 0.8;
 }
+#userelement {
+   margin-left: 20px;   
+}    
+#Loginform  {
+   margin-top: 15px;   
+}    
