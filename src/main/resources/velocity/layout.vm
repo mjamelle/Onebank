@@ -24,6 +24,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/css/ngDialog.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/css/ngDialog-theme-default.min.css">
+  <link rel="stylesheet" href="../web/assets/theme/css/style.css" type="text/css"/>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/js/ngDialog.min.js"></script>
   <script type="text/javascript" src="../js/script.js"></script>
 </head>
@@ -58,7 +60,16 @@
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>
-
+                    <ul id="chooseLanguage">
+                        <form>
+                            <li>
+                                <button name="locale" value="de" style="background-image: url(/assets/images/german.png);"></button>
+                            </li>
+                            <li>
+                                <button name="locale" value="en" style="background-image: url(../assets/images/english.png);"></button>
+                            </li>
+                        </form>
+                    </ul>
                 </div>
             </div>
 

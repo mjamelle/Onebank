@@ -2173,3 +2173,29 @@ html.is-builder .article .lead:not([data-app-remove-it]) + div .btn {
 	top: 0;
 	left: -2400px;
 }
+
+/*# Markos extension for language buttons */
+#chooseLanguage {
+    top: 5px;
+    right: 5px;
+    position: absolute;
+}
+
+#chooseLanguage li {
+    float: left;
+}
+
+#chooseLanguage button {
+    cursor: pointer;
+    margin-left: 8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    opacity: 0.6;
+    border: 1px solid #222;
+    background-size: 100%;
+}
+
+#chooseLanguage button:hover {
+    opacity: 0.8;
+}
