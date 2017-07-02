@@ -3,20 +3,51 @@
 
 <section class="engine"><a rel="external" href="https://mobirise.com">Mobirise Web Creator</a></section><section class="mbr-section mbr-section-md-padding mbr-footer footer2 mbr-after-navbar" id="contacts2-a" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
 
-    <form id="loginForm" method="post" action="/login/">
-        #if($authenticationFailed)
-            <p class="bad notification">$msg.get("LOGIN_AUTH_FAILED")</p>
-        #end
-        <h1>$msg.get("LOGIN_HEADING")</h1>
-        <p>$msg.get("LOGIN_INSTRUCTIONS")</p>
-        <label>$msg.get("LOGIN_LABEL_USERNAME")</label>
-        <input type="text" name="username" placeholder="$msg.get("LOGIN_LABEL_USERNAME")" value="" required>
-        <label>$msg.get("LOGIN_LABEL_PASSWORD")</label>
-        <input type="password" name="password" placeholder="$msg.get("LOGIN_LABEL_PASSWORD")" value="" required>
-        #if($loginRedirect)
-            <input type="hidden" name="loginRedirect" value="$loginRedirect">
-        #end
-        <input type="submit" value="$msg.get("LOGIN_BUTTON_LOGIN")">
-    </form>
+    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-xs-center">
+                    <h3 class="mbr-section-title display-2">$msg.get("LOGIN_HEADING")</h3>
+                    <small class="mbr-section-subtitle">$msg.get("LOGIN_INSTRUCTIONS")</small>
+                    #if($authenticationFailed)
+                    <small class="mbr-section-subtitle">$msg.get("LOGIN_AUTH_FAILED")</small>
+                    #end
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mbr-section mbr-section-nopadding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">    
+    
+                    <form action="" method="post" data-form-title="Anmelden">
+
+                        <div class="row row-sm-offset">
+
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="form1-j-name">$msg.get("LOGIN_LABEL_USERNAME")</label>
+                                    <input type="text" class="form-control" name="username" required="" data-form-field="Name" value="" required id="form1-j-name">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="form1-j-email">$msg.get("LOGIN_LABEL_PASSWORD")</label>
+                                    <input type="password" class="form-control" name="password" required="" data-form-field="Password" placeholder="$msg.get("LOGIN_LABEL_PASSWORD")" value="" required id="form1-j-email">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div><button type="submit" class="btn btn-primary">$msg.get("LOGIN_BUTTON_LOGIN")</button></div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>                    
+    
 </section>
 #end
