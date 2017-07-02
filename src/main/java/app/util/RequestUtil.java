@@ -1,15 +1,12 @@
 package app.util;
 
+import app.db.User;
 import spark.*;
 
 public class RequestUtil {
 
     public static String getQueryLocale(Request request) {
         return request.queryParams("locale");
-    }
-
-    public static String getParamIsbn(Request request) {
-        return request.params("isbn");
     }
 
     public static String getQueryUsername(Request request) {
@@ -28,7 +25,7 @@ public class RequestUtil {
         return request.session().attribute("locale");
     }
 
-    public static String getSessionCurrentUser(Request request) {
+    public static User getSessionCurrentUser(Request request) {
         return request.session().attribute("currentUser");
     }
 

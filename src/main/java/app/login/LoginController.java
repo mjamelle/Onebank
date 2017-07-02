@@ -1,5 +1,6 @@
 package app.login;
 
+import app.db.User;
 import app.user.UserController;
 import app.util.*;
 import spark.*;
@@ -29,7 +30,8 @@ public class LoginController {
             return ViewUtil.render(request, model, Path.Template.LOGIN);
         }
         model.put("authenticationSucceeded", true);
-        request.session().attribute("currentUser", getQueryUsername(request));
+        User user = User.getUserByUsername(request.queryParams("username"));
+        request.session().attribute("currentUser", user);
         /*if (getQueryLoginRedirect(request) != null) {
             response.redirect(getQueryLoginRedirect(request));
         }*/
