@@ -18,6 +18,7 @@ package app.util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import lombok.*;
 
 
 import java.io.FileInputStream;
@@ -32,63 +33,18 @@ import org.apache.logging.log4j.Level;
 public class SystemConfig {
     
     private static final Logger LOGGER = LogManager.getLogger();
+        private static String serverPort = "4567";    
+@Getter @Setter    private static String mConfigFile = "config/config.properties";
+@Getter @Setter    private static String ServerURL = "www.example.com";
+@Getter @Setter    private static String botAccessToken = "Insert Access Token";
+@Getter @Setter    private static String sparkWidgetAccessToken = "Insert Access Token";
+@Getter @Setter    private static String webhookMessageroute = "webhook/messages";
+@Getter @Setter    private static String webhookRoomsroute = "webhook/rooms";
+@Getter @Setter    private static String staticWebFileLocation = "/web";  
+@Getter @Setter    private static String botUserName = "maja@sparkbot.io";
+@Getter @Setter    private static String postgresUser = "postgres";
+@Getter @Setter    private static String postgresPassword = "postgrespassword";
     
-    private static String mConfigFile = "config/config.properties";
-    private static String ServerURL = "www.example.com";
-    private static String botAccessToken = "Insert Access Token";
-    private static String sparkWidgetAccessToken = "Insert Access Token";
-    private static String serverPort = "4567";
-    private static String webhookMessageroute = "webhook/messages";
-    private static String webhookRoomsroute = "webhook/rooms";
-    private static String staticWebFileLocation = "/web";  
-    private static String botUserName = "maja@sparkbot.io";
-    private static String postgresUser = "postgres";
-    private static String postgresPassword = "postgrespassword";
-    
-
-
-    
-    
-    public SystemConfig() {
-       loadconfig();
-    }
-    
-    public SystemConfig(String mFilename) {
-       SystemConfig.mConfigFile = mFilename; 
-       loadconfig();
-    }
-
-    public static String getmConfigFile() {
-        return mConfigFile;
-    }
-
-    public static void setmConfigFile(String mConfigFile) {
-        SystemConfig.mConfigFile = mConfigFile;
-    }
-
-    public static String getWebhookMessageroute() {
-        return webhookMessageroute;
-    }
-
-    public static void setWebhookMessageroute(String webhookMessageroute) {
-        SystemConfig.webhookMessageroute = webhookMessageroute;
-    }
-
-    public static String getWebhookRoomsroute() {
-        return webhookRoomsroute;
-    }
-
-    public static void setWebhookRoomsroute(String webhookRoomsroute) {
-        SystemConfig.webhookRoomsroute = webhookRoomsroute;
-    }
-
-    public static String getStaticWebFileLocation() {
-        return staticWebFileLocation;
-    }
-
-    public static void setStaticWebFileLocation(String staticWebFileLocation) {
-        SystemConfig.staticWebFileLocation = staticWebFileLocation;
-    }
 
     public static int getServerPort() {
         int value = Integer.parseInt(SystemConfig.serverPort);
@@ -98,57 +54,7 @@ public class SystemConfig {
     public static void setServerPort(Integer serverPort) {
         SystemConfig.serverPort = serverPort.toString();
     }
-
-    public static String getBotAccessToken() {
-        return botAccessToken;
-    }
-
-    public static void setBotAccessToken(String botAccessToken) {
-        SystemConfig.botAccessToken = botAccessToken;
-    }
-
-    public static String getServerURL() {
-        return ServerURL;
-    }
-
-    public static void setServerURL(String ServerURL) {
-        SystemConfig.ServerURL = ServerURL;
-    }
-
-    public static String getBotUserName() {
-        return botUserName;
-    }
-
-    public static void setBotUserName(String botUserName) {
-        SystemConfig.botUserName = botUserName;
-    }
-
-    public static String getSparkWidgetAccessToken() {
-        return sparkWidgetAccessToken;
-    }
-
-    public static void setSparkWidgetAccessToken(String sparkWidgetAccessToken) {
-        SystemConfig.sparkWidgetAccessToken = sparkWidgetAccessToken;
-    }
-
-    public static String getPostgresUser() {
-        return postgresUser;
-    }
-
-    public static void setPostgresUser(String postgresUser) {
-        SystemConfig.postgresUser = postgresUser;
-    }
-
-    public static String getPostgresPassword() {
-        return postgresPassword;
-    }
-
-    public static void setPostgresPassword(String postgresPassword) {
-        SystemConfig.postgresPassword = postgresPassword;
-    }
    
-    
-    
     public static String getWebhookMessageLink() {
         return "http://" + ServerURL + ":" + serverPort + "/" + webhookMessageroute;
     }
