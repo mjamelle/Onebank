@@ -67,6 +67,7 @@ public class Application {
         //String layout = locationPath + SystemConfig.LAYOUT;
         staticFileLocation(SystemConfig.getStaticWebFileLocation());
         port(SystemConfig.getServerPort());
+        staticFiles.expireTime(600L);
         enableDebugScreen();
         
         
