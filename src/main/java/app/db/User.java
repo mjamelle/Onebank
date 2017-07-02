@@ -87,4 +87,14 @@ public class User {
     }
   }
 
+  
+  public static User getUserByUsername(String username) {
+      try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM users where username=:username";
+      User task = con.createQuery(sql)
+        .addParameter("username", username)
+        .executeAndFetchFirst(User.class);
+      return task;
+    }     
+  }      
 }
