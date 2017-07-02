@@ -25,6 +25,10 @@ public class User {
      return con.createQuery(sql).executeAndFetch(User.class);
     }
   }
+  
+  public String getDisplayName() {
+      return givenName + " " + surName;
+  }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {

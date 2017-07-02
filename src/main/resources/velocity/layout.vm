@@ -42,8 +42,7 @@
                         <a class="mbri-home mbr-iconfont mbr-iconfont-menu navbar-logo" href="../index/" ></a>
                         <a class="navbar-caption text-warning" href="../index/">Onebank</a>
                         #if($currentUser)
-                        <a class="navbar-caption" id="userelement">$!currentUser.getGivenName()</a>
-                        <a class="navbar-caption" id="userelement">$!currentUser.getSurName()</a>
+                        <a class="navbar-caption" id="userelement">$!currentUser.getDisplayName()</a>
                         #end
                     </div>
 
