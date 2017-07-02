@@ -1,7 +1,7 @@
 package app.user;
 
 import org.mindrot.jbcrypt.*;
-import app.user.UserDao.*;
+import app.db.User;
 
 public class UserController {
 
@@ -11,12 +11,12 @@ public class UserController {
         if (username.isEmpty() || password.isEmpty()) {
             return false;
         }
-        User user = UserDao.getUserByUsername(username);
+        User user = User.getUserByUsername(username);
         if (user == null) {
             return false;
         }
-        String hashedPassword = BCrypt.hashpw(password, user.getSalt());
-        return hashedPassword.equals(user.getHashedPassword());
+        //String hashedPassword = BCrypt.hashpw(password, user.getSalt()); method for HAsh encryption in DB
+        return user.getPassword().equals(password) ; //hashedPassword.equals(user.getHashedPassword());
     }
 
     // This method doesn't do anything, it's just included as an example
