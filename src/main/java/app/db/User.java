@@ -2,7 +2,9 @@ package app.db;
 
 import java.util.List;
 import org.sql2o.*;
+import lombok.*;
 
+@Data
 public class User {
   private int id;
   private String givenName;
@@ -16,121 +18,11 @@ public class User {
   private boolean spark_use;
   private boolean adminprivilege;
   
-  public User(String givenName, String surName, String username, String password, String photolink,
-    String email, String function, boolean jabber_use, boolean spark_use, boolean adminprivilege) {
-    this.givenName = givenName;
-    this.surName = surName;
-    this.username = username;
-    this.password = password;
-    this.photolink = photolink;
-    this.email = email;
-    this.function = function;
-    this.jabber_use = jabber_use;
-    this.spark_use = spark_use;
-    this.adminprivilege = adminprivilege;
-  }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getGivenName() {
-        return givenName;
-    }
-
-    public void setGivenName(String givenName) {
-        this.givenName = givenName;
-    }
-
-    public String getSurName() {
-        return surName;
-    }
-
-    public void setSurName(String surName) {
-        this.surName = surName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhotolink() {
-        return photolink;
-    }
-
-    public void setPhotolink(String photolink) {
-        this.photolink = photolink;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFunction() {
-        return function;
-    }
-
-    public void setFunction(String function) {
-        this.function = function;
-    }
-
-    public boolean isJabber_use() {
-        return jabber_use;
-    }
-
-    public void setJabber_use(boolean jabber_use) {
-        this.jabber_use = jabber_use;
-    }
-
-    public boolean isSpark_use() {
-        return spark_use;
-    }
-
-    public void setSpark_use(boolean spark_use) {
-        this.spark_use = spark_use;
-    }
-
-    public boolean isAdminprivilege() {
-        return adminprivilege;
-    }
-
-    public void setAdminprivilege(boolean adminprivilege) {
-        this.adminprivilege = adminprivilege;
-    }
-
-
   public static List<User> all() {
     String sql = "SELECT id, givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
             + "username, password, function FROM users";
     try(Connection con = DB.sql2o.open()) {
      return con.createQuery(sql).executeAndFetch(User.class);
-    }
-  }
-
-  @Override
-  public boolean equals(Object otherUser){
-    if (!(otherUser instanceof User)) {
-      return false;
-    } else {
-      User newUser = (User) otherUser;
-      return this.getUsername().equals(newUser.getUsername()) &&
-             this.getId() == newUser.getId();
     }
   }
 
