@@ -21,14 +21,14 @@
             <div class="row">
                 <div class="col-xs-12 col-lg-10 col-lg-offset-1" data-form-type="formoid">    
     
-                    <form action="" method="post" data-form-title="Anmelden">
+                    <form action="" method="post">
 
                         <div class="row row-sm-offset">
 
                             <div class="col-xs-12 col-md-4">
                                 <div class="form-group">
                                     <label class="form-control-label" for="form1-j-name">$msg.get("LOGIN_LABEL_USERNAME")</label>
-                                    <input type="text" class="form-control" name="username" required="" data-form-field="Name" value="" required id="form1-j-name">
+                                    <input type="text" class="form-control" name="username" required="" data-form-field="Name" value="" placeholder="$msg.get("LOGIN_LABEL_USERNAME")" required id="form1-j-name">
                                 </div>
                             </div>
 
