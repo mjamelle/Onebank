@@ -24,7 +24,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/css/ngDialog.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/css/ngDialog-theme-default.min.css">
-  <link rel="stylesheet" href="../assets/theme/css/style.css" type="text/css"/>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/js/ngDialog.min.js"></script>
   <script type="text/javascript" src="../js/script.js"></script>
@@ -57,13 +56,13 @@
                         <div class="dropdown-menu"><a class="dropdown-item" href="../index/#msg-box6-1">Kapitalanlagen</a><a class="dropdown-item" href="../index/#msg-box7-2">Traumhäuser</a><a class="dropdown-item" href="../index/#header2-3">Mitarbeiter</a></div></li>
                       <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">Hilfe</a><div class="dropdown-menu"><a class="dropdown-item" href="https://youtu.be/4eFHB-xKxNM?list=PL1D0EC047B2C903A1">Tutorials</a><a class="dropdown-item" href="../contact">Kontakt</a></div></li>
                         #if($currentUser)
-                            <form id="Loginform" method="post" action="$WebPath.getLOGOUT()">
+                            <form id="loginform" method="post" action="$WebPath.getLOGOUT()">
                             <li class="nav-item nav-btn"> 
-                                <button class="nav-link btn btn-white btn-white-outline">Abmelden</button>
+                                <button class="nav-link btn btn-white btn-white-outline">$msg.get("COMMON_NAV_LOGOUT")</button>
                             </li>
                             </form>
                         #else
-                            <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="$WebPath.getLOGIN()">Anmelden</a></li>
+                            <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="$WebPath.getLOGIN()">$msg.get("COMMON_NAV_LOGIN")</a></li>
                         #end
                        </ul>
                     <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
