@@ -88,7 +88,7 @@ public class Application {
         post(Path.Web.LOGIN,         LoginController.handleLoginPost);
         post(Path.Web.LOGOUT,        LoginController.handleLogoutPost);
         
-        after("*",                   Filters.addGzipHeader);
+        //after("*",                   Filters.addGzipHeader);
         
 
 /*
