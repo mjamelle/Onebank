@@ -70,15 +70,9 @@
                         #else
                             <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="$WebPath.getLOGIN()">$msg.get("COMMON_NAV_LOGIN")</a></li>
                         #end
-                    </ul>
-                    <ul id="chooseLanguage">
                         <form action="">
-                            <li>
-                                <button name="locale" value="de" style="background-image: url(/assets/images/german.png);"></button>
-                            </li>
-                            <li>
-                                <button name="locale" value="en" style="background-image: url(/assets/images/english.png);"></button>
-                            </li>
+                            <button class="btn btn-white-outline" name="locale" value="de" style="background-image: url(/assets/images/german.png); background-position: center; margin-left: 20"></button>
+                            <button class="btn btn-white-outline" name="locale" value="en" style="background-image: url(/assets/images/english.png); background-position: center;"></button>
                         </form>
                     </ul>
                 </div>
