@@ -3,7 +3,6 @@ package app.index;
 import app.util.*;
 import spark.*;
 import java.util.*;
-import static app.Application.*;
 import static app.util.RequestUtil.getSessionCurrentUser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
