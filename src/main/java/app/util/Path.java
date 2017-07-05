@@ -17,7 +17,7 @@ public class Path {
         @Getter public static final String REST = "/rest/config";
         @Getter public static final String LOGIN = "/login/";
         @Getter public static final String LOGOUT = "/logout/";
-        @Getter public static final String ADMIN = "/admin/";
+        @Getter public static final String ADMINUSER = "/admin/";
 
     }
 
@@ -27,6 +27,7 @@ public class Path {
         public final static String CONSULTANT = "/velocity/consultant/consultant.vm";
         public final static String SPARKWIDGET = "/velocity/consultant/sparkwidget.vm";
         public final static String LOGIN = "/velocity/login/login.vm";
+        public final static String ADMINUSER = "/velocity/admin/manageuser.vm";
         public static final String NOT_FOUND = "/velocity/notFound.vm";
     }
 

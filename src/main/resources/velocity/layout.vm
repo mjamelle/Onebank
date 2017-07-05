@@ -56,7 +56,7 @@
                     <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
                         #if($currentUser && $currentUser.isAdminprivilege())
                             <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_ADMIN")</a>
-                            <div class="dropdown-menu"><a class="dropdown-item" href="$WebPath.getADMIN()">$msg.get("COMMON_NAV_ADMINUSER")</a><a class="dropdown-item" href="$WebPath.getADMIN()">$msg.get("COMMON_NAV_ADMINREPORT")</a></div></li>
+                            <div class="dropdown-menu"><a class="dropdown-item" href="$WebPath.getADMINUSER()">$msg.get("COMMON_NAV_ADMINUSER")</a><a class="dropdown-item" href="$WebPath.getADMINUSER()">$msg.get("COMMON_NAV_ADMINREPORT")</a></div></li>
                         #end
                             <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_OFFERS")</a>
                             <div class="dropdown-menu"><a class="dropdown-item" href="../index/#msg-box6-1">$msg.get("COMMON_NAV_INVESTMENTS")</a><a class="dropdown-item" href="../index/#msg-box7-2">$msg.get("COMMON_NAV_DREAMHOUSE")</a><a class="dropdown-item" href="../index/#header2-3">$msg.get("COMMON_NAV_EMPLOYEE")</a></div></li>

@@ -16,6 +16,7 @@
  */
 package app;
 
+import app.admin.AdminController;
 import app.bot.BotLogic;
 import app.bot.*;
 import app.contact.ContactController;
@@ -87,8 +88,9 @@ public class Application {
         get(Path.Web.LOGIN,          LoginController.serveLoginPage);
         post(Path.Web.LOGIN,         LoginController.handleLoginPost);
         post(Path.Web.LOGOUT,        LoginController.handleLogoutPost);
+        get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
         
-        //after("*",                   Filters.addGzipHeader);
+        after("*",                   Filters.addGzipHeader);
         
 
 /*
