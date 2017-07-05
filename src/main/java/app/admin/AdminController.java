@@ -36,23 +36,19 @@ public class AdminController {
         response.redirect(Path.Web.INDEX);
         return ViewUtil.render(request, model, Path.Template.LOGIN);
     };
-
-    public static Route handleLogoutPost = (Request request, Response response) -> {
-        LOGGER.info("/logout/ post request");
-        LOGGER.debug("/logout/ post request : " + request.body());
-        request.session().removeAttribute("currentUser");
-        request.session().attribute("loggedOut", true);
-        response.redirect(Path.Web.INDEX);
-        return null;
-    };
-
-    // The origin of the request (request.pathInfo()) is saved in the session so
-    // the user can be redirected back after login
-    public static void ensureUserIsLoggedIn(Request request, Response response) {
-        if (request.session().attribute("currentUser") == null) {
-            request.session().attribute("loginRedirect", request.pathInfo());
-            response.redirect(Path.Web.LOGIN);
-        }
-    };
-
+    
+    /*
+        New code for Onebank
+          
+          post("/yourUploadPath", (request, response) -> {
+            request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+            try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
+                // Use the input stream to create a file
+            }
+            return "File uploaded";
+          });
+         
+        
+*/
+    
 }

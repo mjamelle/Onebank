@@ -91,23 +91,7 @@ public class Application {
         get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
         
         after("*",                   Filters.addGzipHeader);
-        
-
-/*
-        New code for Onebank
-          
-          post("/yourUploadPath", (request, response) -> {
-            request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-            try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
-                // Use the input stream to create a file
-            }
-            return "File uploaded";
-          });
-         
-        
-*/
-        
-          
+                 
 
     }
     
