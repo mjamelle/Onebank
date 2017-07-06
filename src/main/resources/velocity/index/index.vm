@@ -13,7 +13,7 @@
                     <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center">
 
                         <h1 class="mbr-section-title display-1">Onebank</h1>
-                        <p class="mbr-section-lead lead">Bankgeschäfte der neuen Art. <br>Modern, Schnell, Zuverlässig...</p>
+                        <p class="mbr-section-lead lead">$msg.get("INDEX_WELCOME")</p>
 
                     </div>
                 </div>
