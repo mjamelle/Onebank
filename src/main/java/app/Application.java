@@ -89,6 +89,7 @@ public class Application {
         post(Path.Web.LOGIN,         LoginController.handleLoginPost);
         post(Path.Web.LOGOUT,        LoginController.handleLogoutPost);
         get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
+        get(Path.Web.ADMINREPORT,    AdminController.serveAdminReportPage);
         
         after("*",                   Filters.addGzipHeader);
                  

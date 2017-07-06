@@ -2206,4 +2206,14 @@ html.is-builder .article .lead:not([data-app-remove-it]) + div .btn {
 }    
 #loginform  {
    margin-top: 15px;   
-}    
+}
+.report-field {
+   display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 20px;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 4px groove;
+}

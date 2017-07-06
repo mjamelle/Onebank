@@ -1,5 +1,6 @@
 package app.admin;
 
+import app.bot.BotLogic;
 import app.db.User;
 import app.user.UserController;
 import app.util.*;
@@ -17,6 +18,15 @@ public class AdminController {
         LOGGER.debug("/admin/ get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, Path.Template.ADMINUSER);
+    };
+    
+        public static Route serveAdminReportPage = (Request request, Response response) -> {
+        LOGGER.info("/report/ get request");
+        LOGGER.debug("/report/ get request : " + request.body());
+        Map<String, Object> model = new HashMap<>();
+            model.put("Botrequestcounter", BotLogic.getBotrequestcounter());
+            model.put("Roomamount", CiscoSpark.getRoomamount());
+        return ViewUtil.render(request, model, Path.Template.ADMINREPORT);
     };
 
     public static Route handleLoginPost = (Request request, Response response) -> {
