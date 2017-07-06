@@ -7,13 +7,13 @@
         <br/>
         <fieldset class="report-field">
           <legend>System</legend>
-          <p>Uptime  : TBD<p>
+          <p>Uptime  : $SystemUpTime<p>
           <p>Memory  : TBD</p>
         </fieldset>  
         <fieldset class="report-field">
           <legend>Maja Bot</legend>
             <p>Requests         : $Botrequestcounter<p>
-            <p>Number of rooms  : $Roomamount</p>
+            <p>Invited in $Roomamount rooms</p>
          </fieldset>
         <fieldset class="report-field">
           <legend>Webserver</legend>

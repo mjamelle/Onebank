@@ -3,6 +3,7 @@ package app.admin;
 import app.bot.BotLogic;
 import app.db.User;
 import app.user.UserController;
+import app.util.SystemConfig;
 import app.util.*;
 import spark.*;
 import java.util.*;
@@ -26,6 +27,7 @@ public class AdminController {
         Map<String, Object> model = new HashMap<>();
             model.put("Botrequestcounter", BotLogic.getBotrequestcounter());
             model.put("Roomamount", CiscoSpark.getRoomamount());
+            model.put("SystemUpTime", SystemConfig.getSystemUpTime());
         return ViewUtil.render(request, model, Path.Template.ADMINREPORT);
     };
 

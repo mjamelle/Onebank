@@ -26,6 +26,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.util.Properties;
 import org.apache.logging.log4j.Level;
 
@@ -44,7 +46,6 @@ public class SystemConfig {
 @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
 @Getter @Setter    private static String postgresUser = "postgres";
 @Getter @Setter    private static String postgresPassword = "postgrespassword";
-    
 
     public static int getServerPort() {
         int value = Integer.parseInt(SystemConfig.serverPort);
@@ -63,6 +64,12 @@ public class SystemConfig {
         return "http://" + ServerURL + ":" + serverPort + "/" + webhookRoomsroute;
     }    
  
+    public static String getSystemUpTime()  {
+       RuntimeMXBean mxBean = ManagementFactory.getRuntimeMXBean();
+       LOGGER.info("System uptime :" + mxBean.getUptime());
+       return Long.toString(mxBean.getUptime());
+    }
+    
     public static void loadconfig ()  {
         
     Properties prop = new Properties();
