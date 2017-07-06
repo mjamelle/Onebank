@@ -28,7 +28,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.text.DecimalFormat;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.Level;
 
 
@@ -67,7 +69,23 @@ public class SystemConfig {
     public static String getSystemUpTime()  {
        RuntimeMXBean mxBean = ManagementFactory.getRuntimeMXBean();
        LOGGER.info("System uptime :" + mxBean.getUptime());
-       return Long.toString(mxBean.getUptime());
+        long secondsIn = mxBean.getUptime()/1000;
+        long dayCount = TimeUnit.SECONDS.toDays(secondsIn);
+        long secondsCount = secondsIn - TimeUnit.DAYS.toSeconds(dayCount);
+        long hourCount = TimeUnit.SECONDS.toHours(secondsCount);
+        secondsCount -= TimeUnit.HOURS.toSeconds(hourCount);
+        long minutesCount = TimeUnit.SECONDS.toMinutes(secondsCount);
+        secondsCount -= TimeUnit.MINUTES.toSeconds(minutesCount);
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%d %s, ", dayCount, (dayCount == 1) ? "day" : "days"));
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(sb.toString());
+        sb2.append(String.format("%02d:%02d:%02d %s", hourCount, minutesCount,secondsCount, (hourCount == 1) ? "hour" : "hours"));
+        sb.append(String.format("%d %s, ", hourCount, (hourCount == 1) ? "hour" : "hours"));
+        sb.append(String.format("%d %s and ", minutesCount,(minutesCount == 1) ? "minute" : "minutes"));
+        sb.append(String.format("%d %s.", secondsCount,(secondsCount == 1) ? "second" : "seconds"));
+        String output = String.format("%s seconds, which is %s (%s)%n", new DecimalFormat("#,###").format(secondsIn), sb, sb2);
+       return output;
     }
     
     public static void loadconfig ()  {
