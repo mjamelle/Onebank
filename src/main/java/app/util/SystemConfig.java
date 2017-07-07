@@ -67,25 +67,14 @@ public class SystemConfig {
     }    
  
     public static String getSystemUpTime()  {
-       RuntimeMXBean mxBean = ManagementFactory.getRuntimeMXBean();
-       LOGGER.info("System uptime :" + mxBean.getUptime());
-        long secondsIn = mxBean.getUptime()/1000;
-        long dayCount = TimeUnit.SECONDS.toDays(secondsIn);
-        long secondsCount = secondsIn - TimeUnit.DAYS.toSeconds(dayCount);
-        long hourCount = TimeUnit.SECONDS.toHours(secondsCount);
-        secondsCount -= TimeUnit.HOURS.toSeconds(hourCount);
-        long minutesCount = TimeUnit.SECONDS.toMinutes(secondsCount);
-        secondsCount -= TimeUnit.MINUTES.toSeconds(minutesCount);
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%d %s, ", dayCount, (dayCount == 1) ? "day" : "days"));
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(sb.toString());
-        sb2.append(String.format("%02d:%02d:%02d %s", hourCount, minutesCount,secondsCount, (hourCount == 1) ? "hour" : "hours"));
-        sb.append(String.format("%d %s, ", hourCount, (hourCount == 1) ? "hour" : "hours"));
-        sb.append(String.format("%d %s and ", minutesCount,(minutesCount == 1) ? "minute" : "minutes"));
-        sb.append(String.format("%d %s.", secondsCount,(secondsCount == 1) ? "second" : "seconds"));
-        String output = String.format("%s seconds, which is %s (%s)%n", new DecimalFormat("#,###").format(secondsIn), sb, sb2);
-       return output;
+        RuntimeMXBean mxBean = ManagementFactory.getRuntimeMXBean();
+        LOGGER.info("System uptime :" + mxBean.getUptime());
+        long seconds = mxBean.getUptime() / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+        String time = days + ":" + hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;  
+    return time;
     }
     
     public static void loadconfig ()  {
