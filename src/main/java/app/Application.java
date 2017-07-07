@@ -28,6 +28,7 @@ import app.util.CiscoSpark;
 import app.util.SystemConfig;
 import app.util.Filters;
 import app.util.Path;
+import app.util.ViewUtil;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -90,6 +91,7 @@ public class Application {
         post(Path.Web.LOGOUT,        LoginController.handleLogoutPost);
         get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
         get(Path.Web.ADMINREPORT,    AdminController.serveAdminReportPage);
+        get("*",                     ViewUtil.notFound);
         
         after("*",                   Filters.addGzipHeader);
                  

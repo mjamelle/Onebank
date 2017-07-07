@@ -77,12 +77,11 @@ public class SystemConfig {
  
     public static String getSystemUpTime()  {
         RuntimeMXBean mxBean = ManagementFactory.getRuntimeMXBean();
-        LOGGER.info("System uptime :" + mxBean.getUptime());
         long seconds = mxBean.getUptime() / 1000;
         long minutes = seconds / 60;
         long hours = minutes / 60;
         long days = hours / 24;
-        String time = days + "Days : " + hours % 24 + "Hours : " + minutes % 60 + "Minutes : " + seconds % 60 +"Seconds";  
+        String time = days + "Days : " + hours % 24 + "Hours : " + minutes % 60 + "Minutes";  
     return time;
     }
     

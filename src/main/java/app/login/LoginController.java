@@ -17,26 +17,26 @@ public class LoginController {
         LOGGER.debug("/login/ get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         model.put("loggedOut", removeSessionAttrLoggedOut(request));
-        model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
         return ViewUtil.render(request, model, Path.Template.LOGIN);
     };
 
     public static Route handleLoginPost = (Request request, Response response) -> {
         LOGGER.info("/login/ post request");
-        LOGGER.debug("/login/ post request : " + request.body());        
+        LOGGER.debug("/login/ post request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         if (!UserController.authenticate(getQueryUsername(request), getQueryPassword(request))) {
             model.put("authenticationFailed", true);
             return ViewUtil.render(request, model, Path.Template.LOGIN);
         }
-        model.put("authenticationSucceeded", true);
+        request.session().maxInactiveInterval(SystemConfig.getwebUserSessiontimeout()); //set user session timeout
+        
         User user = User.getUserByUsername(request.queryParams("username"));
         request.session().attribute("currentUser", user);
-        /*if (getQueryLoginRedirect(request) != null) {
+        if (getQueryLoginRedirect(request) != null) {
             response.redirect(getQueryLoginRedirect(request));
-        }*/
-        request.session().maxInactiveInterval(SystemConfig.getwebUserSessiontimeout()); //set user session timeout
-        response.redirect(Path.Web.INDEX);
+        }
+        model.put("authenticationSucceeded", true);
+        model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
         return ViewUtil.render(request, model, Path.Template.LOGIN);
     };
 
@@ -51,10 +51,10 @@ public class LoginController {
 
     // The origin of the request (request.pathInfo()) is saved in the session so
     // the user can be redirected back after login
-    public static void ensureUserIsLoggedIn(Request request, Response response) {
+    public static void ensureAdminIsLoggedIn(Request request, Response response) {
         if (request.session().attribute("currentUser") == null) {
             request.session().attribute("loginRedirect", request.pathInfo());
-            response.redirect(Path.Web.LOGIN);
+            response.redirect(Path.Web.LOGIN);           
         }
     };
 
