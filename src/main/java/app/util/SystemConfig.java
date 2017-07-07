@@ -28,9 +28,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import java.text.DecimalFormat;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.Level;
 
 
