@@ -28,6 +28,7 @@ public class AdminController {
             model.put("Botrequestcounter", BotLogic.getBotrequestcounter());
             model.put("Roomamount", CiscoSpark.getRoomamount());
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
+            model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
         return ViewUtil.render(request, model, Path.Template.ADMINREPORT);
     };
 

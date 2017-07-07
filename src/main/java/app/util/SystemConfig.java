@@ -48,6 +48,7 @@ public class SystemConfig {
 @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
 @Getter @Setter    private static String postgresUser = "postgres";
 @Getter @Setter    private static String postgresPassword = "postgrespassword";
+@Getter @Setter    private static String webUserSessiontimeout = "600";
 
     public static int getServerPort() {
         int value = Integer.parseInt(SystemConfig.serverPort);
@@ -56,6 +57,15 @@ public class SystemConfig {
 
     public static void setServerPort(Integer serverPort) {
         SystemConfig.serverPort = serverPort.toString();
+    }
+    
+    public static int getwebUserSessiontimeout() {
+        int value = Integer.parseInt(SystemConfig.webUserSessiontimeout);
+        return value;
+    }
+
+    public static void setwebUserSessiontimeout(Integer sessionTimeout) {
+        SystemConfig.webUserSessiontimeout = sessionTimeout.toString();
     }
    
     public static String getWebhookMessageLink() {
@@ -75,6 +85,14 @@ public class SystemConfig {
         long days = hours / 24;
         String time = days + ":" + hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;  
     return time;
+    }
+    
+    public static String getSystemUsedMemory() {
+        Runtime runtime = Runtime.getRuntime();
+        long memory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        memory = memory/1024/1024;
+        String showusedMemory = Long.toString(memory);
+    return showusedMemory;
     }
     
     public static void loadconfig ()  {
@@ -100,6 +118,7 @@ public class SystemConfig {
                 SystemConfig.botUserName = prop.getProperty("BotUserName");
                 SystemConfig.postgresUser = prop.getProperty("PostgresUser");
                 SystemConfig.postgresPassword = prop.getProperty("PostgresPassword");
+                SystemConfig.webUserSessiontimeout = prop.getProperty("WebUserSessiontimeout");
                 
         
                 LOGGER.info("loadconfig successful");
@@ -113,6 +132,7 @@ public class SystemConfig {
                 LOGGER.debug("Loadconfig botUserName : " + SystemConfig.botUserName);
                 LOGGER.debug("Loadconfig postgresUser : " + SystemConfig.postgresUser);
                 LOGGER.debug("Loadconfig postgresPassword : " + SystemConfig.postgresPassword);
+                LOGGER.debug("Loadconfig webUserSessiontimeout : " + SystemConfig.webUserSessiontimeout);
                 
 	} catch (IOException ex) {
 		ex.printStackTrace();
@@ -149,6 +169,7 @@ public class SystemConfig {
                 prop.setProperty("WebhookRoomsroute", SystemConfig.webhookRoomsroute);
                 prop.setProperty("PostgresUser", SystemConfig.postgresUser);
                 prop.setProperty("PostgresPassword", SystemConfig.postgresPassword);
+                prop.setProperty("WebUserSessiontimeout", SystemConfig.webUserSessiontimeout);
 
                 
                 

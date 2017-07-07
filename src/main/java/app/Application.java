@@ -68,9 +68,8 @@ public class Application {
         //String layout = locationPath + SystemConfig.LAYOUT;
         staticFileLocation(SystemConfig.getStaticWebFileLocation());
         port(SystemConfig.getServerPort());
-        staticFiles.expireTime(60L);
+        staticFiles.expireTime(60);
         enableDebugScreen();
-
         
         
         //-------Set up before-filters (called before each get/post)------------

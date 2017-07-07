@@ -35,6 +35,7 @@ public class LoginController {
         /*if (getQueryLoginRedirect(request) != null) {
             response.redirect(getQueryLoginRedirect(request));
         }*/
+        request.session().maxInactiveInterval(SystemConfig.getwebUserSessiontimeout()); //set user session timeout
         response.redirect(Path.Web.INDEX);
         return ViewUtil.render(request, model, Path.Template.LOGIN);
     };
