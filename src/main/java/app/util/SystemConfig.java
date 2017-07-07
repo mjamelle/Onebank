@@ -35,7 +35,8 @@ import org.apache.logging.log4j.Level;
 public class SystemConfig {
     
     private static final Logger LOGGER = LogManager.getLogger();
-        private static String serverPort = "4567";    
+        private static String serverPort = "4567";  
+        private static String webUserSessiontimeout = "600";
 @Getter @Setter    private static String mConfigFile = "config/config.properties";
 @Getter @Setter    private static String ServerURL = "www.example.com";
 @Getter @Setter    private static String botAccessToken = "Insert Access Token";
@@ -46,7 +47,7 @@ public class SystemConfig {
 @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
 @Getter @Setter    private static String postgresUser = "postgres";
 @Getter @Setter    private static String postgresPassword = "postgrespassword";
-@Getter @Setter    private static String webUserSessiontimeout = "600";
+
 
     public static int getServerPort() {
         int value = Integer.parseInt(SystemConfig.serverPort);
