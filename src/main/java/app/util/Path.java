@@ -19,6 +19,7 @@ public class Path {
         @Getter public static final String LOGOUT = "/logout/";
         @Getter public static final String ADMINUSER = "/admin/";
         @Getter public static final String ADMINREPORT = "/report/";
+        @Getter public static final String ADMINDESIGN = "/design/";
 
     }
 
