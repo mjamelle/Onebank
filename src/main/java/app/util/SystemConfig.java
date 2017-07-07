@@ -82,7 +82,7 @@ public class SystemConfig {
         long minutes = seconds / 60;
         long hours = minutes / 60;
         long days = hours / 24;
-        String time = days + "days:" + hours % 24 + "hours:" + minutes % 60 + "minutes:" + seconds % 60 +"seconds";  
+        String time = days + "Days : " + hours % 24 + "Hours : " + minutes % 60 + "Minutes : " + seconds % 60 +"Seconds";  
     return time;
     }
     
