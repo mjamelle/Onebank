@@ -7,7 +7,7 @@
         <br/>
         <fieldset class="report-field">
           <legend>System</legend>
-          <p>Uptime  : $SystemUpTime Days:Hours:Min:Sec<p>
+          <p>Uptime  : $SystemUpTime<p>
           <p>Memory  : $UsedMemory MByte</p>
         </fieldset>  
         <fieldset class="report-field">
