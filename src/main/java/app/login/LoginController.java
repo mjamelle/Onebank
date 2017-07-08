@@ -52,7 +52,8 @@ public class LoginController {
     // The origin of the request (request.pathInfo()) is saved in the session so
     // the user can be redirected back after login
     public static void ensureAdminIsLoggedIn(Request request, Response response) {
-        if (request.session().attribute("currentUser") == null) {
+        User user = request.session().attribute("currentUser");
+        if (user == null || !user.isAdminprivilege()) {
             request.session().attribute("loginRedirect", request.pathInfo());
             response.redirect(Path.Web.LOGIN);           
         }
