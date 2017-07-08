@@ -2,10 +2,12 @@ package app.util;
 
 import spark.*;
 import static app.util.RequestUtil.*;
+import lombok.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Filters {
+    @Getter private static int webrequests = 0;
     private static final Logger logger = LogManager.getLogger();
 
     // If a user manually manipulates paths and forgets to add
@@ -35,6 +37,7 @@ public class Filters {
     // Enable GZIP for all responses
     public static Filter addGzipHeader = (Request request, Response response) -> {
         response.header("Content-Encoding", "gzip");
+        ++webrequests;
     };
 
 }

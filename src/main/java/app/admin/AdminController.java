@@ -5,6 +5,7 @@ import app.db.User;
 import app.login.LoginController;
 import app.user.UserController;
 import app.util.SystemConfig;
+import app.util.Filters;
 import app.util.*;
 import spark.*;
 import java.util.*;
@@ -32,6 +33,7 @@ public class AdminController {
             model.put("Roomamount", CiscoSpark.getRoomamount());
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
             model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
+            model.put("Webrequests", Filters.getWebrequests());
         return ViewUtil.render(request, model, Path.Template.ADMINREPORT);
     };
     
