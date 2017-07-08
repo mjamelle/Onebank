@@ -3,86 +3,15 @@
 
  
     <!-- jquery for jtable in admin user page -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <!-- Include one of jTable styles. -->
-  <link href="/jtable/themes/metro/darkgray/jtable.min.css" rel="stylesheet" type="text/css" />
-  <!-- Include jTable script file. -->
-  <script src="/jtable/jquery.jtable.min.js" type="text/javascript"></script>
-  <script type="text/javascript" src="/jtable/localization/jquery.jtable.de.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Include one of jTable styles. -->
+    <link href="/jtable/themes/metro/darkgray/jtable.min.css" rel="stylesheet" type="text/css" />
+    <!-- Include jTable script file. -->
+    <script src="/jtable/jquery.jtable.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/jtable/localization/jquery.jtable.de.js"></script>
+    <script type="text/javascript" src="/js/adminpage.js"></script>
  
- 
-
-    <script type="text/javascript">
-    $(document).ready(function () {
-        $('#UserTableContainer').jtable({
-            title: 'Benutzerliste',
-            actions: {
-                listAction: '/rest/listusers/',
-                createAction: '/rest/createuser/',
-                updateAction: '/rest/updateuser/',
-                deleteAction: '/rest/deleteuser/'
-            },
-            fields: {
-                id: {
-                    key: true,
-                    list: false
-                },
-                givenName: {
-                    title: 'Vorname',
-                    width: '10%'
-                },
-                surName: {
-                    title: 'Nachname',
-                    width: '10%'
-                },
-                username: {
-                    list: false,
-                    title: 'Username'
-                },
-                password: {
-                    list: false,
-                    title: 'Password',
-                    width: '10%'
-                },
-                photolink: {
-                    list: false,
-                    title: 'Bild'
-                },
-                email: {
-                    title: 'Email',
-                    width: '10%'
-                },
-                function: {
-                    list: false,
-                    title: 'Bezeichnung'
-                },
-                jabber_use: {
-                    title: 'Jabber',
-                    type:  'checkbox',
-                    values: { 'false': 'Passive', 'true': 'Active' },
-                    defaultValue: 'true'
-                },
-                spark_use: {
-                    title: 'Spark',
-                    type:  'checkbox',
-                    values: { 'false': 'Passive', 'true': 'Active' },
-                    defaultValue: 'true'
-                },
-                adminprivilege: {
-                    title: 'Admin',
-                    type:  'checkbox',
-                    values: { 'false': 'Passive', 'true': 'Active' },
-                    defaultValue: 'true'
-                }  
-            }
-        });   	
-    $('#UserTableContainer').jtable('load');
-    });
-</script>
-
-
-
-
     <section class="engine"><a rel="external" href="https://mobirise.com">Mobirise Web Creator</a></section><section class="mbr-section mbr-section-md-padding mbr-footer footer2 mbr-after-navbar" id="contacts2-a" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
         <!--
         <div class="container">
