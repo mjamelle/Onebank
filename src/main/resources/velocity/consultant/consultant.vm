@@ -17,8 +17,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 text-xs-center">
-                        <h3 class="mbr-section-title display-2">Ihr Beraterteam</h3>
-                        <small class="mbr-section-subtitle">Klicken sie auf den gewünschten Berater</small>
+                        <h3 class="mbr-section-title display-2">$msg.get("CONSULTANT_ADVISOR")</h3>
+                        <small class="mbr-section-subtitle">$msg.get("CONSULTANT_CHOOSE")</small>
                     </div>
                 </div>
             </div>
