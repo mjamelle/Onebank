@@ -89,8 +89,10 @@ public class Application {
         get(Path.Web.LOGIN,          LoginController.serveLoginPage);
         post(Path.Web.LOGIN,         LoginController.handleLoginPost);
         post(Path.Web.LOGOUT,        LoginController.handleLogoutPost);
+        get(Path.Web.ADMINDESIGN,    AdminController.serveAdminDesignPage);
         get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
         get(Path.Web.ADMINREPORT,    AdminController.serveAdminReportPage);
+        get(Path.Web.ADMINLISTUSERS, AdminController.serveAdminListUser);
         get("*",                     ViewUtil.notFound);
         
         after("*",                   Filters.addGzipHeader);

@@ -8,18 +8,19 @@
   <link href="/jtable/themes/metro/darkgray/jtable.min.css" rel="stylesheet" type="text/css" />
   <!-- Include jTable script file. -->
   <script src="/jtable/jquery.jtable.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/jtable/localization/jquery.jtable.de.js"></script>
  
  
 
     <script type="text/javascript">
     $(document).ready(function () {
         $('#UserTableContainer').jtable({
-            title: 'Table of User',
+            title: 'Benutzerliste',
             actions: {
-                listAction: '/GettingStarted/PersonList',
-                createAction: '/GettingStarted/CreatePerson',
-                updateAction: '/GettingStarted/UpdatePerson',
-                deleteAction: '/GettingStarted/DeletePerson'
+                listAction: '/rest/listusers/',
+                createAction: '/rest/createuser/',
+                updateAction: '/rest/updateuser/',
+                deleteAction: '/rest/deleteuser/'
             },
             fields: {
                 id: {
@@ -34,15 +35,18 @@
                     title: 'Nachname',
                     width: '10%'
                 },
+                username: {
+                    list: false,
+                    title: 'Username'
+                },
                 password: {
                     list: false,
                     title: 'Password',
-                    width: '10%',
+                    width: '10%'
                 },
                 photolink: {
                     list: false,
-                    title: 'Bild',
-                    width: '10%'
+                    title: 'Bild'
                 },
                 email: {
                     title: 'Email',
@@ -50,26 +54,29 @@
                 },
                 function: {
                     list: false,
-                    title: 'Bezeichnung',
-                    width: '20%'
+                    title: 'Bezeichnung'
                 },
                 jabber_use: {
                     title: 'Jabber',
                     type:  'checkbox',
-                    width: '5%'
+                    values: { 'false': 'Passive', 'true': 'Active' },
+                    defaultValue: 'true'
                 },
                 spark_use: {
                     title: 'Spark',
                     type:  'checkbox',
-                    width: '5%'
+                    values: { 'false': 'Passive', 'true': 'Active' },
+                    defaultValue: 'true'
                 },
                 adminprivilege: {
                     title: 'Admin',
                     type:  'checkbox',
-                    width: '5%'
-                }, 
+                    values: { 'false': 'Passive', 'true': 'Active' },
+                    defaultValue: 'true'
+                }  
             }
-        });
+        });   	
+    $('#UserTableContainer').jtable('load');
     });
 </script>
 
@@ -77,13 +84,14 @@
 
 
     <section class="engine"><a rel="external" href="https://mobirise.com">Mobirise Web Creator</a></section><section class="mbr-section mbr-section-md-padding mbr-footer footer2 mbr-after-navbar" id="contacts2-a" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
-        
+        <!--
         <div class="container">
             <form method='post' enctype='multipart/form-data'>
                 <input type='file' accept="image/*" name='uploaded_file'>
                 <button>Bild hochladen</button>"
             </form>"  
         </div>
+        -->
         <div id="UserTableContainer"></div>
     </section>
 

@@ -20,6 +20,7 @@ public class Path {
         @Getter public static final String ADMINUSER = "/admin/";
         @Getter public static final String ADMINREPORT = "/report/";
         @Getter public static final String ADMINDESIGN = "/design/";
+        @Getter public static final String ADMINLISTUSERS = "rest/listusers/";
 
     }
 
@@ -31,6 +32,7 @@ public class Path {
         public final static String LOGIN = "/velocity/login/login.vm";
         public final static String ADMINUSER = "/velocity/admin/manageuser.vm";
         public final static String ADMINREPORT = "/velocity/admin/report.vm";
+        public final static String ADMINDESIGN = "/velocity/admin/design.vm";
         public static final String NOT_FOUND = "/velocity/notFound.vm";
     }
 
