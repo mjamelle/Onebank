@@ -21,7 +21,7 @@
             </form>"  
         </div>
         -->
-        <br
+        <h3>Benutzerverwaltung</h3>
         <div id="UserTableContainer"></div>
     </section>
 

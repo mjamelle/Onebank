@@ -17,7 +17,7 @@
 
 $(document).ready(function () {
         $('#UserTableContainer').jtable({
-            title: 'Benutzerliste',
+            title: 'Liste',
             actions: {
                 listAction: '/rest/listusers/',
                 createAction: '/rest/createuser/',
