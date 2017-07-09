@@ -92,13 +92,11 @@ public class Application {
         get(Path.Web.ADMINDESIGN,    AdminController.serveAdminDesignPage);
         get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
         get(Path.Web.ADMINREPORT,    AdminController.serveAdminReportPage);
-        get(Path.Web.ADMINLISTUSERS, AdminController.serveAdminListUser);
+        post(Path.Web.ADMINLISTUSERS,AdminController.serveAdminListUsers);
         get("*",                     ViewUtil.notFound);
         
         after("*",                   Filters.addGzipHeader);
-                 
-
-    }
-    
+        
+        };   
 }
 

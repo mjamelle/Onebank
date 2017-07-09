@@ -20,7 +20,7 @@ public class Path {
         @Getter public static final String ADMINUSER = "/admin/";
         @Getter public static final String ADMINREPORT = "/report/";
         @Getter public static final String ADMINDESIGN = "/design/";
-        @Getter public static final String ADMINLISTUSERS = "rest/listusers/";
+        @Getter public static final String ADMINLISTUSERS = "/rest/listusers/";
 
     }
 

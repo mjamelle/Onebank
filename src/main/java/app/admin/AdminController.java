@@ -6,10 +6,10 @@ import app.login.LoginController;
 import app.user.UserController;
 import app.util.SystemConfig;
 import app.util.Filters;
+import app.util.JsonUtil;
 import app.util.*;
 import spark.*;
 import java.util.*;
-import static app.util.RequestUtil.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,11 +45,11 @@ public class AdminController {
         return ViewUtil.render(request, model, Path.Template.ADMINDESIGN);
     };
     
-    public static Route serveAdminListUser = (Request request, Response response) -> {
-        LOGGER.info("/rest/listuser get request");
-        LOGGER.debug("/rest/listuser get request : " + request.body());
-        User.all();
-        return null;
+    public static Route serveAdminListUsers = (Request request, Response response) -> {
+        LOGGER.info("/rest/listuser/ get request");
+        LOGGER.debug("/rest/listuser/ get request : " + request.body());
+        response.type("application/json");
+        return JsonUtil.dataToJson(User.all());
     };    
         
         

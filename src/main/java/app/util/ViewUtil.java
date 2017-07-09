@@ -6,9 +6,11 @@ import spark.*;
 //import spark.template.velocity.*;
 import java.util.*;
 import static app.util.RequestUtil.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ViewUtil {
-
+    private static final Logger LOGGER = LogManager.getLogger();
     // Renders a template given a model and a request
     // The request is needed to check the user session for language settings
     // and to see if the user is logged in
@@ -25,6 +27,7 @@ public class ViewUtil {
     };
 
     public static Route notFound = (Request request, Response response) -> {
+        LOGGER.info("Path not found : " + request.pathInfo());
         response.status(HttpStatus.NOT_FOUND_404);
         return render(request, new HashMap<>(), Path.Template.NOT_FOUND);
     };
