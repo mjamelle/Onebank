@@ -53,7 +53,7 @@ $(document).ready(function () {
                     title: 'Bild'
                 },
                 email: {
-                    title: 'Email',
+                    title: 'Email/URI',
                     width: '10%'
                 },
                 function: {
