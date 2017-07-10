@@ -50,7 +50,7 @@ public class AdminController {
         LOGGER.debug("/rest/listuser/ get request : " + request.body());
         response.type("application/json");
         RestUserallResponse result = new RestUserallResponse();
-        try { //TBD throw exception in case of issues and setResult to ERROR
+        try {
             result.setRecords(User.all());
             result.setResult("OK");
         } catch (Exception ex) {
