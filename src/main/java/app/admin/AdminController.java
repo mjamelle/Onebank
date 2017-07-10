@@ -17,16 +17,16 @@ public class AdminController {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static Route serveAdminUserPage = (Request request, Response response) -> {
-        LOGGER.info("/admin/ get request");
-        LOGGER.debug("/admin/ get request : " + request.body());
+        LOGGER.info(Path.Web.ADMINUSER + " get request");
+        LOGGER.debug(Path.Web.ADMINUSER + " get request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, Path.Template.ADMINUSER);
     };
     
         public static Route serveAdminReportPage = (Request request, Response response) -> {
-        LOGGER.info("/report/ get request");
-        LOGGER.debug("/report/ get request : " + request.body());
+        LOGGER.info(Path.Web.ADMINREPORT + " get request");
+        LOGGER.debug(Path.Web.ADMINREPORT + " get request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
             model.put("Botrequestcounter", BotLogic.getBotrequestcounter());
@@ -38,16 +38,16 @@ public class AdminController {
     };
     
     public static Route serveAdminDesignPage = (Request request, Response response) -> {
-        LOGGER.info("/design/ get request");
-        LOGGER.debug("/design/ get request : " + request.body());
+        LOGGER.info(Path.Web.ADMINDESIGN + " get request");
+        LOGGER.debug(Path.Web.ADMINDESIGN + " get request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, Path.Template.ADMINDESIGN);
     };
     
     public static Route serveAdminListUsers = (Request request, Response response) -> {
-        LOGGER.info("/rest/listuser/ get request");
-        LOGGER.debug("/rest/listuser/ get request : " + request.body());
+        LOGGER.info(Path.Web.ADMINLISTUSERS +" post request");
+        LOGGER.debug(Path.Web.ADMINLISTUSERS + " post request : " + request.body());
         response.type("application/json");
         RestUserallResponse result = new RestUserallResponse();
         try {
