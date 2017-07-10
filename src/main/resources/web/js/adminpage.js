@@ -19,10 +19,10 @@ $(document).ready(function () {
         $('#UserTableContainer').jtable({
             title: 'Liste',
             actions: {
-                listAction: '/rest/listusers/',
-                createAction: '/rest/createuser/',
-                updateAction: '/rest/updateuser/',
-                deleteAction: '/rest/deleteuser/'
+                listAction: '/rest/listusers',
+                createAction: '/rest/createuser',
+                updateAction: '/rest/updateuser',
+                deleteAction: '/rest/deleteuser'
             },
             fields: {
                 id: {
@@ -32,11 +32,11 @@ $(document).ready(function () {
                 },
                 givenName: {
                     title: 'Vorname',
-                    width: '10%'
+                    width: '15%'
                 },
                 surName: {
                     title: 'Nachname',
-                    width: '10%'
+                    width: '15%'
                 },
                 username: {
                     list: false,
@@ -45,8 +45,7 @@ $(document).ready(function () {
                 password: {
                     list: false,
                     title: 'Password',
-                    type: 'password',
-                    width: '10%'
+                    type: 'password'
                 },
                 photolink: {
                     list: false,
@@ -54,11 +53,12 @@ $(document).ready(function () {
                 },
                 email: {
                     title: 'Email/URI',
-                    width: '10%'
+                    width: '20%'
                 },
                 function: {
                     list: true,
-                    title: 'Bezeichnung'
+                    title: 'Bezeichnung',
+                    width: '50%'
                 },
                 jabber_use: {
                     title: 'Jabber',

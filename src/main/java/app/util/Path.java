@@ -8,19 +8,22 @@ public class Path {
     // the variables from Velocity Templates
     public static class Web {
         @Getter public static final String SLASH = "/";
-        @Getter public static final String INDEX = "/index/";
-        @Getter public static final String CONTACT = "/contact/";
-        @Getter public static final String CONSULTANT = "/consultant/";
-        @Getter public static final String SPARKWIDGET = "/sparkwidget/:id/";
+        @Getter public static final String INDEX = "/index";
+        @Getter public static final String CONTACT = "/contact";
+        @Getter public static final String CONSULTANT = "/consultant";
+        @Getter public static final String SPARKWIDGET = "/sparkwidget/:id";
         @Getter public static final String BOTMESSAGE = "/webhook/messages";
         @Getter public static final String BOTROOMS = "/webhook/rooms";
         @Getter public static final String REST = "/rest/config";
-        @Getter public static final String LOGIN = "/login/";
-        @Getter public static final String LOGOUT = "/logout/";
-        @Getter public static final String ADMINUSER = "/admin/";
-        @Getter public static final String ADMINREPORT = "/report/";
-        @Getter public static final String ADMINDESIGN = "/design/";
-        @Getter public static final String ADMINLISTUSERS = "/rest/listusers/";
+        @Getter public static final String LOGIN = "/login";
+        @Getter public static final String LOGOUT = "/logout";
+        @Getter public static final String ADMINUSER = "/admin";
+        @Getter public static final String ADMINREPORT = "/report";
+        @Getter public static final String ADMINDESIGN = "/design";
+        @Getter public static final String RESTLISTUSERS = "/rest/listusers";
+        @Getter public static final String RESTCREATEUSER = "/rest/createuser";
+        @Getter public static final String RESTUPDATEUSER = "/rest/updateuser";
+        @Getter public static final String RESTDELETEUSER = "/rest/deleteuser";
 
     }
 

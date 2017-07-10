@@ -45,9 +45,9 @@ public class AdminController {
         return ViewUtil.render(request, model, Path.Template.ADMINDESIGN);
     };
     
-    public static Route serveAdminListUsers = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.ADMINLISTUSERS +" post request");
-        LOGGER.debug(Path.Web.ADMINLISTUSERS + " post request : " + request.body());
+    public static Route serveRestListUsers = (Request request, Response response) -> {
+        LOGGER.info(Path.Web.RESTLISTUSERS +" post request");
+        LOGGER.debug(Path.Web.RESTLISTUSERS + " post request : " + request.body());
         response.type("application/json");
         RestUserallResponse result = new RestUserallResponse();
         try {
@@ -57,7 +57,61 @@ public class AdminController {
             result.setResult("ERROR");
         }      
         return JsonUtil.dataToJson(result);
-    };    
+    };  
+    
+        public static Route serveRestCreateUsers = (Request request, Response response) -> {
+        LOGGER.info(Path.Web.RESTCREATEUSER +" post request");
+        LOGGER.debug(Path.Web.RESTCREATEUSER + " post request : " + request.body());
+        response.type("application/json");
+        RestcreateUserResponse result = new RestcreateUserResponse();
+        User user = new  User();
+        try {
+            user.setGivenName(request.queryParams("givenName"));
+            user.setSurName(request.queryParams("surName"));
+            user.setUsername(request.queryParams("username"));
+            user.setPassword(request.queryParams("password"));
+            user.setPhotolink(request.queryParams("photolink"));
+            user.setEmail(request.queryParams("email"));
+            user.setFunction(request.queryParams("function"));
+            user.setJabber_use(Boolean.parseBoolean(request.queryParams("jabber_use")));
+            user.setSpark_use(Boolean.parseBoolean(request.queryParams("spark_use")));
+            user.setAdminprivilege(Boolean.parseBoolean(request.queryParams("adminprivilege")));
+            user.save();
+            result.setRecord(User.find(user.getId()));
+            result.setResult("OK");
+        } catch (Exception ex) {
+            result.setResult("ERROR");
+        }      
+        return JsonUtil.dataToJson(result);
+    }; 
+        
+            public static Route serveRestUpdateUsers = (Request request, Response response) -> {
+        LOGGER.info(Path.Web.RESTUPDATEUSER +" post request");
+        LOGGER.debug(Path.Web.RESTUPDATEUSER + " post request : " + request.body());
+        response.type("application/json");
+        RestUserallResponse result = new RestUserallResponse();
+        try {
+            result.setRecords(User.all());
+            result.setResult("OK");
+        } catch (Exception ex) {
+            result.setResult("ERROR");
+        }      
+        return JsonUtil.dataToJson(result);
+    }; 
+            
+        public static Route serveRestDeleteUsers = (Request request, Response response) -> {
+        LOGGER.info(Path.Web.RESTDELETEUSER +" post request");
+        LOGGER.debug(Path.Web.RESTDELETEUSER + " post request : " + request.body());
+        response.type("application/json");
+        RestUserallResponse result = new RestUserallResponse();
+        try {
+            result.setRecords(User.all());
+            result.setResult("OK");
+        } catch (Exception ex) {
+            result.setResult("ERROR");
+        }      
+        return JsonUtil.dataToJson(result);
+    }; 
         
         
     /*

@@ -74,7 +74,7 @@ public class Application {
         
         
         //-------Set up before-filters (called before each get/post)------------
-        before("*",                  Filters.addTrailingSlashes);
+        //before("*",                  Filters.addTrailingSlashes);
         before("*",                  Filters.handleLocaleChange);
         before(Path.Web.SLASH,       Filters.forwardtoIndex);
         
@@ -92,11 +92,14 @@ public class Application {
         get(Path.Web.ADMINDESIGN,    AdminController.serveAdminDesignPage);
         get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
         get(Path.Web.ADMINREPORT,    AdminController.serveAdminReportPage);
-        post(Path.Web.ADMINLISTUSERS,AdminController.serveAdminListUsers);
+        post(Path.Web.RESTLISTUSERS, AdminController.serveRestListUsers);
+        post(Path.Web.RESTCREATEUSER,AdminController.serveRestCreateUsers);
+        post(Path.Web.RESTUPDATEUSER,AdminController.serveRestUpdateUsers);
+        post(Path.Web.RESTDELETEUSER,AdminController.serveRestDeleteUsers);
+        
         get("*",                     ViewUtil.notFound);
         
-        after("*",                   Filters.addGzipHeader);
-        
+        after("*",                   Filters.addGzipHeader);      
         };   
 }
 

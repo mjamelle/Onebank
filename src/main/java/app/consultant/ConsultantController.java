@@ -18,8 +18,8 @@ public class ConsultantController {
     };
     
     public static Route serveSparkWidget = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.SPARKWIDGET +request.params(":id")+" get request");
-        LOGGER.debug(Path.Web.SPARKWIDGET + request.params(":id")+" get request : " + request.body());
+        LOGGER.info(Path.Web.SPARKWIDGET +request.params(":id") + " get request");
+        LOGGER.debug(Path.Web.SPARKWIDGET + request.params(":id") + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         User consultant = User.find(Integer.parseInt(request.params(":id")));
         model.put("consultant", consultant);
