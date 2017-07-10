@@ -34,7 +34,7 @@ public class LoginController {
         request.session().attribute("currentUser", user);
         if (getQueryLoginRedirect(request) != null) {
             response.redirect(getQueryLoginRedirect(request));
-        }
+        } else response.redirect(Path.Web.INDEX);
         model.put("authenticationSucceeded", true);
         model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
         return ViewUtil.render(request, model, Path.Template.LOGIN);
