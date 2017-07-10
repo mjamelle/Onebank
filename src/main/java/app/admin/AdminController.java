@@ -49,7 +49,11 @@ public class AdminController {
         LOGGER.info("/rest/listuser/ get request");
         LOGGER.debug("/rest/listuser/ get request : " + request.body());
         response.type("application/json");
-        return JsonUtil.dataToJson(User.all());
+        RestUserallResponse result = new RestUserallResponse();
+        // try { TBD throw exception in case of issues and setResult to ERROR
+        result.setRecords(User.all());
+        result.setResult("OK");
+        return JsonUtil.dataToJson(result);
     };    
         
         

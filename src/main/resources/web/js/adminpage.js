@@ -57,27 +57,30 @@ $(document).ready(function () {
                     width: '10%'
                 },
                 function: {
-                    list: false,
+                    list: true,
                     title: 'Bezeichnung'
                 },
                 jabber_use: {
                     title: 'Jabber',
+                    list: false,
                     type:  'checkbox',
                     values: { 'false': '', 'true': '' },
                     defaultValue: 'false'
                 },
                 spark_use: {
                     title: 'Spark',
+                    list: false,
                     type:  'checkbox',
                     values: { 'false': '', 'true': '' },
                     defaultValue: 'false'
                 },
                 adminprivilege: {
                     title: 'Admin',
+                    list: false,
                     type:  'checkbox',
                     values: { 'false': '', 'true': '' },
                     defaultValue: 'false'
-                }  
+                }
             }
         });   	
     $('#UserTableContainer').jtable('load');

@@ -3,6 +3,7 @@ package app.db;
 import java.util.List;
 import org.sql2o.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.*;
 
 @Data
 public class User {
@@ -26,6 +27,7 @@ public class User {
     }
   }
   
+  @JsonIgnore
   public String getDisplayName() {
       return givenName + " " + surName;
   }
