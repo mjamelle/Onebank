@@ -63,7 +63,7 @@ public class User {
     }
   }
 
-  public void update(String description) {
+  public void update() {
     try(Connection con = DB.sql2o.open()) {
     String sql = "UPDATE users SET givenName = :givenName, surName = :surName, email = :email, jabber_use = :jabber_use,"
             + "spark_use = :spark_use, adminprivilege = :adminprivilege, photolink = :photolink, function = :function,"

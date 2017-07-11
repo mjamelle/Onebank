@@ -12,6 +12,7 @@ import spark.*;
 import java.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONObject;
 
 public class AdminController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -85,32 +86,46 @@ public class AdminController {
         return JsonUtil.dataToJson(result);
     }; 
         
-            public static Route serveRestUpdateUsers = (Request request, Response response) -> {
+        public static Route serveRestUpdateUsers = (Request request, Response response) -> {
         LOGGER.info(Path.Web.RESTUPDATEUSER +" post request");
         LOGGER.debug(Path.Web.RESTUPDATEUSER + " post request : " + request.body());
+        JSONObject obj = new JSONObject();
         response.type("application/json");
-        RestUserallResponse result = new RestUserallResponse();
+        User user = new  User();
         try {
-            result.setRecords(User.all());
-            result.setResult("OK");
+            user.setId(Integer.parseInt(request.queryParams("id")));
+            user.setGivenName(request.queryParams("givenName"));
+            user.setSurName(request.queryParams("surName"));
+            user.setUsername(request.queryParams("username"));
+            user.setPassword(request.queryParams("password"));
+            user.setPhotolink(request.queryParams("photolink"));
+            user.setEmail(request.queryParams("email"));
+            user.setFunction(request.queryParams("function"));
+            user.setJabber_use(Boolean.parseBoolean(request.queryParams("jabber_use")));
+            user.setSpark_use(Boolean.parseBoolean(request.queryParams("spark_use")));
+            user.setAdminprivilege(Boolean.parseBoolean(request.queryParams("adminprivilege")));
+            user.update();
+            obj.put("Result", "OK");
         } catch (Exception ex) {
-            result.setResult("ERROR");
+            obj.put("Result", "ERROR");
         }      
-        return JsonUtil.dataToJson(result);
+        return obj.toJSONString();
     }; 
             
         public static Route serveRestDeleteUsers = (Request request, Response response) -> {
         LOGGER.info(Path.Web.RESTDELETEUSER +" post request");
         LOGGER.debug(Path.Web.RESTDELETEUSER + " post request : " + request.body());
+        JSONObject obj = new JSONObject();
         response.type("application/json");
-        RestUserallResponse result = new RestUserallResponse();
+        User user = new  User();
         try {
-            result.setRecords(User.all());
-            result.setResult("OK");
+            user.setId(Integer.parseInt(request.queryParams("id")));
+            user.delete();
+            obj.put("Result", "OK");
         } catch (Exception ex) {
-            result.setResult("ERROR");
+            obj.put("Result", "ERROR");
         }      
-        return JsonUtil.dataToJson(result);
+        return obj.toJSONString();
     }; 
         
         
