@@ -20,6 +20,7 @@ $(document).ready(function () {
             title: 'Liste',
             paging: true, //Enable paging
             pageSize: 10, //Set page size (default: 10)
+            selecting: true, //Enable selecting
             //sorting: true, //Enable sorting
             //defaultSorting: 'surName ASC', //Set default sorting
             actions: {
