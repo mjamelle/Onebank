@@ -20,24 +20,14 @@
   <link rel="stylesheet" href="../assets/animate.css/animate.min.css">
   <link rel="stylesheet" href="../assets/theme/css/style.css">
   <link rel="stylesheet" href="../assets/mobirise/css/mbr-additional.css" type="text/css">
-  
+ 
   <script src="../assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="../assets/tether/tether.min.js"></script>
-  <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="../assets/smooth-scroll/smooth-scroll.js"></script>
-  <script src="../assets/dropdown/js/script.min.js"></script>
-  <script src="../assets/touch-swipe/jquery.touch-swipe.min.js"></script>
-  <script src="../assets/viewport-checker/jquery.viewportchecker.js"></script>
-  <script src="../assets/jarallax/jarallax.js"></script>
-  <script src="../assets/jquery-mb-ytplayer/jquery.mb.ytplayer.min.js"></script>
-  <script src="../assets/theme/js/script.js"></script>
-  
   
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/css/ngDialog.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/css/ngDialog-theme-default.min.css">
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/js/ngDialog.min.js"></script>
+  
   <script type="text/javascript" src="../js/script.js"></script>
    
 </head>
@@ -104,6 +94,18 @@
     </footer>
   <input name="animation" type="hidden">
    <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon"></i></a></div>
+
+  
+  <script src="../assets/tether/tether.min.js"></script>
+  <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/smooth-scroll/smooth-scroll.js"></script>
+  <script src="../assets/dropdown/js/script.min.js"></script>
+  <script src="../assets/touch-swipe/jquery.touch-swipe.min.js"></script>
+  <script src="../assets/viewport-checker/jquery.viewportchecker.js"></script>
+  <script src="../assets/jarallax/jarallax.js"></script>
+  <script src="../assets/jquery-mb-ytplayer/jquery.mb.ytplayer.min.js"></script>
+  <script src="../assets/theme/js/script.js"></script>
+
 </body>
 </html>
 #end
