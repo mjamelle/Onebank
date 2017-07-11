@@ -18,6 +18,10 @@
 $(document).ready(function () {
         $('#UserTableContainer').jtable({
             title: 'Liste',
+            paging: true, //Enable paging
+            pageSize: 10, //Set page size (default: 10)
+            //sorting: true, //Enable sorting
+            //defaultSorting: 'surName ASC', //Set default sorting
             actions: {
                 listAction: '/rest/listusers',
                 createAction: '/rest/createuser',
