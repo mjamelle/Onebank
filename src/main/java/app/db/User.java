@@ -34,10 +34,10 @@ public class User {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO users(givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
-              + "username, password, function) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
-              + " :photolink, :username, :password, :function)";
-      this.id = (int) con.createQuery(sql, true)
+        String sql = "INSERT INTO users(givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
+          + "username, password, function) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
+          + " :photolink, :username, :password, :function)";
+        this.id = (int) con.createQuery(sql, true)
         .addParameter("givenName", this.givenName)
         .addParameter("surName", this.surName)
         .addParameter("email", this.email)
