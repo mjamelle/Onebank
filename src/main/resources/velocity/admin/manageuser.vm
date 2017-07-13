@@ -23,17 +23,18 @@
     <section class="engine"><a rel="external" href="https://mobirise.com">Mobirise Web Creator</a></section><section class="mbr-section mbr-section-md-padding mbr-footer footer2 mbr-after-navbar" id="contacts2-a" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
 
         
-        <h3>Benutzerverwaltung</h3>
+        <h3 style="padding-bottom: 20">Benutzerverwaltung</h3>
         <div id="UserTableContainer"></div>
-        <h4>Bild</h4>
-        <div class="col-xs-12 col-lg-1">
+
+        <div class="col-xs-12 col-lg-1" style="padding-top: 30">
             <div class="mbr-testimonial card mbr-testimonial-lg">
                 <div class="mbr-author card-footer">
-                    <div ng-click="" ><img src="../assets/images/mjamelle-120x160.jpg" alt="Photo missing" class="img-circle"></div>
+                    <div><img id="userimage" alt="Photo missing" class="img-circle" width="100" height="100"></div>
                 </div>
             </div>
         </div>
-        <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+        
+        <!-- <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form> -->
   
         <!--
         <div class="form-control-file">

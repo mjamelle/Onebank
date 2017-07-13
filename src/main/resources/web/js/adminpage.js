@@ -15,7 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 $(document).ready(function () {
+    //document.getElementById('markostest').setAttribute('img', '../assets/images/mjamelle-120x160.jpg');
+    var marko = "../assets/images/mjamelle-120x160.jpg";
+    
         $('#UserTableContainer').jtable({
             title: 'Liste',
             paging: true, //Enable paging
@@ -86,7 +90,22 @@ $(document).ready(function () {
                     values: { 'false': '', 'true': '' },
                     defaultValue: 'false'
                 }
+            },
+        //Register to selectionChanged event to hanlde events
+            selectionChanged: function () {
+              var $selectedRows = $('#UserTableContainer').jtable('selectedRows');
+                if ($selectedRows.length > 0) {
+                    //Show selected rows
+                    $selectedRows.each(function () {
+                        var record = $(this).data('record');
+                        document.getElementById("userimage").src = record.photolink; //      innerHTML = 'Demo';  
+                    });
+                };
+   
+            
             }
         });   	
     $('#UserTableContainer').jtable('load');
     });
+
+
