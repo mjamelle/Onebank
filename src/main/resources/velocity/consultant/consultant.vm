@@ -38,7 +38,7 @@
                                 <div ng-click="clickToOpenSparkWidget($user.getId())" class="mbr-author-img"><img src="$!user.getPhotolink()" alt="Photo missing" class="img-circle"></div>
                                 #end
                                 #if ($!user.isJabber_use())
-                                <div ng-click="clickToOpenJG($user.getId())" class="mbr-author-img"><img src="$!user.getPhotolink()" class="img-circle"></div>
+                                <div ng-click="clickToOpenJG('$!user.getEmail()')" class="mbr-author-img"><img src="$!user.getPhotolink()" class="img-circle"></div>
                                 #end
                                 <div class="mbr-author-name">$!user.getGivenName()  $!user.getSurName()</div>
                                 <small class="mbr-author-desc">Berater</small>
