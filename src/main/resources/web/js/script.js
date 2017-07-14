@@ -18,3 +18,6 @@ app.controller('JGCtrl', function ($scope, ngDialog) {
       });
     };
 });
+$(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();  
+});
