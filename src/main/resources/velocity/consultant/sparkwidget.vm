@@ -1,7 +1,8 @@
 <html>
     <head>
-      <link rel="stylesheet" href="https://code.s4d.io/widget-space/latest/main.css">
-      <script src="https://code.s4d.io/widget-space/latest/bundle.js"></script>
+ <!--     <link rel="stylesheet" href="https://code.s4d.io/widget-space/latest/main.css">
+      <script src="https://code.s4d.io/widget-space/latest/bundle.js"></script>  -->
+      <link rel="stylesheet" href="https://code.s4d.io/widget-space/production/main.css">
     </head>
     <body>
       <div style="width: 600px; height: 400px;">
@@ -12,5 +13,6 @@
         data-to-person-email="$consultant.getEmail()"
         />
       </div>
+      <script src="https://code.s4d.io/widget-space/production/bundle.js"></script>
     </body>
 </html>
