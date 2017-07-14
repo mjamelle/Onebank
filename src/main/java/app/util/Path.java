@@ -24,6 +24,7 @@ public class Path {
         @Getter public static final String RESTCREATEUSER = "/rest/createuser";
         @Getter public static final String RESTUPDATEUSER = "/rest/updateuser";
         @Getter public static final String RESTDELETEUSER = "/rest/deleteuser";
+        @Getter public static final String RESTUPLOADUSERIMAGE = "/rest/uploaduserimage";
 
     }
 

@@ -79,23 +79,24 @@ public class Application {
         before(Path.Web.SLASH,       Filters.forwardtoIndex);
         
         //-----------------Set up Links and point to the controllers------------
-        get(Path.Web.INDEX,          IndexController.serveIndexPage);
-        get(Path.Web.CONTACT,        ContactController.serveContactPage);
-        get(Path.Web.CONSULTANT,     ConsultantController.serveConsultantPage);
-        get(Path.Web.SPARKWIDGET,    ConsultantController.serveSparkWidget);
-        post(Path.Web.BOTMESSAGE,    BotController.serveBotMessage);
-        post(Path.Web.BOTROOMS,      BotController.serveBotRooms);
-        get(Path.Web.REST,           RestController.serveRestAPI);
-        get(Path.Web.LOGIN,          LoginController.serveLoginPage);
-        post(Path.Web.LOGIN,         LoginController.handleLoginPost);
-        post(Path.Web.LOGOUT,        LoginController.handleLogoutPost);
-        get(Path.Web.ADMINDESIGN,    AdminController.serveAdminDesignPage);
-        get(Path.Web.ADMINUSER,      AdminController.serveAdminUserPage);
-        get(Path.Web.ADMINREPORT,    AdminController.serveAdminReportPage);
-        post(Path.Web.RESTLISTUSERS, AdminController.serveRestListUsers);
-        post(Path.Web.RESTCREATEUSER,AdminController.serveRestCreateUsers);
-        post(Path.Web.RESTUPDATEUSER,AdminController.serveRestUpdateUsers);
-        post(Path.Web.RESTDELETEUSER,AdminController.serveRestDeleteUsers);
+        get(Path.Web.INDEX,                 IndexController.serveIndexPage);
+        get(Path.Web.CONTACT,               ContactController.serveContactPage);
+        get(Path.Web.CONSULTANT,            ConsultantController.serveConsultantPage);
+        get(Path.Web.SPARKWIDGET,           ConsultantController.serveSparkWidget);
+        post(Path.Web.BOTMESSAGE,           BotController.serveBotMessage);
+        post(Path.Web.BOTROOMS,             BotController.serveBotRooms);
+        get(Path.Web.REST,                  RestController.serveRestAPI);
+        get(Path.Web.LOGIN,                 LoginController.serveLoginPage);
+        post(Path.Web.LOGIN,                LoginController.handleLoginPost);
+        post(Path.Web.LOGOUT,               LoginController.handleLogoutPost);
+        get(Path.Web.ADMINDESIGN,           AdminController.serveAdminDesignPage);
+        get(Path.Web.ADMINUSER,             AdminController.serveAdminUserPage);
+        get(Path.Web.ADMINREPORT,           AdminController.serveAdminReportPage);
+        post(Path.Web.RESTLISTUSERS,        AdminController.serveRestListUsers);
+        post(Path.Web.RESTCREATEUSER,       AdminController.serveRestCreateUsers);
+        post(Path.Web.RESTUPDATEUSER,       AdminController.serveRestUpdateUsers);
+        post(Path.Web.RESTDELETEUSER,       AdminController.serveRestDeleteUsers);
+        post(Path.Web.RESTUPLOADUSERIMAGE,  AdminController.serveRestUploadUserImage);
         
         get("*",                     ViewUtil.notFound);
         

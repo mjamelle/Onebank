@@ -8,8 +8,10 @@ import app.util.SystemConfig;
 import app.util.Filters;
 import app.util.JsonUtil;
 import app.util.*;
+import java.io.InputStream;
 import spark.*;
 import java.util.*;
+import javax.servlet.MultipartConfigElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -60,7 +62,7 @@ public class AdminController {
         return JsonUtil.dataToJson(result);
     };  
     
-        public static Route serveRestCreateUsers = (Request request, Response response) -> {
+    public static Route serveRestCreateUsers = (Request request, Response response) -> {
         LOGGER.info(Path.Web.RESTCREATEUSER +" post request");
         LOGGER.debug(Path.Web.RESTCREATEUSER + " post request : " + request.body());
         response.type("application/json");
@@ -86,7 +88,7 @@ public class AdminController {
         return JsonUtil.dataToJson(result);
     }; 
         
-        public static Route serveRestUpdateUsers = (Request request, Response response) -> {
+    public static Route serveRestUpdateUsers = (Request request, Response response) -> {
         LOGGER.info(Path.Web.RESTUPDATEUSER +" post request");
         LOGGER.debug(Path.Web.RESTUPDATEUSER + " post request : " + request.body());
         JSONObject obj = new JSONObject();
@@ -112,7 +114,7 @@ public class AdminController {
         return obj.toJSONString();
     }; 
             
-        public static Route serveRestDeleteUsers = (Request request, Response response) -> {
+    public static Route serveRestDeleteUsers = (Request request, Response response) -> {
         LOGGER.info(Path.Web.RESTDELETEUSER +" post request");
         LOGGER.debug(Path.Web.RESTDELETEUSER + " post request : " + request.body());
         JSONObject obj = new JSONObject();
@@ -128,7 +130,15 @@ public class AdminController {
         return obj.toJSONString();
     }; 
         
-        
+     public static Route serveRestUploadUserImage = (Request request, Response response) -> {
+        LOGGER.info(Path.Web.RESTUPLOADUSERIMAGE +" post request");
+        LOGGER.debug(Path.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body());
+        /*request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+        try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
+                // Use the input stream to create a file
+        } */
+        return "File uploaded";
+    };        
     /*
         New code for Onebank
           

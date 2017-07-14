@@ -32,22 +32,16 @@
             <div class="mbr-testimonial card mbr-testimonial-lg">
                 <div class="mbr-author card-footer col-xs-12 col-lg-2">
                     
-                    <div><img id="userimage" alt="Photo missing - please select a user" class="img-circle" width="100" height="100" data-toggle="tooltip" title="Ein kleiner Tipp"></div>
+                    <div style="padding-top: 30"><img id="userimage" alt="Photo missing - please select a user" class="img-circle" width="100" height="100" data-toggle="tooltip" title="Ein kleiner Tipp"></div>
 
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-lg-2" style="padding-top: 30"><form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form></div>
-        
-        <!-- <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form> -->
-  
-        <!--
-        <div class="form-control-file">
-            <form method='post' enctype='multipart/form-data'>
-                <input type='file' accept="image/*" name='uploaded_file'>
-                <button>Bild hochladen</button>"
-            </form>"  
-        -->
+        <div class="col-xs-12 col-lg-2" style="padding-top: 30">
+            <form action="/rest/uploaduserimage" class="dropzone mbr-testimonial card mbr-testimonial-lg" id="my-awesome-dropzone"></form>
+        </div>
+        <p></p>
+
     </section>
 
     
