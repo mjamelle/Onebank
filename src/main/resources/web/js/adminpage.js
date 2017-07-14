@@ -106,6 +106,11 @@ $(document).ready(function () {
             }
         });   	
     $('#UserTableContainer').jtable('load');
+    //var $row = $('#UserTableContainer').jtable('getRowByKey', 1);
+    //$('#UserTableContainer').jtable('selectRows', $row);
+    //$('#UserTableContainer').jtable('selectRows', {
+    //    key: 1
+    //});
     });
 
 
