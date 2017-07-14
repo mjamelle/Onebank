@@ -40,14 +40,14 @@
 
 
                   <div class="mbr-table-cell col-md-5 text-xs-center text-md-left content-size">
-                      <h3 class="mbr-section-title display-2">Kapitalanlagen</h3>
+                      <h3 class="mbr-section-title display-2">$msg.get("INDEX_INVESTMENT")</h3>
                       <div class="lead">
 
-                        <p>Sie suchen eine zeitgemäße Kapitalanlage? Dann sind sie hier genau richtig...</p>
+                        <p>$msg.get("INDEX_INVESTMENT_TEXT")</p>
 
                       </div>
 
-                      <div><a class="btn btn-primary" href="../consultant">Beratung</a></div>
+                      <div><a class="btn btn-primary" href="../consultant">$msg.get("INDEX_CONSULTATION")</a></div>
                   </div>
 
 
@@ -70,14 +70,14 @@
 
 
                   <div class="mbr-table-cell col-md-5 text-xs-center text-md-right content-size">
-                      <h3 class="mbr-section-title display-2">Traumhäuser</h3>
+                      <h3 class="mbr-section-title display-2">$msg.get("INDEX_DREAMHOUSE")</h3>
                       <div class="lead">
 
-                        <p>Suchen sie das perfekte Eigenheim? <br>Unsere Spezailisten beraten sie gerne<br></p>
+                        <p>$msg.get("INDEX_DREAMHOUSE_TEXT")<br></p>
 
                       </div>
 
-                      <div><a class="btn btn-warning" href="../consultant">Beratung</a></div>
+                      <div><a class="btn btn-warning" href="../consultant">$msg.get("INDEX_CONSULTATION")</a></div>
                   </div>
 
 
@@ -113,13 +113,13 @@
 
                             <div class="mbr-table-cell col-md-5 content-size text-xs-center text-md-left">
 
-                                <h3 class="mbr-section-title display-2">Unsere Mitarbeiter...</h3>
+                                <h3 class="mbr-section-title display-2">$msg.get("INDEX_EMPLOYEES")</h3>
 
                                 <div class="mbr-section-text">
-                                    <p>...beraten sie gerne dort, wo sie sich am wohlsten fühlen. <br>Wozu &nbsp;uns umständlich aufsuchen...</p>
+                                    <p>$msg.get("INDEX_EMPLOYEES_TEXT")</p>
                                 </div>
 
-                                <div class="mbr-section-btn"><a class="btn btn-primary" href="../consultant">Beratung</a></div>
+                                <div class="mbr-section-btn"><a class="btn btn-primary" href="../consultant">$msg.get("INDEX_CONSULTATION")</a></div>
 
                             </div>
 
