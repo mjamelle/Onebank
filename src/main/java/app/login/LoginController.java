@@ -37,6 +37,7 @@ public class LoginController {
         } else response.redirect(Path.Web.INDEX);
         model.put("authenticationSucceeded", true);
         model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
+        LOGGER.info("User Login successful : "+ user.getDisplayName());
         return ViewUtil.render(request, model, Path.Template.LOGIN);
     };
 
