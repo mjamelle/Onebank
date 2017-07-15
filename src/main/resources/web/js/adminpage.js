@@ -21,7 +21,7 @@ $(document).ready(function () {
     var marko = "../assets/images/mjamelle-120x160.jpg";
     
         $('#UserTableContainer').jtable({
-            title: 'Liste',
+            title: 'Auflistung',
             paging: true, //Enable paging
             pageSize: 10, //Set page size (default: 10)
             selecting: true, //Enable selecting
