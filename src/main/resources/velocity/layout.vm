@@ -29,6 +29,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/1.0.0/js/ngDialog.min.js"></script>
   
   <script type="text/javascript" src="../js/script.js"></script>
+  <link rel="stylesheet" href="../css/myproject.css">
    
 </head>
 
@@ -105,6 +106,8 @@
   <script src="../assets/jarallax/jarallax.js"></script>
   <script src="../assets/jquery-mb-ytplayer/jquery.mb.ytplayer.min.js"></script>
   <script src="../assets/theme/js/script.js"></script>
+  
+
 
 </body>
 </html>
