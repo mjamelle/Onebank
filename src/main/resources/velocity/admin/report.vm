@@ -6,17 +6,17 @@
         <h2>Reports</h2>
         <br/>
         <fieldset class="report-field">
-          <legend>System</legend>
+          <legend class="report-border">System</legend>
           <p>Uptime  : $SystemUpTime<p>
           <p>Memory  : $UsedMemory MByte</p>
         </fieldset>  
         <fieldset class="report-field">
-          <legend>Maja Bot</legend>
+          <legend class="report-border">Maja Bot</legend>
             <p>Requests         : $Botrequestcounter<p>
             <p>Invited in $Roomamount rooms</p>
          </fieldset>
         <fieldset class="report-field">
-          <legend>Webserver</legend>
+          <legend class="report-border">Webserver</legend>
             <p>Requests  : $Webrequests<p>
          </fieldset>        
     </section>
