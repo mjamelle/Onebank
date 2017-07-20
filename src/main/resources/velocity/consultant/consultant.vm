@@ -24,6 +24,7 @@
             <div class="row">
 
                 #foreach ($user in $users)
+                #if ($!user.isSpark_use() || $!user.isJabber_use())
                     <div class="col-xs-12 col-lg-4">
                         <div class="mbr-testimonial card mbr-testimonial-lg">
                             <div class="card-block">$!user.getFunction()</div>
@@ -39,6 +40,7 @@
                             </div>
                         </div>
                     </div>
+                #end
                 #end
 
             </div>
