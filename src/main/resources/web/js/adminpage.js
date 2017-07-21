@@ -70,14 +70,14 @@ $(document).ready(function () {
                     width: '50%'
                 },
                 jabber_use: {
-                    title: 'Jabber',
+                    title: 'Jabber Berater',
                     list: false,
                     type:  'checkbox',
                     values: { 'false': '', 'true': '' },
                     defaultValue: 'false'
                 },
                 spark_use: {
-                    title: 'Spark',
+                    title: 'Spark Berater',
                     list: false,
                     type:  'checkbox',
                     values: { 'false': '', 'true': '' },
@@ -101,7 +101,7 @@ $(document).ready(function () {
                         document.getElementById("userimage").src = record.photolink; //      innerHTML = 'Demo';  
                     });
                 };
-            }
+            }           
         });   	
     $('#UserTableContainer').jtable('load');
     //var $row = $('#UserTableContainer').jtable('getRowByKey', 1);
@@ -182,6 +182,7 @@ $(document).ready(function () {
                     // is XHR2 available?
                     var xhr = new XMLHttpRequest();
                     if (xhr.upload) {
+                        
 
                             // file drop
                             filedrag.addEventListener("dragover", FileDragHover, false);
