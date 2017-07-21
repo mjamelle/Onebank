@@ -51,6 +51,10 @@
 
                 </div>
                 <div class="mbr-table-cell">
+                    <!-- Button for smart phones ----->
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                        <div class="hamburger-icon"></div>
+                    </button>
                     <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
                         #if($currentUser && $currentUser.isAdminprivilege())
                             <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_ADMIN")</a>
