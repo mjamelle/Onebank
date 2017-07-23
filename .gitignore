@@ -6,6 +6,7 @@ dist/
 nbdist/
 .nb-gradle/
 config/config.properties
+upload/
 logs/bot.log
 logs/2*
 nbactions.xml
