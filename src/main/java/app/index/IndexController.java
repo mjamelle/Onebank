@@ -10,9 +10,9 @@ import org.apache.logging.log4j.Logger;
 public class IndexController {
     private static final Logger logger = LogManager.getLogger();
     public static Route serveIndexPage = (Request request, Response response) -> {
-        logger.info(Path.Web.INDEX + " get request");
-        logger.debug(Path.Web.INDEX + " get request : " + request.body());
+        logger.info(LinkPath.Web.INDEX + " get request");
+        logger.debug(LinkPath.Web.INDEX + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
-        return ViewUtil.render(request, model, Path.Template.INDEX);
+        return ViewUtil.render(request, model, LinkPath.Template.INDEX);
     };
 }

@@ -3,12 +3,13 @@ package app.admin;
 import app.bot.BotLogic;
 import app.db.User;
 import app.login.LoginController;
-import app.user.UserController;
 import app.util.SystemConfig;
 import app.util.Filters;
 import app.util.JsonUtil;
 import app.util.*;
-import java.io.InputStream;
+import javax.servlet.http.*;
+import java.io.*;
+import java.nio.file.*;
 import spark.*;
 import java.util.*;
 import javax.servlet.MultipartConfigElement;
@@ -20,16 +21,16 @@ public class AdminController {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static Route serveAdminUserPage = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.ADMINUSER + " get request");
-        LOGGER.debug(Path.Web.ADMINUSER + " get request : " + request.body());
+        LOGGER.info(LinkPath.Web.ADMINUSER + " get request");
+        LOGGER.debug(LinkPath.Web.ADMINUSER + " get request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
-        return ViewUtil.render(request, model, Path.Template.ADMINUSER);
+        return ViewUtil.render(request, model, LinkPath.Template.ADMINUSER);
     };
     
         public static Route serveAdminReportPage = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.ADMINREPORT + " get request");
-        LOGGER.debug(Path.Web.ADMINREPORT + " get request : " + request.body());
+        LOGGER.info(LinkPath.Web.ADMINREPORT + " get request");
+        LOGGER.debug(LinkPath.Web.ADMINREPORT + " get request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
             model.put("Botrequestcounter", BotLogic.getBotrequestcounter());
@@ -37,20 +38,20 @@ public class AdminController {
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
             model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
             model.put("Webrequests", Filters.getWebrequests());
-        return ViewUtil.render(request, model, Path.Template.ADMINREPORT);
+        return ViewUtil.render(request, model, LinkPath.Template.ADMINREPORT);
     };
     
     public static Route serveAdminDesignPage = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.ADMINDESIGN + " get request");
-        LOGGER.debug(Path.Web.ADMINDESIGN + " get request : " + request.body());
+        LOGGER.info(LinkPath.Web.ADMINDESIGN + " get request");
+        LOGGER.debug(LinkPath.Web.ADMINDESIGN + " get request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
-        return ViewUtil.render(request, model, Path.Template.ADMINDESIGN);
+        return ViewUtil.render(request, model, LinkPath.Template.ADMINDESIGN);
     };
     
     public static Route serveRestListUsers = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.RESTLISTUSERS +" post request");
-        LOGGER.debug(Path.Web.RESTLISTUSERS + " post request : " + request.body());
+        LOGGER.info(LinkPath.Web.RESTLISTUSERS +" post request");
+        LOGGER.debug(LinkPath.Web.RESTLISTUSERS + " post request : " + request.body());
         response.type("application/json");
         RestUserallResponse result = new RestUserallResponse();
         try {
@@ -63,8 +64,8 @@ public class AdminController {
     };  
     
     public static Route serveRestCreateUsers = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.RESTCREATEUSER +" post request");
-        LOGGER.debug(Path.Web.RESTCREATEUSER + " post request : " + request.body());
+        LOGGER.info(LinkPath.Web.RESTCREATEUSER +" post request");
+        LOGGER.debug(LinkPath.Web.RESTCREATEUSER + " post request : " + request.body());
         response.type("application/json");
         RestcreateUserResponse result = new RestcreateUserResponse();
         User user = new  User();
@@ -89,8 +90,8 @@ public class AdminController {
     }; 
         
     public static Route serveRestUpdateUsers = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.RESTUPDATEUSER +" post request");
-        LOGGER.debug(Path.Web.RESTUPDATEUSER + " post request : " + request.body());
+        LOGGER.info(LinkPath.Web.RESTUPDATEUSER +" post request");
+        LOGGER.debug(LinkPath.Web.RESTUPDATEUSER + " post request : " + request.body());
         JSONObject obj = new JSONObject();
         response.type("application/json");
         User user = new  User();
@@ -115,8 +116,8 @@ public class AdminController {
     }; 
             
     public static Route serveRestDeleteUsers = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.RESTDELETEUSER +" post request");
-        LOGGER.debug(Path.Web.RESTDELETEUSER + " post request : " + request.body());
+        LOGGER.info(LinkPath.Web.RESTDELETEUSER +" post request");
+        LOGGER.debug(LinkPath.Web.RESTDELETEUSER + " post request : " + request.body());
         JSONObject obj = new JSONObject();
         response.type("application/json");
         User user = new  User();
@@ -131,26 +132,32 @@ public class AdminController {
     }; 
         
      public static Route serveRestUploadUserImage = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.RESTUPLOADUSERIMAGE +" post request");
-        LOGGER.debug(Path.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body());
-        /*request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-        try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
-                // Use the input stream to create a file
-        } */
-        return "File uploaded";
-    };        
-    /*
-        New code for Onebank
-          
-          post("/yourUploadPath", (request, response) -> {
-            request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-            try (InputStream is = request.raw().getPart("uploaded_file").getInputStream()) {
-                // Use the input stream to create a file
-            }
-            return "File uploaded";
-          });
-         
+        LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE +" post request");
+        LOGGER.debug(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body());
+        File uploadDir = new File("upload");
+        uploadDir.mkdir(); // create the upload directory if it doesn't exist
+        Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
         
-*/
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));
+        try (InputStream input = request.raw().getPart("uploaded_file").getInputStream()) {
+            LOGGER.info("Test von Marko");
+            // Use the input stream to create a file
+            Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+            
+        } catch (Exception e) {
+            LOGGER.error("could'nt write user image file ",e);
+        }
+        LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
+        return "<h1>You uploaded this image:<h1><img src='" + tempFile.getFileName() + "'>";
+    };   
+
+    private static String getFileName(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
     
 }

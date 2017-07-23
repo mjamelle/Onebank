@@ -2,7 +2,7 @@ package app.util;
 
 import lombok.*;
 
-public class Path {
+public class LinkPath {
 
     // The @Getter methods are needed in order to access
     // the variables from Velocity Templates

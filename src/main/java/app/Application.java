@@ -27,7 +27,7 @@ import app.rest.RestController;
 import app.util.CiscoSpark;
 import app.util.SystemConfig;
 import app.util.Filters;
-import app.util.Path;
+import app.util.LinkPath;
 import app.util.ViewUtil;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -76,27 +76,27 @@ public class Application {
         //-------Set up before-filters (called before each get/post)------------
         //before("*",                  Filters.addTrailingSlashes);
         before("*",                  Filters.handleLocaleChange);
-        before(Path.Web.SLASH,       Filters.forwardtoIndex);
+        before(LinkPath.Web.SLASH,       Filters.forwardtoIndex);
         
         //-----------------Set up Links and point to the controllers------------
-        get(Path.Web.INDEX,                 IndexController.serveIndexPage);
-        get(Path.Web.CONTACT,               ContactController.serveContactPage);
-        get(Path.Web.CONSULTANT,            ConsultantController.serveConsultantPage);
-        get(Path.Web.SPARKWIDGET,           ConsultantController.serveSparkWidget);
-        post(Path.Web.BOTMESSAGE,           BotController.serveBotMessage);
-        post(Path.Web.BOTROOMS,             BotController.serveBotRooms);
-        get(Path.Web.REST,                  RestController.serveRestAPI);
-        get(Path.Web.LOGIN,                 LoginController.serveLoginPage);
-        post(Path.Web.LOGIN,                LoginController.handleLoginPost);
-        post(Path.Web.LOGOUT,               LoginController.handleLogoutPost);
-        get(Path.Web.ADMINDESIGN,           AdminController.serveAdminDesignPage);
-        get(Path.Web.ADMINUSER,             AdminController.serveAdminUserPage);
-        get(Path.Web.ADMINREPORT,           AdminController.serveAdminReportPage);
-        post(Path.Web.RESTLISTUSERS,        AdminController.serveRestListUsers);
-        post(Path.Web.RESTCREATEUSER,       AdminController.serveRestCreateUsers);
-        post(Path.Web.RESTUPDATEUSER,       AdminController.serveRestUpdateUsers);
-        post(Path.Web.RESTDELETEUSER,       AdminController.serveRestDeleteUsers);
-        post(Path.Web.RESTUPLOADUSERIMAGE,  AdminController.serveRestUploadUserImage);
+        get(LinkPath.Web.INDEX,                 IndexController.serveIndexPage);
+        get(LinkPath.Web.CONTACT,               ContactController.serveContactPage);
+        get(LinkPath.Web.CONSULTANT,            ConsultantController.serveConsultantPage);
+        get(LinkPath.Web.SPARKWIDGET,           ConsultantController.serveSparkWidget);
+        post(LinkPath.Web.BOTMESSAGE,           BotController.serveBotMessage);
+        post(LinkPath.Web.BOTROOMS,             BotController.serveBotRooms);
+        get(LinkPath.Web.REST,                  RestController.serveRestAPI);
+        get(LinkPath.Web.LOGIN,                 LoginController.serveLoginPage);
+        post(LinkPath.Web.LOGIN,                LoginController.handleLoginPost);
+        post(LinkPath.Web.LOGOUT,               LoginController.handleLogoutPost);
+        get(LinkPath.Web.ADMINDESIGN,           AdminController.serveAdminDesignPage);
+        get(LinkPath.Web.ADMINUSER,             AdminController.serveAdminUserPage);
+        get(LinkPath.Web.ADMINREPORT,           AdminController.serveAdminReportPage);
+        post(LinkPath.Web.RESTLISTUSERS,        AdminController.serveRestListUsers);
+        post(LinkPath.Web.RESTCREATEUSER,       AdminController.serveRestCreateUsers);
+        post(LinkPath.Web.RESTUPDATEUSER,       AdminController.serveRestUpdateUsers);
+        post(LinkPath.Web.RESTDELETEUSER,       AdminController.serveRestDeleteUsers);
+        post(LinkPath.Web.RESTUPLOADUSERIMAGE,  AdminController.serveRestUploadUserImage);
         
         get("*",                     ViewUtil.notFound);
         

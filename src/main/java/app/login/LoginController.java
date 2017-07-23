@@ -13,20 +13,20 @@ public class LoginController {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static Route serveLoginPage = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.LOGIN + " get request");
-        LOGGER.debug(Path.Web.LOGIN + " get request : " + request.body());
+        LOGGER.info(LinkPath.Web.LOGIN + " get request");
+        LOGGER.debug(LinkPath.Web.LOGIN + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         model.put("loggedOut", removeSessionAttrLoggedOut(request));
-        return ViewUtil.render(request, model, Path.Template.LOGIN);
+        return ViewUtil.render(request, model, LinkPath.Template.LOGIN);
     };
 
     public static Route handleLoginPost = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.LOGIN + " post request");
-        LOGGER.debug(Path.Web.LOGIN + " post request : " + request.body());
+        LOGGER.info(LinkPath.Web.LOGIN + " post request");
+        LOGGER.debug(LinkPath.Web.LOGIN + " post request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         if (!UserController.authenticate(getQueryUsername(request), getQueryPassword(request))) {
             model.put("authenticationFailed", true);
-            return ViewUtil.render(request, model, Path.Template.LOGIN);
+            return ViewUtil.render(request, model, LinkPath.Template.LOGIN);
         }
         request.session().maxInactiveInterval(SystemConfig.getwebUserSessiontimeout()); //set user session timeout
         
@@ -34,19 +34,19 @@ public class LoginController {
         request.session().attribute("currentUser", user);
         if (getQueryLoginRedirect(request) != null) {
             response.redirect(getQueryLoginRedirect(request));
-        } else response.redirect(Path.Web.INDEX);
+        } else response.redirect(LinkPath.Web.INDEX);
         model.put("authenticationSucceeded", true);
         model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
         LOGGER.info("User Login successful : "+ user.getDisplayName());
-        return ViewUtil.render(request, model, Path.Template.LOGIN);
+        return ViewUtil.render(request, model, LinkPath.Template.LOGIN);
     };
 
     public static Route handleLogoutPost = (Request request, Response response) -> {
-        LOGGER.info(Path.Web.LOGOUT + " post request");
-        LOGGER.debug(Path.Web.LOGOUT + " post request : " + request.body());
+        LOGGER.info(LinkPath.Web.LOGOUT + " post request");
+        LOGGER.debug(LinkPath.Web.LOGOUT + " post request : " + request.body());
         request.session().removeAttribute("currentUser");
         request.session().attribute("loggedOut", true);
-        response.redirect(Path.Web.INDEX);
+        response.redirect(LinkPath.Web.INDEX);
         return null;
     };
 
@@ -56,7 +56,7 @@ public class LoginController {
         User user = request.session().attribute("currentUser");
         if (user == null || !user.isAdminprivilege()) {
             request.session().attribute("loginRedirect", request.pathInfo());
-            response.redirect(Path.Web.LOGIN);           
+            response.redirect(LinkPath.Web.LOGIN);           
         }
     };
 
