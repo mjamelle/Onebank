@@ -7,12 +7,12 @@ import app.util.SystemConfig;
 import app.util.Filters;
 import app.util.JsonUtil;
 import app.util.*;
+import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
 import java.nio.file.*;
 import spark.*;
 import java.util.*;
-import javax.servlet.MultipartConfigElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -132,23 +132,24 @@ public class AdminController {
     }; 
         
      public static Route serveRestUploadUserImage = (Request request, Response response) -> {
-        LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE +" post request");
-        LOGGER.debug(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body());
+        //LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE +" post request");
+        //LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body());
         File uploadDir = new File("upload");
         uploadDir.mkdir(); // create the upload directory if it doesn't exist
         Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
         
-        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));      
         try (InputStream input = request.raw().getPart("uploaded_file").getInputStream()) {
-            LOGGER.info("Test von Marko");
+
             // Use the input stream to create a file
             Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
-            
+   
         } catch (Exception e) {
-            LOGGER.error("could'nt write user image file ",e);
+            LOGGER.error("Can't write user image file ",e);
         }
+
         LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
-        return "<h1>You uploaded this image:<h1><img src='" + tempFile.getFileName() + "'>";
+        return "<h1>You uploaded this image:<h1><img src='../" + tempFile.getFileName() + "'>";
     };   
 
     private static String getFileName(Part part) {

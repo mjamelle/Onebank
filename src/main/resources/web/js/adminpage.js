@@ -15,11 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var filelist = [];  // Ein Array, das alle hochzuladenden Files enthält
+var totalSize = 0; // Enthält die Gesamtgröße aller hochzuladenden Dateien
+var totalProgress = 0; // Enthält den aktuellen Gesamtfortschritt
+var currentUpload = null; // Enthält die Datei, die aktuell hochgeladen wird
 
 $(document).ready(function () {
-    //document.getElementById('markostest').setAttribute('img', '../assets/images/mjamelle-120x160.jpg');
-    var marko = "../assets/images/mjamelle-120x160.jpg";
-    
+
         $('#UserTableContainer').jtable({
             title: 'Auflistung',
             paging: true, //Enable paging
@@ -109,99 +111,81 @@ $(document).ready(function () {
     //$('#UserTableContainer').jtable('selectRows', {
     //    key: 1
     //});
+    
 
+    
+    	// call initialization file
+    if (window.File && window.FileList && window.FileReader) {
+            init();
+    }
+        
+    function init() {
+        document.getElementById('uploadzone').addEventListener('drop', handleDropEvent, false);
+        document.getElementById('uploadzone').addEventListener("dragover", FileDragHover, false);
+        document.getElementById('uploadzone').addEventListener("dragleave", FileDragHover, false);
 
-    /*
-    filedrag.js - HTML5 File Drag & Drop demonstration
-    Featured on SitePoint.com
-    Developed by Craig Buckler (@craigbuckler) of OptimalWorks.net
-    */
-    (function() {
+        console.log("Drop Initialized");
+    }
+    
+    $("#uploadzone").click(function() {
+        console.log("Test");
+    });
+            
+    // file drag hover
+    function FileDragHover(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            //e.target.className = (e.type == "dragover" ? "hover" : "");
+    }
+    
+    function handleDropEvent(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        console.log("Drop Event : "+event.dataTransfer.files.length);
+        
 
-            // getElementById
-            function $id(id) {
-                    return document.getElementById(id);
-            }
+        // event.dataTransfer.files enthält eine Liste aller gedroppten Dateien
+        for (var i = 0; i < event.dataTransfer.files.length; i++) {
+            filelist.push(event.dataTransfer.files[i]);  // Hinzufügen der Datei zur Uploadqueue
+            totalSize += event.dataTransfer.files[i].size;  // Hinzufügen der Dateigröße zur Gesamtgröße
+        }
+        startNextUpload();
+    }
+    
+    function startNextUpload()
+{
+    if (filelist.length) { // Überprüfen, ob noch eine Datei hochzuladen ist
+        currentUpload = filelist.shift();  // nächste Datei zwischenspeichern
+        uploadFile(currentUpload);  // Upload starten
+    }
+}
+ 
+    function uploadFile(file) {
+        var xhr = new XMLHttpRequest();    // den AJAX Request anlegen
+        xhr.upload.addEventListener("progress", handleProgress);
+        xhr.addEventListener("load", handleComplete);
+        xhr.addEventListener("error", handleError);
+        xhr.open('POST', '/rest/uploaduserimage');    // Angeben der URL und des Requesttyps
 
+        var formdata = new FormData();    // Anlegen eines FormData Objekts zum Versenden unserer Datei
+        formdata.append('uploaded_file', file);  // Anhängen der Datei an das Objekt
+        xhr.send(formdata);    // Absenden des Requests
+    }
+    
+    function handleComplete(event) {
+        totalProgress += currentUpload.size;  // Füge die Größe dem Gesamtfortschritt hinzu
+        startNextUpload(); // Starte den Upload der nächsten Datei
+    }
+ 
+    function handleError(event) {
+        alert("Upload failed");    // Die Fehlerbehandlung kann natürlich auch anders aussehen
+        totalProgress += currentUpload.size;  // Die Datei wird dem Progress trotzdem hinzugefügt, damit die Prozentzahl stimmt
+        startNextUpload();  // Starte den Upload der nächsten Datei
+    }
 
-            // output information
-            function Output(msg) {
-                    var m = $id("messages");
-                    m.innerHTML =  m.innerHTML + msg;
-            }
-
-
-            // file drag hover
-            function FileDragHover(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    e.target.className = (e.type == "dragover" ? "hover" : "");
-            }
-
-
-            // file selection
-            function FileSelectHandler(e) {
-
-                    // cancel event and hover styling
-                    FileDragHover(e);
-
-                    // fetch FileList object
-                    var files = e.target.files || e.dataTransfer.files;
-
-                    // process all File objects
-                    for (var i = 0, f; f = files[i]; i++) {
-                            ParseFile(f);
-                    }
-
-            }
-
-
-            // output file information
-            function ParseFile(file) {
-
-                    Output(
-                            "<p>File information: <strong>" + file.name +
-                            "</strong> type: <strong>" + file.type +
-                            "</strong> size: <strong>" + file.size +
-                            "</strong> bytes</p>"
-                    );
-
-            }
-
-
-            // initialize
-            function Init() {
-
-                    var fileselect = $id("fileselect"),
-                            filedrag = $id("userimage"),
-                            submitbutton = $id("submitbutton");
-
-                    // file select
-                    fileselect.addEventListener("change", FileSelectHandler, false);
-
-                    // is XHR2 available?
-                    var xhr = new XMLHttpRequest();
-                    if (xhr.upload) {
-                        
-
-                            // file drop
-                            filedrag.addEventListener("dragover", FileDragHover, false);
-                            filedrag.addEventListener("dragleave", FileDragHover, false);
-                            filedrag.addEventListener("drop", FileSelectHandler, false);
-                            //filedrag.style.display = "block";
-
-                            // remove submit button
-                            //submitbutton.style.display = "none";
-                    }
-
-            }
-
-            // call initialization file
-            if (window.File && window.FileList && window.FileReader) {
-                    Init();
-            }
-
-
-    })();
-
+    function handleProgress(event) {
+        var progress = totalProgress + event.loaded;  // Füge den Fortschritt des aktuellen Uploads temporär dem gesamten hinzu
+        document.getElementById('progress').innerHTML = 'Aktueller Fortschritt: ' + (progress / totalSize) + '%';
+    }
+    
 });
