@@ -92,6 +92,8 @@ public class Application {
         get(LinkPath.Web.ADMINDESIGN,           AdminController.serveAdminDesignPage);
         get(LinkPath.Web.ADMINUSER,             AdminController.serveAdminUserPage);
         get(LinkPath.Web.ADMINREPORT,           AdminController.serveAdminReportPage);
+        
+        //--------------------RESTFUL API-----------------------------------------
         post(LinkPath.Web.RESTLISTUSERS,        AdminController.serveRestListUsers);
         post(LinkPath.Web.RESTCREATEUSER,       AdminController.serveRestCreateUsers);
         post(LinkPath.Web.RESTUPDATEUSER,       AdminController.serveRestUpdateUsers);
