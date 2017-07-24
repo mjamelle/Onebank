@@ -138,14 +138,13 @@ var fileSize = 0; // Enthält die Größe der Dateien
     function FileDragHover(e) {
             e.stopPropagation();
             e.preventDefault();
-            e.target.className = (e.type == "dragover" ? "hover" : "");
+            //e.target.className = (e.type == "dragover" ? "hover" : "");
     }
     
     function handleDropEvent(event) {
         event.stopPropagation();
         event.preventDefault();
-        console.log("Drop Event : "+event.dataTransfer.files.length);   
-        
+        //console.log("Drop Event : "+event.dataTransfer.files.length);   
         if (event.dataTransfer.files.length > 0) {
            fileSize += event.dataTransfer.files[0].size; 
         }

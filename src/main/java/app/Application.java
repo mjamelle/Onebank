@@ -68,7 +68,7 @@ public class Application {
         //staticFiles.externalLocation(locationPath + SystemConfig.getStaticWebFileLocation());
         //String layout = locationPath + SystemConfig.LAYOUT;
         staticFileLocation(SystemConfig.getStaticWebFileLocation());
-        staticFiles.externalLocation("userimages");  //upload folder for user images
+        staticFiles.externalLocation("web");  //upload folder for user images
         port(SystemConfig.getServerPort());
         staticFiles.expireTime(60);
         enableDebugScreen();
