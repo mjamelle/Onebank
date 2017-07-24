@@ -134,7 +134,7 @@ public class AdminController {
      public static Route serveRestUploadUserImage = (Request request, Response response) -> {
         //LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE +" post request");
         //LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body());
-        File uploadDir = new File("upload");
+        File uploadDir = new File("userimages");
         uploadDir.mkdir(); // create the upload directory if it doesn't exist
         Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
         

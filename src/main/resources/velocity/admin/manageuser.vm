@@ -25,19 +25,15 @@
                             <div class="mbr-testimonial card mbr-testimonial-lg">
                                 <div id="uploadzone" class="mbr-author card-footer col-xs-12 col-lg-2">
 
-                                    <div><img id="userimage" src="../assets/images/person.jpeg" alt="Please select a user" class="img-circle" width="100" height="100" data-toggle="tooltip" title="Tauschen sie das Bild per Drag and Drop aus"></div>
+                                    <div><img id="userimage" src="person.jpeg" alt="Please select a user" class="img-circle" width="100" height="100" data-toggle="tooltip" title="Tauschen sie das Bild per Drag and Drop aus"></div>
 
                                 </div>
                             </div>
                     </div>
                     <div id="userimagedrop" class="col-md-2" style="padding-top: 30">
-                        <span id="progress">Aktueller Fortschritt: 0%</span>
+                        <span id="progress">Upload Fortschritt: 0%</span>
                     </div>
         </fieldset>
-        <form method='post' enctype='multipart/form-data' action="/rest/uploaduserimage">
-            <input type='file' name='uploaded_file' accept='.jpg'>
-            <button>Upload picture</button>
-        </form>
     </section>
     
 #end

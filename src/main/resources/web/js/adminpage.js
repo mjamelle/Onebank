@@ -15,10 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var filelist = [];  // Ein Array, das alle hochzuladenden Files enthält
-var totalSize = 0; // Enthält die Gesamtgröße aller hochzuladenden Dateien
-var totalProgress = 0; // Enthält den aktuellen Gesamtfortschritt
-var currentUpload = null; // Enthält die Datei, die aktuell hochgeladen wird
+
 
 $(document).ready(function () {
 
@@ -113,6 +110,12 @@ $(document).ready(function () {
     //});
     
 
+
+//var filelist = [];  // Ein Array, das alle hochzuladenden Files enthält
+var fileSize = 0; // Enthält die Größe der Dateien
+//var totalProgress = 0; // Enthält den aktuellen Gesamtfortschritt
+//var currentUpload = null; // Enthält die Datei, die aktuell hochgeladen wird
+    
     
     	// call initialization file
     if (window.File && window.FileList && window.FileReader) {
@@ -135,30 +138,20 @@ $(document).ready(function () {
     function FileDragHover(e) {
             e.stopPropagation();
             e.preventDefault();
-            //e.target.className = (e.type == "dragover" ? "hover" : "");
+            e.target.className = (e.type == "dragover" ? "hover" : "");
     }
     
     function handleDropEvent(event) {
         event.stopPropagation();
         event.preventDefault();
-        console.log("Drop Event : "+event.dataTransfer.files.length);
+        console.log("Drop Event : "+event.dataTransfer.files.length);   
         
-
-        // event.dataTransfer.files enthält eine Liste aller gedroppten Dateien
-        for (var i = 0; i < event.dataTransfer.files.length; i++) {
-            filelist.push(event.dataTransfer.files[i]);  // Hinzufügen der Datei zur Uploadqueue
-            totalSize += event.dataTransfer.files[i].size;  // Hinzufügen der Dateigröße zur Gesamtgröße
+        if (event.dataTransfer.files.length > 0) {
+           fileSize += event.dataTransfer.files[0].size; 
         }
-        startNextUpload();
+        uploadFile(event.dataTransfer.files[0]);
     }
     
-    function startNextUpload()
-{
-    if (filelist.length) { // Überprüfen, ob noch eine Datei hochzuladen ist
-        currentUpload = filelist.shift();  // nächste Datei zwischenspeichern
-        uploadFile(currentUpload);  // Upload starten
-    }
-}
  
     function uploadFile(file) {
         var xhr = new XMLHttpRequest();    // den AJAX Request anlegen
@@ -173,19 +166,16 @@ $(document).ready(function () {
     }
     
     function handleComplete(event) {
-        totalProgress += currentUpload.size;  // Füge die Größe dem Gesamtfortschritt hinzu
-        startNextUpload(); // Starte den Upload der nächsten Datei
+        fileSize = 0;
     }
  
     function handleError(event) {
         alert("Upload failed");    // Die Fehlerbehandlung kann natürlich auch anders aussehen
-        totalProgress += currentUpload.size;  // Die Datei wird dem Progress trotzdem hinzugefügt, damit die Prozentzahl stimmt
-        startNextUpload();  // Starte den Upload der nächsten Datei
     }
 
     function handleProgress(event) {
-        var progress = totalProgress + event.loaded;  // Füge den Fortschritt des aktuellen Uploads temporär dem gesamten hinzu
-        document.getElementById('progress').innerHTML = 'Aktueller Fortschritt: ' + (progress / totalSize) + '%';
+        var progress = Math.round(100 / fileSize * event.loaded);  // Füge den Fortschritt des aktuellen Uploads temporär dem gesamten hinzu
+        document.getElementById('progress').innerHTML = 'Upload Fortschritt: ' + progress + '%';
     }
     
 });
