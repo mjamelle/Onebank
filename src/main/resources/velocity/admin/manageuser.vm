@@ -31,7 +31,7 @@
                             </div>
                     </div>
                     <div id="userimagedrop" class="col-md-2" style="padding-top: 30">
-                        <span id="progress">Upload Fortschritt: 0%</span>
+                        <span id="status">Benutzer auswählen</span>
                     </div>
         </fieldset>
     </section>
