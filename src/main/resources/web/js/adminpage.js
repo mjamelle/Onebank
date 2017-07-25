@@ -19,6 +19,9 @@
 
 $(document).ready(function () {
 
+    var file;
+    var selectedUserRecord = null;
+
         $('#UserTableContainer').jtable({
             title: 'Auflistung',
             paging: true, //Enable paging
@@ -96,8 +99,14 @@ $(document).ready(function () {
                 if ($selectedRows.length > 0) {
                     //Show selected rows
                     $selectedRows.each(function () {
-                        var record = $(this).data('record');
-                        document.getElementById("userimage").src = record.photolink; //      innerHTML = 'Demo';  
+                        selectedUserRecord = $(this).data('record');
+                        if ((selectedUserRecord == null) || (selectedUserRecord.photolink == '')) {
+                            console.log('if true');
+                            document.getElementById("userimage").src = '../assets/images/person.jpeg';  
+                        } else {
+                            console.log(selectedUserRecord.photolink);
+                            document.getElementById("userimage").src = selectedUserRecord.photolink;
+                        }
                     });
                 };
             }           
@@ -109,15 +118,8 @@ $(document).ready(function () {
     //    key: 1
     //});
     
-
-
-//var filelist = [];  // Ein Array, das alle hochzuladenden Files enthält
-var fileSize = 0; // Enthält die Größe der Dateien
-//var totalProgress = 0; // Enthält den aktuellen Gesamtfortschritt
-//var currentUpload = null; // Enthält die Datei, die aktuell hochgeladen wird
-    
-    
-    	// call initialization file
+ 
+    // call initialization file
     if (window.File && window.FileList && window.FileReader) {
             init();
     }
@@ -126,38 +128,36 @@ var fileSize = 0; // Enthält die Größe der Dateien
         document.getElementById('uploadzone').addEventListener('drop', handleDropEvent, false);
         document.getElementById('uploadzone').addEventListener("dragover", FileDragHover, false);
         document.getElementById('uploadzone').addEventListener("dragleave", FileDragHover, false);
-
-        console.log("Drop Initialized");
     }
-    
-    $("#uploadzone").click(function() {
-        console.log("Test");
-    });
-            
-    // file drag hover
-    function FileDragHover(e) {
-            e.stopPropagation();
-            e.preventDefault();
-            //e.target.className = (e.type == "dragover" ? "hover" : "");
+   
+       
+    function FileDragHover(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        //e.target.className = (e.type == "dragover" ? "hover" : "");
     }
     
     function handleDropEvent(event) {
         event.stopPropagation();
         event.preventDefault();
-        //console.log("Drop Event : "+event.dataTransfer.files.length);   
         if (event.dataTransfer.files.length > 0) {
-           fileSize += event.dataTransfer.files[0].size; 
+           file = event.dataTransfer.files[0];
+           uploadFile(file);
         }
-        uploadFile(event.dataTransfer.files[0]);
     }
     
- 
     function uploadFile(file) {
+
+        if (!isfiletypeimg(file)) {
+            return;
+        } 
+        var fileID = '100';  //  TBD
+        var fileName = 'userimage_id' + fileID + '.' + file.name.split('.').pop();
         var xhr = new XMLHttpRequest();    // den AJAX Request anlegen
         xhr.upload.addEventListener("progress", handleProgress);
         xhr.addEventListener("load", handleComplete);
         xhr.addEventListener("error", handleError);
-        xhr.open('POST', '/rest/uploaduserimage');    // Angeben der URL und des Requesttyps
+        xhr.open('POST', '/rest/uploaduserimage' + '?id=' + fileID + '&filename=' + fileName);
 
         var formdata = new FormData();    // Anlegen eines FormData Objekts zum Versenden unserer Datei
         formdata.append('uploaded_file', file);  // Anhängen der Datei an das Objekt
@@ -165,16 +165,28 @@ var fileSize = 0; // Enthält die Größe der Dateien
     }
     
     function handleComplete(event) {
-        fileSize = 0;
+        file = null;
     }
  
     function handleError(event) {
-        alert("Upload failed");    // Die Fehlerbehandlung kann natürlich auch anders aussehen
+        document.getElementById('status').innerHTML = 'Upload fehlgechlagen';
     }
 
     function handleProgress(event) {
-        var progress = Math.round(100 / fileSize * event.loaded);  // Füge den Fortschritt des aktuellen Uploads temporär dem gesamten hinzu
-        document.getElementById('progress').innerHTML = 'Upload Fortschritt: ' + progress + '%';
+        var progress = Math.round(100 / file.size * event.loaded);  // Füge den Fortschritt des aktuellen Uploads temporär dem gesamten hinzu
+        document.getElementById('status').innerHTML = 'Datei Upload : ' + progress + '%';
     }
     
+    function isfiletypeimg(file) {
+        if (file.size > 61440) {
+            document.getElementById('status').innerHTML = 'Filegröße über 60KB Limit!';
+            return false;
+        }
+        if ((file.type === 'image/png') || (file.type === 'image/gif') || (file.type === 'image/jpeg')) {
+            return true;
+        } else {
+            document.getElementById('status').innerHTML = 'Falsches Fileformat, wähle eine Imagedatei';
+            return false;   
+        }
+    }
 });
