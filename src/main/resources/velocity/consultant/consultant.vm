@@ -30,7 +30,12 @@
                             <div class="card-block">$!user.getFunction()</div>
                             <div class="mbr-author card-footer">
                                 #if ($!user.isSpark_use())
-                                <div ng-click="clickToOpenSparkWidget($user.getId())" class="mbr-author-img"><img src="$!user.getPhotolink()" alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mit mir zu 'sparken'"></div>
+                                <div ng-click="clickToOpenSparkWidget($user.getId())" class="mbr-author-img"><img src=
+                                      #if ($!user.getPhotolink() == '')
+                                        "../assets/images/person.jpeg"
+                                        #else "$!user.getPhotolink()"
+                                      #end
+                                      alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mit mir zu 'sparken'"></div>
                                 #end
                                 #if ($!user.isJabber_use())
                                 <div ng-click="clickToOpenJG('$!user.getEmail()')" class="mbr-author-img"><img src="$!user.getPhotolink()" class="img-circle" data-toggle="tooltip" title="Klicken, um mit mir zu 'jabbern'"></div>
