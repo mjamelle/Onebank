@@ -132,33 +132,29 @@ public class AdminController {
     }; 
         
      public static Route serveRestUploadUserImage = (Request request, Response response) -> {
-        //LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE +" post request");
-        //LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body());
-        File uploadDir = new File("web/userimages");
-        uploadDir.mkdir(); // create the upload directory if it doesn't exist
-        Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
+        LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE +" post request");
+        //LOGGER.debug(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body()); // issue when enableing debug!!
+        File uploadDir1 = new File("web");
+        File uploadDir2 = new File("web/userimages");
+        uploadDir1.mkdir(); // create the upload directory if it doesn't exist
+        uploadDir2.mkdir(); // create the upload directory if it doesn't exist
+        Path userImagePath = Paths.get("web/userimages/" + request.queryParams("filename"));
+        File userImageFile = new File("web/userimages/" + request.queryParams("filename"));
+        userImageFile.createNewFile();
         
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));      
         try (InputStream input = request.raw().getPart("uploaded_file").getInputStream()) {
 
             // Use the input stream to create a file
-            Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(input, userImagePath, StandardCopyOption.REPLACE_EXISTING);
+
    
         } catch (Exception e) {
             LOGGER.error("Can't write user image file ",e);
+            return "upload failed";
         }
 
-        LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
-        return "<h1>You uploaded this image:<h1><img src='../" + tempFile.getFileName() + "'>";
+        //LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
+        return "upload successful";
     };   
-
-    private static String getFileName(Part part) {
-        for (String cd : part.getHeader("content-disposition").split(";")) {
-            if (cd.trim().startsWith("filename")) {
-                return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-            }
-        }
-        return null;
-    }
-    
 }
