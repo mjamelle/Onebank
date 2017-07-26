@@ -60,7 +60,9 @@ $(document).ready(function () {
                 },
                 photolink: {
                     list: false,
-                    title: 'Bild'
+                    title: 'Bild',
+                    edit: false,
+                    create: false
                 },
                 email: {
                     title: 'Email/URI',
@@ -100,16 +102,18 @@ $(document).ready(function () {
                     //Show selected rows
                     $selectedRows.each(function () {
                         selectedUserRecord = $(this).data('record');
-                        if ((selectedUserRecord == null) || (selectedUserRecord.photolink == '')) {
-                            console.log('if true');
+                        if ((selectedUserRecord === null) || (selectedUserRecord.photolink === null)) {
                             document.getElementById("userimage").src = '../assets/images/person.jpeg';  
                         } else {
-                            console.log(selectedUserRecord.photolink);
                             document.getElementById("userimage").src = selectedUserRecord.photolink;
                         }
                     });
                 };
-            }           
+            },
+        //refresh image view and define default image after insertes a new user
+            rowInserted: function () {
+                document.getElementById("userimage").src = '../assets/images/person.jpeg';
+            }
         });   	
     $('#UserTableContainer').jtable('load');
     //var $row = $('#UserTableContainer').jtable('getRowByKey', 1);
@@ -147,12 +151,15 @@ $(document).ready(function () {
     }
     
     function uploadFile(file) {
-
+        if (selectedUserRecord == null) {
+            document.getElementById('status').innerHTML = 'Warnung - erst den Benutzer auswählen';
+            return;
+        }
         if (!isfiletypeimg(file)) {
             return;
         } 
-        var fileID = '100';  //  TBD
-        var fileName = 'userimage_id' + fileID + '.' + file.name.split('.').pop();
+        var fileID = selectedUserRecord.id;  //  TBD
+        var fileName = 'userimage_id_' + fileID + '.' + file.name.split('.').pop();
         var xhr = new XMLHttpRequest();    // den AJAX Request anlegen
         xhr.upload.addEventListener("progress", handleProgress);
         xhr.addEventListener("load", handleComplete);
@@ -162,14 +169,34 @@ $(document).ready(function () {
         var formdata = new FormData();    // Anlegen eines FormData Objekts zum Versenden unserer Datei
         formdata.append('uploaded_file', file);  // Anhängen der Datei an das Objekt
         xhr.send(formdata);    // Absenden des Requests
+        
+        selectedUserRecord.photolink = 'userimages/' + fileName;
+        $('#UserTableContainer').jtable('updateRecord', {
+            record: {
+                id: selectedUserRecord.id,
+                givenName: selectedUserRecord.givenName,
+                surName: selectedUserRecord.surName,
+                username: selectedUserRecord.username,
+                password: selectedUserRecord.password,
+                photolink: selectedUserRecord.photolink,
+                email: selectedUserRecord.email,
+                function: selectedUserRecord.function,
+                jabber_use: selectedUserRecord.jabber_use,
+                spark_use: selectedUserRecord.spark_use,
+                adminprivilege: selectedUserRecord.adminprivilege
+            }
+        });
+        document.getElementById("userimage").src = '../assets/images/person.jpeg';
+        document.getElementById("userimage").src = selectedUserRecord.photolink;  //user image renewal
     }
     
     function handleComplete(event) {
+        
         file = null;
     }
  
     function handleError(event) {
-        document.getElementById('status').innerHTML = 'Upload fehlgechlagen';
+        document.getElementById('status').innerHTML = 'Warnung - Upload fehlgechlagen';
     }
 
     function handleProgress(event) {
@@ -179,13 +206,13 @@ $(document).ready(function () {
     
     function isfiletypeimg(file) {
         if (file.size > 61440) {
-            document.getElementById('status').innerHTML = 'Filegröße über 60KB Limit!';
+            document.getElementById('status').innerHTML = 'Warnung - Filegröße über 60KB Limit!';
             return false;
         }
         if ((file.type === 'image/png') || (file.type === 'image/gif') || (file.type === 'image/jpeg')) {
             return true;
         } else {
-            document.getElementById('status').innerHTML = 'Falsches Fileformat, wähle eine Imagedatei';
+            document.getElementById('status').innerHTML = 'Warnung - Falsches Fileformat, wähle eine Imagedatei';
             return false;   
         }
     }
