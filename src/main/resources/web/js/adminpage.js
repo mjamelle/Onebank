@@ -186,13 +186,13 @@ $(document).ready(function () {
                 adminprivilege: selectedUserRecord.adminprivilege
             }
         });
-        document.getElementById("userimage").src = '../assets/images/person.jpeg';
-        document.getElementById("userimage").src = selectedUserRecord.photolink;  //user image renewal
     }
     
-    function handleComplete(event) {
-        
+    function handleComplete(event) {       
         file = null;
+        //user image renewal
+        document.getElementById("userimage").src = '../assets/images/person.jpeg';
+        document.getElementById("userimage").src = selectedUserRecord.photolink;  
     }
  
     function handleError(event) {
