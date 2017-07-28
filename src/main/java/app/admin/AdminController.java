@@ -52,10 +52,15 @@ public class AdminController {
     public static Route serveRestListUsers = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTLISTUSERS +" post request");
         LOGGER.debug(LinkPath.Web.RESTLISTUSERS + " post request : " + request.body());
+        
+        String jtStartIndex = request.queryParams("jtStartIndex");  //Index start for sorted table
+        String jtPageSize = request.queryParams("jtPageSize");  //page size of jtable
+        String jtSorting = request.queryParams("jtSorting");  //page sorting of jtable
         response.type("application/json");
         RestUserallResponse result = new RestUserallResponse();
         try {
-            result.setRecords(User.all());
+            result.setRecords(User.all(jtStartIndex, jtPageSize, jtSorting));
+            result.setTotalRecordCount(User.getUserCount());
             result.setResult("OK");
         } catch (Exception ex) {
             result.setResult("ERROR");

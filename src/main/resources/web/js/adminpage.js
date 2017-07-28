@@ -27,8 +27,8 @@ $(document).ready(function () {
             paging: true, //Enable paging
             pageSize: 10, //Set page size (default: 10)
             selecting: true, //Enable selecting
-            //sorting: true, //Enable sorting
-            //defaultSorting: 'surName ASC', //Set default sorting
+            sorting: true, //Enable sorting
+            defaultSorting: 'surName ASC', //Set default sorting
             actions: {
                 listAction: '/rest/listusers',
                 createAction: '/rest/createuser',
@@ -151,7 +151,7 @@ $(document).ready(function () {
     }
     
     function uploadFile(file) {
-        if (selectedUserRecord == null) {
+        if (selectedUserRecord === null) {
             document.getElementById('status').innerHTML = 'Warnung - erst den Benutzer auswählen';
             return;
         }

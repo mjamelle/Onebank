@@ -29,5 +29,6 @@ import com.fasterxml.jackson.annotation.*;
 public class RestUserallResponse {
  
     public String Result;
+    public int TotalRecordCount;
     public List<User> Records;
 }

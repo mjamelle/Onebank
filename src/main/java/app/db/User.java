@@ -4,9 +4,14 @@ import java.util.List;
 import org.sql2o.*;
 import lombok.*;
 import com.fasterxml.jackson.annotation.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Data
 public class User {
+  @JsonIgnore  
+  private static final Logger LOGGER = LogManager.getLogger();
+    
   private int id;
   private String givenName;
   private String surName;
@@ -19,13 +24,30 @@ public class User {
   private boolean spark_use;
   private boolean adminprivilege;
   
-  public static List<User> all() {
-    String sql = "SELECT id, givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
-            + "username, password, function FROM users";
+  public static List<User> all(String jtStartIndex, String jtPageSize, String jtSorting) {
+    String sql = "SELECT * FROM users ORDER BY " + jtSorting + " LIMIT " + jtPageSize + " OFFSET " + jtStartIndex;
     try(Connection con = DB.sql2o.open()) {
      return con.createQuery(sql).executeAndFetch(User.class);
     }
   }
+  
+    public static List<User> all() {
+    String sql = "SELECT * FROM users";
+    try(Connection con = DB.sql2o.open()) {
+     return con.createQuery(sql).executeAndFetch(User.class);
+    }
+  }
+  
+  
+ public static int getUserCount() {
+    //int count = 4; 
+    String sql = "SELECT COUNT (*) FROM users";
+    try(Connection con = DB.sql2o.open()) {
+        Integer  count = con.createQuery(sql)
+        .executeScalar(Integer.class);
+     return count;
+    }
+  } 
   
   @JsonIgnore
   public String getDisplayName() {
