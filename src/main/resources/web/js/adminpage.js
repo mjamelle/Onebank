@@ -23,7 +23,7 @@ $(document).ready(function () {
     var selectedUserRecord = null;
 
         $('#UserTableContainer').jtable({
-            title: 'Auflistung',
+            title: ' ',
             paging: true, //Enable paging
             pageSize: 10, //Set page size (default: 10)
             selecting: true, //Enable selecting
