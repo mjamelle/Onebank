@@ -58,11 +58,16 @@ public class Application {
         
         //----------------General initiations-----------------------------------
         SystemConfig.loadconfig();
+        
+        try {
         BotLogic.initranslate();
         CiscoSpark.setWebhookMessageLink(SystemConfig.getWebhookMessageLink());
         CiscoSpark.setWebhookRoomsLink(SystemConfig.getWebhookRoomsLink());    
         CiscoSpark.ciscoSparkIni(SystemConfig.getBotAccessToken()); // Spark Object ini and access code from config file    
-        logger.info("Spark initialized");
+        logger.info("CiscoSpark Bot initialized");
+        } catch (Exception e) {
+            logger.info("CiscoSpark Bot initiaten failed :  " + e);
+        }
         
         //--------------start Spark web server and set defaults-----------------
         //staticFiles.externalLocation(locationPath + SystemConfig.getStaticWebFileLocation());
