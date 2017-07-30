@@ -22,9 +22,7 @@
   <link rel="stylesheet" href="../assets/mobirise/css/mbr-additional.css" type="text/css">
  
   <script src="../assets/web/assets/jquery/jquery.min.js"></script>
-  
-
-  
+   
   <script type="text/javascript" src="../js/script.js"></script>
   <link rel="stylesheet" href="../css/myproject.css">
    
@@ -65,25 +63,21 @@
                             <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_OFFERS")</a>
                             <div class="dropdown-menu"><a class="dropdown-item" href="../index#msg-box6-1">$msg.get("COMMON_NAV_INVESTMENTS")</a><a class="dropdown-item" href="../index#msg-box7-2">$msg.get("COMMON_NAV_DREAMHOUSE")</a><a class="dropdown-item" href="../index#header2-3">$msg.get("COMMON_NAV_EMPLOYEE")</a></div></li>
                             <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_HELP")</a><div class="dropdown-menu"><a class="dropdown-item" href="https://youtu.be/4eFHB-xKxNM?list=PL1D0EC047B2C903A1">Tutorials</a><a class="dropdown-item" href="../contact">$msg.get("COMMON_NAV_CONTACT")</a></div></li>
-                        #if($currentUser)
-                            
-                            <li class="nav-item nav-btn"> 
+                        #if($currentUser)                          
+                            <li id='logout_request' class="nav-item nav-btn"> 
                                 <button class="nav-link btn btn-white btn-white-outline">$msg.get("COMMON_NAV_LOGOUT")</button>
                             </li>
-                         
                         #else
                             <li class="nav-item nav-btn">
                                 <a class="nav-link btn btn-white btn-white-outline" href="$WebPath.getLOGIN()">$msg.get("COMMON_NAV_LOGIN")</a>
                             </li>
-                        #end
-                        
-                            <li class="nav-item nav-btn"> 
-                                <button class="btn btn-white-outline" name="locale" value="de" style="background-image: url(/assets/images/german.png); background-position: center; margin-left: 20"></button>
+                        #end                       
+                            <li id="locale_de" class="nav-item nav-btn"> 
+                                <a class="nav-link btn btn-white btn-white-outline"  style="background-image: url(/assets/images/german.png); background-position: center;">&nbsp</a>
                             </li>
-                            <li class="nav-item nav-btn"> 
-                                <button class="btn btn-white-outline" name="locale" value="en" style="background-image: url(/assets/images/english.png); background-position: center;"></button>
-                            </li>
-                        
+                            <li id="locale_en" class="nav-item nav-btn"> 
+                                <a class="nav-link btn btn-white btn-white-outline" style="background-image: url(/assets/images/english.png); background-position: center;">&nbsp</a>
+                            </li>                      
                     </ul>
                 </div>
             </div>
