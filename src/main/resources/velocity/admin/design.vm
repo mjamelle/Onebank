@@ -9,7 +9,7 @@
         <div class="container">
           <form class="form-inline" role="form">
             <div class="form-group">
-              <div class="radio">
+              <div class="radio" style="margin-right:20px">
                 <label class="radio-inline control-label">
                   <input type="radio" id="Onebank" name="amount" checked="">
                   Onebank
@@ -32,24 +32,26 @@
         </fieldset>  
         <fieldset class="report-field">
           <legend class="report-border">Hintergrundbild</legend>
+          <div class="container">
             <form class="form-inline" role="form">
-            <div class="form-group">
-              <div class="radio">    
-                <label class="radio-inline">
-                    <input type="radio" name="optradio" checked="">Default
-                  <img src="../assets/images/bank-albom.png" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="radio">    
-                <label class="radio-inline">
-                  <input type="radio" name="optradio">Individuell
-                  <img src="../assets/images/coworkers.jpg" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
-                </label>
-              </div>
-            </div>    
-              </form>
+                <div class="form-group">
+                  <div class="radio" style="margin-right:20px">    
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" checked="">Default
+                      <img src="../assets/images/bank-albom.png" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="radio">    
+                    <label class="radio-inline">
+                      <input type="radio" name="optradio">Individuell
+                      <img src="../assets/images/coworkers.jpg" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
+                    </label>
+                  </div>
+                </div>    
+            </form>
+          </div>
          </fieldset>   
     </section>
 
