@@ -102,6 +102,7 @@ $(document).ready(function () {
                     //Show selected rows
                     $selectedRows.each(function () {
                         selectedUserRecord = $(this).data('record');
+                        $('#status').text('Bild bearbeiten');
                         if ((selectedUserRecord === null) || (selectedUserRecord.photolink === null)) {
                             document.getElementById("userimage").src = '../assets/images/person.jpeg';  
                         } else {
@@ -196,23 +197,23 @@ $(document).ready(function () {
     }
  
     function handleError(event) {
-        document.getElementById('status').innerHTML = 'Warnung - Upload fehlgechlagen';
+        $('#status').text('Warnung - Upload fehlgechlagen');
     }
 
     function handleProgress(event) {
         var progress = Math.round(100 / file.size * event.loaded);  // Füge den Fortschritt des aktuellen Uploads temporär dem gesamten hinzu
-        document.getElementById('status').innerHTML = 'Datei Upload : ' + progress + '%';
+        $('#status').text('Datei Upload : ' + progress + '%');
     }
     
     function isfiletypeimg(file) {
         if (file.size > 61440) {
-            document.getElementById('status').innerHTML = 'Warnung - Filegröße über 60KB Limit!';
+            $('#status').text('Warnung - Filegröße über 60KB Limit!');
             return false;
         }
         if ((file.type === 'image/png') || (file.type === 'image/gif') || (file.type === 'image/jpeg')) {
             return true;
         } else {
-            document.getElementById('status').innerHTML = 'Warnung - Falsches Fileformat, wähle eine Imagedatei';
+            $('#status').text('Warnung - Falsches Fileformat, wähle eine Imagedatei');
             return false;   
         }
     }
