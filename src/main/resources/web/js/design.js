@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     // send locale choose to actual web page
     $('#company_text').change(function() {
-        $.get( "?companyname=" + this.value);
+        $.post( "/rest/designcustom?companyname=" + this.value);
         location.reload();
     });
 });

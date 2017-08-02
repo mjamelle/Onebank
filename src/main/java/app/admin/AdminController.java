@@ -43,12 +43,21 @@ public class AdminController {
     public static Route serveAdminDesignPage = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.ADMINDESIGN + " get request");
         LOGGER.debug(LinkPath.Web.ADMINDESIGN + " get request : " + request.body());
-        WebCustomize.setCompanyname(request.queryParams("companyname"));
-        WebCustomize.setCompanyBackground(request.queryParams("companybackground"));
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, LinkPath.Template.ADMINDESIGN);
     };
+    
+    
+    public static Route serveRestDesignCustom = (Request request, Response response) -> {
+        LOGGER.info(LinkPath.Web.RESTDESIGNCUSTOM + " post request");
+        LOGGER.debug(LinkPath.Web.RESTDESIGNCUSTOM + " post request : " + request.body());
+        LoginController.ensureAdminIsLoggedIn(request, response);
+        WebCustomize.setCompanyname(request.queryParams("companyname"));
+        LOGGER.info("Test   :  "+ request.queryParams("companyname"));
+        WebCustomize.setCompanyBackground(request.queryParams("companybackground"));
+        return null;
+    };    
     
     public static Route serveRestListUsers = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTLISTUSERS +" post request");

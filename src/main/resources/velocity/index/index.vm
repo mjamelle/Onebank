@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center">
 
-                        <h1 class="mbr-section-title display-1">$custom.getCompanyname()</h1>
+                        <h1 class="mbr-section-title display-1">$!custom.getCompanyname()</h1>
                         <p class="mbr-section-lead lead">$msg.get("INDEX_WELCOME")</p>
 
                     </div>

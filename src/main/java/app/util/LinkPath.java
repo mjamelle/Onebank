@@ -25,6 +25,7 @@ public class LinkPath {
         @Getter public static final String RESTUPDATEUSER = "/rest/updateuser";
         @Getter public static final String RESTDELETEUSER = "/rest/deleteuser";
         @Getter public static final String RESTUPLOADUSERIMAGE = "/rest/uploaduserimage";
+        @Getter public static final String RESTDESIGNCUSTOM = "/rest/designcustom";        
 
     }
 
