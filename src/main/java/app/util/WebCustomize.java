@@ -26,7 +26,7 @@ import lombok.*;
 public class WebCustomize {
 @Getter    private static String companybackground = "../assets/images/bank-albom.png";
 @Getter    private static boolean backgroundcustomized;
-@Getter    private static String companyname = "Sparkasse";
+@Getter    private static String companyname = "Onebank";
 @Getter    private static boolean companynamecustomized;
     
     public static void setCompanyName(String setcompanyname) {
