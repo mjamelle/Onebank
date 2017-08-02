@@ -2,7 +2,7 @@
 #@mainLayout()
 
     <script src="../js/sparkcare.js"></script>
-    <section class="engine"><a rel="external" href="http://www.cisco.com">cisco.com</a></section><section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-1" style="background-image: url(../assets/images/bank-albom.png);">
+    <section class="engine"><a rel="external" href="http://www.cisco.com">cisco.com</a></section><section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-1" style="background-image; url($!custom.getCompanybackground());">
 
         <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(0, 0, 0);"></div>
 
@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="mbr-section col-md-10 col-md-offset-1 text-xs-center">
 
-                        <h1 class="mbr-section-title display-1">Onebank</h1>
+                        <h1 class="mbr-section-title display-1">$custom.getCompanyname()</h1>
                         <p class="mbr-section-lead lead">$msg.get("INDEX_WELCOME")</p>
 
                     </div>

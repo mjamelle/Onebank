@@ -17,6 +17,7 @@ public class ViewUtil {
     public static String render(Request request, Map<String, Object> model, String templatePath) {
         model.put("msg", new MessageBundle(getSessionLocale(request)));
         model.put("currentUser", getSessionCurrentUser(request));
+        model.put("custom", WebCustomize.class);  //customized elements like company name...
         model.put("WebPath", LinkPath.Web.class); // Access application URLs from templates
         return strictVelocityEngine().render(new ModelAndView(model, templatePath));
     }
