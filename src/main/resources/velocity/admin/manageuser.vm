@@ -31,7 +31,7 @@
                             </div>
                     </div>
                     <div id="userimagedrop" class="col-md-2" style="padding-top: 30">
-                        <span id="status">Biete Benutzer selektieren</span>
+                        <span id="status">Bitte Benutzer selektieren</span>
                     </div>
         </fieldset>
     </section>
