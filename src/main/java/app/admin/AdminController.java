@@ -43,6 +43,8 @@ public class AdminController {
     public static Route serveAdminDesignPage = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.ADMINDESIGN + " get request");
         LOGGER.debug(LinkPath.Web.ADMINDESIGN + " get request : " + request.body());
+        WebCustomize.setCompanyname(request.queryParams("companyname"));
+        WebCustomize.setCompanyBackground(request.queryParams("companybackground"));
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
         return ViewUtil.render(request, model, LinkPath.Template.ADMINDESIGN);

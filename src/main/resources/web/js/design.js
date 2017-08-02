@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (C) 2017 mjamelle
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,28 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package app.util;
+$(document).ready(function () {
 
-import lombok.*;
+    // send locale choose to actual web page
+    $('#company_text').change(function() {
+        $.get( "?companyname=" + this.value);
+        location.reload();
+    });
+});
 
-/**
- *
- * @author mjamelle
- */
-
-public class WebCustomize {
-@Getter             private static String companybackground = "../assets/images/bank-albom.png";
-@Getter@Setter      private static boolean backgroundcustomized = false;
-@Getter@Setter             private static String companyname = "Onebank";
-
-    
-
-    
-    public static void setCompanyBackground(String setcompanybackground) {
-        if (setcompanybackground != null && !setcompanybackground.equals("../assets/images/bank-albom.png")) {
-            companybackground = setcompanybackground; 
-        }
-                
-    }
-    
-}

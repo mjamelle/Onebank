@@ -23,7 +23,7 @@
  
   <script src="../assets/web/assets/jquery/jquery.min.js"></script>
    
-  <script type="text/javascript" src="../js/script.js"></script>
+  <script type="text/javascript" src="../js/layout.js"></script>
   <link rel="stylesheet" href="../css/myproject.css">
    
 </head>
