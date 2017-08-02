@@ -54,7 +54,6 @@ public class AdminController {
         LOGGER.debug(LinkPath.Web.RESTDESIGNCUSTOM + " post request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         WebCustomize.setCompanyname(request.queryParams("companyname"));
-        LOGGER.info("Test   :  "+ request.queryParams("companyname"));
         WebCustomize.setCompanyBackground(request.queryParams("companybackground"));
         return null;
     };    
