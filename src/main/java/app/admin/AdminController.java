@@ -55,13 +55,13 @@ public class AdminController {
         LoginController.ensureAdminIsLoggedIn(request, response);
         WebCustomize.setCompanyname(request.queryParams("companyname"));
         WebCustomize.setCompanyBackground(request.queryParams("companybackground"));
-        return null;
+        return "successful";
     };    
     
     public static Route serveRestListUsers = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTLISTUSERS +" post request");
         LOGGER.debug(LinkPath.Web.RESTLISTUSERS + " post request : " + request.body());
-        
+        LoginController.ensureAdminIsLoggedIn(request, response);
         String jtStartIndex = request.queryParams("jtStartIndex");  //Index start for sorted table
         String jtPageSize = request.queryParams("jtPageSize");  //page size of jtable
         String jtSorting = request.queryParams("jtSorting");  //page sorting of jtable
@@ -80,6 +80,7 @@ public class AdminController {
     public static Route serveRestCreateUsers = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTCREATEUSER +" post request");
         LOGGER.debug(LinkPath.Web.RESTCREATEUSER + " post request : " + request.body());
+        LoginController.ensureAdminIsLoggedIn(request, response);
         response.type("application/json");
         RestcreateUserResponse result = new RestcreateUserResponse();
         User user = new  User();
@@ -106,6 +107,7 @@ public class AdminController {
     public static Route serveRestUpdateUsers = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTUPDATEUSER +" post request");
         LOGGER.debug(LinkPath.Web.RESTUPDATEUSER + " post request : " + request.body());
+        LoginController.ensureAdminIsLoggedIn(request, response);
         JSONObject obj = new JSONObject();
         response.type("application/json");
         User user = new  User();
@@ -132,6 +134,7 @@ public class AdminController {
     public static Route serveRestDeleteUsers = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTDELETEUSER +" post request");
         LOGGER.debug(LinkPath.Web.RESTDELETEUSER + " post request : " + request.body());
+        LoginController.ensureAdminIsLoggedIn(request, response);
         JSONObject obj = new JSONObject();
         response.type("application/json");
         User user = new  User();
@@ -148,6 +151,7 @@ public class AdminController {
      public static Route serveRestUploadUserImage = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTUPLOADUSERIMAGE +" post request");
         //LOGGER.debug(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body()); // issue when enableing debug!!
+        LoginController.ensureAdminIsLoggedIn(request, response);
         File uploadDir1 = new File("web");
         File uploadDir2 = new File("web/userimages");
         uploadDir1.mkdir(); // create the upload directory if it doesn't exist
