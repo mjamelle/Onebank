@@ -24,8 +24,8 @@ import lombok.*;
  */
 
 public class WebCustomize {
-@Getter             private static String companydefaultbackground = "../assets/images/bank-albom.png";
-@Getter             private static String companyalternativebackground = "../backgroundimages/alternative_image.jpg";
+@Getter             private final static String COMPANYDEFAULTBACKGROUND = "../assets/images/bank-albom.png";
+@Getter             private final static String COMPANYALTERNATIVEBACKGROUND = "../backgroundimages/alternative_image.jpg";
 @Getter             private static String companyactualbackground = "../assets/images/bank-albom.png";
 @Getter             private static String companyname = "Onebank";
 @Getter             private static boolean backgroundcustomized = false;
@@ -44,10 +44,10 @@ public class WebCustomize {
     public static void setBackgroundcustomized(String iscompanybackground) {
         if (iscompanybackground != null) {
           if (iscompanybackground.equals("true")) { 
-            companyactualbackground = companyalternativebackground;
+            companyactualbackground = COMPANYALTERNATIVEBACKGROUND;
             backgroundcustomized = true;
           } else {
-            companyactualbackground = companydefaultbackground;
+            companyactualbackground = COMPANYDEFAULTBACKGROUND;
             backgroundcustomized = false;
           }
         }

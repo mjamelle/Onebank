@@ -28,7 +28,7 @@
                         <input type="radio" name="optradio" 
                         #if($!custom.isBackgroundcustomized() == false) checked="" #end
                         >Default
-                      <img src="$!custom.getCompanydefaultbackground()" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
+                      <img src="$!custom.getCOMPANYDEFAULTBACKGROUND()" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
                     </label>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
                       <input type="radio" name="optradio"
                       #if($!custom.isBackgroundcustomized() == true) checked="" #end       
                       >Individuell
-                      <img src="$!custom.getCompanyalternativebackground()" class="img-thumbnail img-responsive" alt="Alternative" width="100" height="100"> 
+                      <img src="$!custom.getCOMPANYALTERNATIVEBACKGROUND()" class="img-thumbnail img-responsive" alt="Alternative" width="100" height="100"> 
                     </label>
                   </div>
                 </div>    
