@@ -23,18 +23,22 @@
           <div class="container">
             <form class="form-inline" role="form">
                 <div class="form-group">
-                  <div class="radio" style="margin-right:20px" data-toggle="tooltip" title="Default Hintergundbild">    
-                    <label class="radio-inline">
-                        <input type="radio" name="optradio" checked="">Default
-                      <img src="../assets/images/bank-albom.png" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
+                  <div class="radio"  data-toggle="tooltip" title="Default Hintergundbild">    
+                    <label class="radio-inline" id="backgroundimagedefault">
+                        <input type="radio" name="optradio" 
+                        #if($!custom.isBackgroundcustomized() == false) checked="" #end
+                        >Default
+                      <img src="$!custom.getCompanydefaultbackground()" class="img-thumbnail img-responsive" alt="Onebank" width="100" height="100"> 
                     </label>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="radio" data-toggle="tooltip" title="Tausche den Hintergund per Drag and Drop aus">    
-                    <label class="radio-inline">
-                      <input type="radio" name="optradio">Individuell
-                      <img src="$!custom.getCompanybackground()" class="img-thumbnail img-responsive" alt="Alternative" width="100" height="100"> 
+                    <label class="radio-inline" id="backgroundimagecustom">
+                      <input type="radio" name="optradio"
+                      #if($!custom.isBackgroundcustomized() == true) checked="" #end       
+                      >Individuell
+                      <img src="$!custom.getCompanyalternativebackground()" class="img-thumbnail img-responsive" alt="Alternative" width="100" height="100"> 
                     </label>
                   </div>
                 </div>    

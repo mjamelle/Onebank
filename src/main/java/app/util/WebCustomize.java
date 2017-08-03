@@ -24,25 +24,32 @@ import lombok.*;
  */
 
 public class WebCustomize {
-@Getter             private static String companybackground = "../backgroundimages/alternative_image.jpg";
-@Getter@Setter      private static boolean backgroundcustomized = false;
-                    private static String companyname = "Onebank";
-    
-    public static String getCompanyname() {
-        return companyname;
-    }
+@Getter             private static String companydefaultbackground = "../assets/images/bank-albom.png";
+@Getter             private static String companyalternativebackground = "../backgroundimages/alternative_image.jpg";
+@Getter             private static String companyactualbackground = "../assets/images/bank-albom.png";
+@Getter             private static String companyname = "Onebank";
+@Getter             private static boolean backgroundcustomized = false;
+@Getter@Setter      private static boolean companynamecustomized = false;
 
+   
     public static void setCompanyname(String companyname) {
-        WebCustomize.companyname = companyname;
-    }
-
+        if (companyname != null) {
+            WebCustomize.companyname =companyname;
+            if (!companyname.equals("Onebank")) companynamecustomized = true;
+            else companynamecustomized = false;
+        }            
+    }    
 
     
-
-    
-    public static void setCompanyBackground(String setcompanybackground) {
-        if (setcompanybackground != null && !setcompanybackground.equals("../assets/images/bank-albom.png")) {
-            companybackground = setcompanybackground; 
+    public static void setBackgroundcustomized(String iscompanybackground) {
+        if (iscompanybackground != null) {
+          if (iscompanybackground.equals("true")) { 
+            companyactualbackground = companyalternativebackground;
+            backgroundcustomized = true;
+          } else {
+            companyactualbackground = companydefaultbackground;
+            backgroundcustomized = false;
+          }
         }
                 
     }

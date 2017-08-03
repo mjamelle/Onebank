@@ -54,7 +54,8 @@ public class AdminController {
         LOGGER.debug(LinkPath.Web.RESTDESIGNCUSTOM + " post request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         WebCustomize.setCompanyname(request.queryParams("companyname"));
-        WebCustomize.setCompanyBackground(request.queryParams("companybackground"));
+        WebCustomize.setBackgroundcustomized(request.queryParams("backgroundcustomized"));
+        LOGGER.info("Companybackground set to  :  " + request.queryParams("backgroundcustomized"));
         return "successful";
     };    
     

@@ -20,5 +20,11 @@ $(document).ready(function () {
     $('#company_text').change(function() {
         $.post( "/rest/designcustom?companyname=" + this.value);
     });
+    $('#backgroundimagedefault').click(function() {
+        $.post( "/rest/designcustom?backgroundcustomized=false");
+    });
+    $('#backgroundimagecustom').click(function() {
+        $.post( "/rest/designcustom?backgroundcustomized=true");
+    });
 });
 
