@@ -61,8 +61,9 @@ $(document).ready(function () {
                 photolink: {
                     list: false,
                     title: 'Bild',
-                    edit: false,
-                    create: false
+                    edit: true,
+                    create: false,
+                    defaultValue: '../assets/images/person.jpeg'
                 },
                 email: {
                     title: 'Email/URI',

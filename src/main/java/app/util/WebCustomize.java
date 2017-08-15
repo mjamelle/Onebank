@@ -34,7 +34,7 @@ public class WebCustomize {
    
     public static void setCompanyname(String companyname) {
         if (companyname != null) {
-            WebCustomize.companyname =companyname;
+            WebCustomize.companyname = companyname;
             if (!companyname.equals("Onebank")) companynamecustomized = true;
             else companynamecustomized = false;
         }            

@@ -118,7 +118,7 @@ public class AdminController {
             user.setSurName(request.queryParams("surName"));
             user.setUsername(request.queryParams("username"));
             user.setPassword(request.queryParams("password"));
-            user.setPhotolink(request.queryParams("photolink"));
+            user.setPhotolink(request.queryParams("photolink")); 
             user.setEmail(request.queryParams("email"));
             user.setFunction(request.queryParams("function"));
             user.setJabber_use(Boolean.parseBoolean(request.queryParams("jabber_use")));
