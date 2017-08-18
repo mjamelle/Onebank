@@ -106,6 +106,7 @@ public class Application {
         post(LinkPath.Web.RESTDELETEUSER,       AdminController.serveRestDeleteUsers);
         post(LinkPath.Web.RESTUPLOADUSERIMAGE,  AdminController.serveRestUploadUserImage);
         post(LinkPath.Web.RESTDESIGNCUSTOM,     AdminController.serveRestDesignCustom);
+        post(LinkPath.Web.RESTUPLOADBACKGROUNDIMAGE,    AdminController.serveRestUploadBackgroundImage);
         
         get("*",                     ViewUtil.notFound);
         

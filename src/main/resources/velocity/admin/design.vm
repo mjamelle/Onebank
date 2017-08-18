@@ -5,7 +5,7 @@
 
     <section class="engine">
         <a rel="external" href="https://mobirise.com">Mobirise Web Creator</a></section><section class="mbr-section mbr-section-md-padding mbr-footer footer2 mbr-after-navbar" id="contacts2-a" style="background-color: rgb(46, 46, 46); padding-top: 90px; padding-bottom: 90px;">
-        <h2>Design anpassen - under construction</h2>   
+        <h2>Design</h2>   
         <fieldset class="report-field">
           <legend class="report-border">Firmenname</legend>
         <div class="container">
@@ -20,8 +20,8 @@
         </fieldset>  
         <fieldset class="report-field">
           <legend class="report-border">Hintergrundbild</legend>
-          <div class="container">
-            <form class="form-inline" role="form">
+          <div class="container" class="col-md-2">
+            <form class="form-inline" role="form" >
                 <div class="form-group">
                   <div class="radio"  data-toggle="tooltip" title="Default Hintergundbild">    
                     <label class="radio-inline" id="backgroundimagedefault">
@@ -33,16 +33,19 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="radio" data-toggle="tooltip" title="Tausche den Hintergund per Drag and Drop aus">    
-                    <label class="radio-inline" id="backgroundimagecustom">
-                      <input type="radio" name="optradio"
-                      #if($!custom.isBackgroundcustomized() == true) checked="" #end       
-                      >Individuell
-                      <img src="$!custom.getCOMPANYALTERNATIVEBACKGROUND()" class="img-thumbnail img-responsive" alt="Alternative" width="100" height="100"> 
-                    </label>
-                  </div>
-                </div>    
+                    <div class="radio" data-toggle="tooltip" id="uploadzone" title="Tausche den Hintergund per Drag and Drop aus">    
+                        <label class="radio-inline" id="backgroundimagecustom">
+                          <input type="radio" name="optradio" id="inputbackgroundimage"
+                          #if($!custom.isBackgroundcustomized() == true) checked="" #end       
+                          >Individuell
+                          <img id='backgroundimage' src="$!custom.getCOMPANYALTERNATIVEBACKGROUND()" class="img-thumbnail img-responsive" alt="Alternative" width="100" height="100"> 
+                        </label>
+                    </div>
+                </div>  
             </form>
+          </div>
+          <div class="col-md-2">
+            <span id="status"></span>
           </div>
          </fieldset>   
     </section>

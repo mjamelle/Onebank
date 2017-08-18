@@ -105,16 +105,19 @@ $(document).ready(function () {
                         selectedUserRecord = $(this).data('record');
                         $('#status').text('Bild bearbeiten');
                         if ((selectedUserRecord === null) || (selectedUserRecord.photolink === null)) {
-                            document.getElementById("userimage").src = '../assets/images/person.jpeg';  
+                            var d = new Date();
+                            $("#userimage").attr("src", '../assets/images/person.jpeg?' + d.getTime()); 
                         } else {
-                            document.getElementById("userimage").src = selectedUserRecord.photolink;
+                            var d = new Date();
+                            $("#userimage").attr("src", selectedUserRecord.photolink + '?' + d.getTime());
                         }
                     });
                 };
             },
         //refresh image view and define default image after insertes a new user
             rowInserted: function () {
-                document.getElementById("userimage").src = '../assets/images/person.jpeg';
+                var d = new Date();
+                $("#userimage").attr("src", '../assets/images/person.jpeg?' + d.getTime());
             }
         });   	
     $('#UserTableContainer').jtable('load');
@@ -193,8 +196,8 @@ $(document).ready(function () {
     function handleComplete(event) {       
         file = null;
         //user image renewal
-        document.getElementById("userimage").src = '../assets/images/person.jpeg';
-        document.getElementById("userimage").src = selectedUserRecord.photolink;  
+        var d = new Date();
+        $("#userimage").attr("src", selectedUserRecord.photolink + '?' + d.getTime());
     }
  
     function handleError(event) {

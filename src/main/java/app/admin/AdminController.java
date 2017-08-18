@@ -176,4 +176,32 @@ public class AdminController {
         //LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
         return "upload successful";
     };   
+    
+    public static Route serveRestUploadBackgroundImage = (Request request, Response response) -> {
+        LOGGER.info(LinkPath.Web.RESTUPLOADBACKGROUNDIMAGE +" post request");
+        //LOGGER.debug(LinkPath.Web.RESTUPLOADUSERIMAGE + " post request : " + request.body()); // issue when enableing debug!!
+        LoginController.ensureAdminIsLoggedIn(request, response);
+        File uploadDir1 = new File("web");
+        File uploadDir2 = new File("web/backgroundimages");
+        uploadDir1.mkdir(); // create the upload directory if it doesn't exist
+        uploadDir2.mkdir(); // create the upload directory if it doesn't exist
+        Path imagePath = Paths.get("web/backgroundimages/alternative_image.jpg");
+        File imageFile = new File("web/backgroundimages/alternative_image.jpg");
+        imageFile.createNewFile();
+        
+        request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp"));      
+        try (InputStream input = request.raw().getPart("uploaded_file").getInputStream()) {
+
+            // Use the input stream to create a file
+            Files.copy(input, imagePath, StandardCopyOption.REPLACE_EXISTING);
+
+   
+        } catch (Exception e) {
+            LOGGER.error("Can't write background image file ",e);
+            return "upload failed";
+        }
+
+        //LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
+        return "upload successful";
+    }; 
 }
