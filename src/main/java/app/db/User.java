@@ -88,21 +88,23 @@ public class User {
   public void update() {
     try(Connection con = DB.sql2o.open()) {
     String sql = "UPDATE users SET givenName = :givenName, surName = :surName, email = :email, jabber_use = :jabber_use,"
-            + "spark_use = :spark_use, adminprivilege = :adminprivilege, photolink = :photolink, function = :function,"
-            + "username = :username, password= :password WHERE id = :id";
-    con.createQuery(sql)
+            + "spark_use = :spark_use, adminprivilege = :adminprivilege, function = :function,"
+            + "username = :username, password= :password";
+    if (this.photolink != null) sql = sql + ", photolink = :photolink"; //fix when table is updated and link is null
+    sql = sql + " WHERE id = :id";
+    Query query = con.createQuery(sql)
       .addParameter("givenName", this.givenName)
       .addParameter("surName", this.surName)
       .addParameter("email", this.email)
       .addParameter("jabber_use", this.jabber_use)
       .addParameter("spark_use", this.spark_use)
       .addParameter("adminprivilege", this.adminprivilege)
-      .addParameter("photolink", this.photolink)
       .addParameter("username", this.username)
       .addParameter("password", this.password)
       .addParameter("function", this.function)      
-      .addParameter("id", id)
-      .executeUpdate();
+      .addParameter("id", id);
+    if (this.photolink != null) query.addParameter("photolink", this.photolink); //fix when table is updated and link is null        
+      query.executeUpdate();
     }
   }
 
