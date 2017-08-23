@@ -99,14 +99,16 @@ public class Application {
         get(LinkPath.Web.ADMINUSER,             AdminController.serveAdminUserPage);
         get(LinkPath.Web.ADMINREPORT,           AdminController.serveAdminReportPage);
         
+        
         //--------------------RESTFUL API-----------------------------------------
-        post(LinkPath.Web.RESTLISTUSERS,        AdminController.serveRestListUsers);
-        post(LinkPath.Web.RESTCREATEUSER,       AdminController.serveRestCreateUsers);
-        post(LinkPath.Web.RESTUPDATEUSER,       AdminController.serveRestUpdateUsers);
-        post(LinkPath.Web.RESTDELETEUSER,       AdminController.serveRestDeleteUsers);
-        post(LinkPath.Web.RESTUPLOADUSERIMAGE,  AdminController.serveRestUploadUserImage);
-        post(LinkPath.Web.RESTDESIGNCUSTOM,     AdminController.serveRestDesignCustom);
+        post(LinkPath.Web.RESTLISTUSERS,                AdminController.serveRestListUsers);
+        post(LinkPath.Web.RESTCREATEUSER,               AdminController.serveRestCreateUsers);
+        post(LinkPath.Web.RESTUPDATEUSER,               AdminController.serveRestUpdateUsers);
+        post(LinkPath.Web.RESTDELETEUSER,               AdminController.serveRestDeleteUsers);
+        post(LinkPath.Web.RESTUPLOADUSERIMAGE,          AdminController.serveRestUploadUserImage);
+        post(LinkPath.Web.RESTDESIGNCUSTOM,             AdminController.serveRestDesignCustom);
         post(LinkPath.Web.RESTUPLOADBACKGROUNDIMAGE,    AdminController.serveRestUploadBackgroundImage);
+        post(LinkPath.Web.RESTBOTAPIAI,                 BotController.serveBotApiai);
         
         get("*",                     ViewUtil.notFound);
         

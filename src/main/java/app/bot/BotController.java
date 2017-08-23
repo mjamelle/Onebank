@@ -1,8 +1,9 @@
 package app.bot;
 
-import spark.*;
+import spark.*; 
 import java.util.*;
 import static app.Application.*;
+import static app.util.LinkPath.Web.RESTBOTAPIAI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,5 +24,11 @@ public class BotController {
         response.status(200);
         return null;
     };
-    
+    public static Route serveBotApiai = (Request request, Response response) -> {
+        //logger.info(RESTBOTAPIAI + "  post request");
+        logger.info(RESTBOTAPIAI + "  post request" + request.body());
+        
+        response.status(200);
+        return null;
+    };
 }
