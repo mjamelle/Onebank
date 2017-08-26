@@ -30,8 +30,12 @@ import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.Translate.TranslateOption;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
+import javax.json.JsonArray;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 
 /**
@@ -41,11 +45,12 @@ import org.apache.logging.log4j.Logger;
 public class BotLogic {
     
     public enum Language { German, English}
-    public static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     
    // static boolean isEnglish;  
     
     private static int botrequestcounter = 0;
+    private static int aipiairequestcounter = 0;
     private static Translate translate; //needed for Google translation 
     
     public static void webHookMessageTrigger (Request request) {
@@ -77,7 +82,42 @@ public class BotLogic {
                  
         }
 
-    }  
+    }
+    
+    public static String webHookAPIAITranslate (Request request) {
+        
+        String text="",langto="",langfrom ="";        
+        
+        try {
+        // read the API.AI Json format and assign to the objects    
+        JsonReader jsonReader = Json.createReader(new StringReader(request.body()));
+        JsonObject messageBody = jsonReader.readObject();
+        JsonObject result = messageBody.getJsonObject("result");
+        JsonArray contexts = result.getJsonArray("contexts");
+        jsonReader.close();
+        
+        text = result.getJsonObject("parameters").getString("text");
+        langto = result.getJsonObject("parameters").getString("lang-to");
+        langfrom = result.getJsonObject("parameters").getString("lang-from");
+        
+        logger.info("Infos  : " + text + "  " + langfrom + "   " +  langto);
+        } catch (Exception e) {
+            logger.log(Level.INFO,e);   
+        };
+        
+        
+        //Translate text
+        Translation translation;
+        translation = translate.translate(
+                text,
+                TranslateOption.sourceLanguage(langfrom),
+                TranslateOption.targetLanguage(langto));
+        
+        logger.info("Translated Text : " + translation.getTranslatedText()); 
+
+        return translation.getTranslatedText();
+    } 
+    
     
     public static void webHookRoomsTrigger (Request request) {
         
