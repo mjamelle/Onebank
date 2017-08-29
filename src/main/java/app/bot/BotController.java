@@ -29,7 +29,7 @@ public class BotController {
         logger.debug (RESTBOTAPIAI + "  post request" + request.body());
         String translation = BotLogic.webHookAPIAITranslate(request);
         response.status(200);
-        response.type("application/json");
-        return "{ 'speech': '" + translation + "' }";
+        response.type("application/json; charset=utf-8");
+        return "{ \"speech\": \"" + translation + "\", \"data\" : [{ \"translated-text\" : \"" + translation + "\"}]}";
     };
 }

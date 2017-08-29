@@ -50,11 +50,15 @@ public class BotLogic {
    // static boolean isEnglish;  
     
     private static int botrequestcounter = 0;
-    private static int aipiairequestcounter = 0;
+    private static int apiairequestcounter = 0;
     private static Translate translate; //needed for Google translation 
     
     public static void webHookMessageTrigger (Request request) {
-         
+        
+        ++botrequestcounter;  //counts the Bot requests
+        
+        /*
+        
         Message receive  = new Message(), response = new Message();
         
         //read Json structure into message objects          
@@ -70,7 +74,7 @@ public class BotLogic {
         response.setRoomId(receive.getRoomId());
         
         if (!receive.getPersonEmail().equals(SystemConfig.getBotUserName())) {
-            ++botrequestcounter;  //counts the Bot requests
+            
             if (receive.getText().toUpperCase().contains("TRANSLATE")) {mytranslate(receive,response,messageRoomType, Language.English);}
             else if ((receive.getText().toUpperCase().contains("ÜBERSETZE")) 
                 || (receive.getText().toUpperCase().contains("UEBERSETZE"))) {mytranslate(receive,response,messageRoomType, Language.German);}
@@ -81,12 +85,14 @@ public class BotLogic {
                     CiscoSpark.sendMessage(response);}
                  
         }
+        */
 
     }
     
     public static String webHookAPIAITranslate (Request request) {
         
-        String text="",langto="",langfrom ="";        
+        String text="",langto="",langfrom ="";       
+        ++apiairequestcounter;  //counter incremental for Report page
         
         try {
         // read the API.AI Json format and assign to the objects    
@@ -189,5 +195,9 @@ public class BotLogic {
     public static int getBotrequestcounter ()  {  
         return botrequestcounter;
     }
+    public static int getApiairequestcounter ()  {  
+        return apiairequestcounter;
+    }
+    
     
 }
