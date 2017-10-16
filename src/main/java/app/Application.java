@@ -72,6 +72,7 @@ public class Application {
         //--------------start Spark web server and set defaults-----------------
         //staticFiles.externalLocation(locationPath + SystemConfig.getStaticWebFileLocation());
         //String layout = locationPath + SystemConfig.LAYOUT;
+        secure("config/keystore.jks", "supermarko", null, null);
         staticFileLocation(SystemConfig.getStaticWebFileLocation());
         staticFiles.externalLocation("web");  //upload folder for user images
         port(SystemConfig.getServerPort());
