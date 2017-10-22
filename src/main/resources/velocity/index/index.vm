@@ -70,10 +70,10 @@
 
 
                   <div class="mbr-table-cell col-md-5 text-xs-center text-md-right content-size">
-                      <h3 class="mbr-section-title display-2">$msg.get("INDEX_DREAMHOUSE")</h3>
+                      <h3 class="mbr-section-title display-2">$msg.get("INDEX_PROPERTY")</h3>
                       <div class="lead">
 
-                        <p>$msg.get("INDEX_DREAMHOUSE_TEXT")<br></p>
+                        <p>$msg.get("INDEX_PROPERTY_TEXT")<br></p>
 
                       </div>
 
