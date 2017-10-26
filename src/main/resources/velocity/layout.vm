@@ -52,7 +52,8 @@
                     </button>
                     <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
                         #if($currentUser && $currentUser.isAdminprivilege())
-                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_ADMIN")</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_ADMIN")</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="$WebPath.getADMINDESIGN()">$msg.get("COMMON_NAV_ADMINDESIGN")</a>
                                     <a class="dropdown-item" href="$WebPath.getADMINUSER()">$msg.get("COMMON_NAV_ADMINUSER")</a>
@@ -60,8 +61,13 @@
                                 </div>
                             </li>
                         #end
-                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_OFFERS")</a>
-                            <div class="dropdown-menu"><a class="dropdown-item" href="../index#msg-box6-1">$msg.get("COMMON_NAV_INVESTMENTS")</a><a class="dropdown-item" href="../index#msg-box7-2">$msg.get("COMMON_NAV_DREAMHOUSE")</a><a class="dropdown-item" href="../index#header2-3">$msg.get("COMMON_NAV_EMPLOYEE")</a></div></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_OFFERS")</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="$WebPath.getIMMO_BOT()">$msg.get("COMMON_NAV_PROPERTY")</a>
+                                    <a class="dropdown-item" href="$WebPath.getCONSULTANT()">$msg.get("COMMON_NAV_EMPLOYEE")</a>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_HELP")</a><div class="dropdown-menu"><a class="dropdown-item" href="https://youtu.be/4eFHB-xKxNM?list=PL1D0EC047B2C903A1">Tutorials</a><a class="dropdown-item" href="../contact">$msg.get("COMMON_NAV_CONTACT")</a></div></li>
                         #if($currentUser)                          
                             <li id='logout_request' class="nav-item nav-btn"> 

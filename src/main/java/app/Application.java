@@ -72,6 +72,7 @@ public class Application {
         //--------------start Spark web server and set defaults-----------------
         //staticFiles.externalLocation(locationPath + SystemConfig.getStaticWebFileLocation());
         //String layout = locationPath + SystemConfig.LAYOUT;
+        secure("config/keystore.jks", "supermarko", null, null);
         staticFileLocation(SystemConfig.getStaticWebFileLocation());
         staticFiles.externalLocation("web");  //upload folder for user images
         port(SystemConfig.getServerPort());
@@ -88,6 +89,7 @@ public class Application {
         get(LinkPath.Web.INDEX,                 IndexController.serveIndexPage);
         get(LinkPath.Web.CONTACT,               ContactController.serveContactPage);
         get(LinkPath.Web.CONSULTANT,            ConsultantController.serveConsultantPage);
+        get(LinkPath.Web.IMMO_BOT,              ConsultantController.serveImmoBotPage);
         get(LinkPath.Web.SPARKWIDGET,           ConsultantController.serveSparkWidget);
         post(LinkPath.Web.BOTMESSAGE,           BotController.serveBotMessage);
         post(LinkPath.Web.BOTROOMS,             BotController.serveBotRooms);

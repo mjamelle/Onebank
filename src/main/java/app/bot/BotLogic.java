@@ -57,7 +57,7 @@ public class BotLogic {
         
         ++botrequestcounter;  //counts the Bot requests
         
-        /*
+        /*  ---old implementation now coverd by api.ai
         
         Message receive  = new Message(), response = new Message();
         

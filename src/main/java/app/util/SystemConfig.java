@@ -38,7 +38,7 @@ public class SystemConfig {
         private static String serverPort = "4567";  
         private static String webUserSessiontimeout = "600";
         @Getter @Setter    private static String mConfigFile = "config/config.properties";
-        @Getter @Setter    private static String ServerURL = "www.example.com";
+        @Getter @Setter    private static String ServerURL = "http://www.example.com";
         @Getter @Setter    private static String botAccessToken = "Insert Access Token";
         @Getter @Setter    private static String sparkWidgetAccessToken = "Insert Access Token";
         @Getter @Setter    private static String webhookMessageroute = "webhook/messages";
@@ -68,11 +68,11 @@ public class SystemConfig {
     }
    
     public static String getWebhookMessageLink() {
-        return "http://" + ServerURL + ":" + serverPort + "/" + webhookMessageroute;
+        return ServerURL + "/" + webhookMessageroute;
     }
 
     public static String getWebhookRoomsLink() {
-        return "http://" + ServerURL + ":" + serverPort + "/" + webhookRoomsroute;
+        return ServerURL + "/" + webhookRoomsroute;
     }    
  
     public static String getSystemUpTime()  {
@@ -109,7 +109,6 @@ public class SystemConfig {
                 SystemConfig.ServerURL = prop.getProperty("ServerURL");
                 SystemConfig.botAccessToken = prop.getProperty("BotAccessToken");
                 SystemConfig.sparkWidgetAccessToken = prop.getProperty("SparkWidgetAccessToken");
-                SystemConfig.serverPort = prop.getProperty("ServerPort");
                 SystemConfig.staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
                 SystemConfig.webhookMessageroute = prop.getProperty("WebhookMessageroute");
                 SystemConfig.webhookRoomsroute = prop.getProperty("WebhookRoomsroute");
@@ -123,7 +122,6 @@ public class SystemConfig {
                 LOGGER.debug("Loadconfig ServerURL : " + SystemConfig.ServerURL);
                 LOGGER.debug("Loadconfig BotAccessToken : " + SystemConfig.botAccessToken);
                 LOGGER.debug("Loadconfig sparkWidgetAccessToken : " + SystemConfig.sparkWidgetAccessToken);
-                LOGGER.debug("Loadconfig serverPort : " + SystemConfig.serverPort);
                 LOGGER.debug("Loadconfig staticWebFileLocation : " + SystemConfig.staticWebFileLocation);
                 LOGGER.debug("Loadconfig webhookMessageroute : " + SystemConfig.webhookMessageroute);
                 LOGGER.debug("Loadconfig webhookRoomsroute : " + SystemConfig.webhookRoomsroute);
@@ -161,7 +159,6 @@ public class SystemConfig {
                 prop.setProperty("BotAccessToken", SystemConfig.botAccessToken);
                 prop.setProperty("SparkWidgetAccessToken", SystemConfig.sparkWidgetAccessToken);
                 prop.setProperty("BotUserName", SystemConfig.botUserName);
-                prop.setProperty("ServerPort", SystemConfig.serverPort);
                 prop.setProperty("StaticWebFileLocation", SystemConfig.staticWebFileLocation);
 		prop.setProperty("WebhookMessageroute", SystemConfig.webhookMessageroute);
                 prop.setProperty("WebhookRoomsroute", SystemConfig.webhookRoomsroute);
