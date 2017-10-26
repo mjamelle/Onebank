@@ -1,7 +1,9 @@
 #parse("/velocity/layout.vm")
 #@mainLayout()
 
-<section class="engine"><a href="https://mobirise.co/f">free bootstrap builder</a></section><section class="mbr-section mbr-after-navbar" id="testimonials2-z" data-rv-view="58" style="background-color: rgb(255, 255, 255); padding-top: 120px; padding-bottom: 120px;">
+<link rel="stylesheet" href="https://code.s4d.io/widget-space/production/main.css">
+
+<section class="engine"><a rel="external" href="https://mobirise.com">Web Site Builder</a></section><section class="mbr-section mbr-parallax-background mbr-after-navbar" id="testimonials1-b" style="background-image: url(../assets/images/landscape2.jpg); padding-top: 120px; padding-bottom: 120px;">
 
     
 
@@ -9,8 +11,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-xs-center">
-                    <h3 class="mbr-section-title display-2">WHAT OUR FANTASTIC USERS SAY</h3>
-                    <small class="mbr-section-subtitle">Shape your future web project with sharp design and refine coded functions.</small>
+                    <h3 class="mbr-section-title display-2">$msg.get("IMMO_BOT_HEADLINE")</h3>
+                    <small class="mbr-section-subtitle">$msg.get("IMMO_BOT_DESCRIPTION")</small>
                 </div>
             </div>
         </div>
@@ -21,17 +23,25 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="mbr-testimonial card mbr-testimonial-lg">
-                        <div class="card-block"><p>“its really very amazing app that makes me finish html page in 3 minutes ( that's usually takes more than 1 hours at least from me if i did it from scratch). i hope to have very big library and plugins for this APP thanks again for your nice application”</p></div>
+                        <div class="card-block" style="height: 400px;">
+                                <main
+                                class="ciscospark-space"
+                                data-toggle="ciscospark-space"
+                                data-access-token="ZGE4MmNlODItNWY0YS00ZDlkLTgyODItNTlmYjRjZDAyMjJlNDRmZTZiY2UtMWJk"
+                                data-to-person-email="BankDemoBot@sparkbot.io"
+                                />
+                        </div>
                         <div class="mbr-author card-footer">
-                            <div class="mbr-author-img"><img src="../assets/images/face3.jpg" class="img-circle"></div>
-                            <div class="mbr-author-name">Abanoub S.</div>
-                            <small class="mbr-author-desc">User</small>
+                            <div class="mbr-author-img"><img src="../assets/images/bot.jpg" class="img-circle"></div>
+                            <div class="mbr-author-name">Immobilienberater</div>
+                            <small class="mbr-author-desc">Immobilienberater</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.s4d.io/widget-space/production/bundle.js"></script>
     
 </section>
 

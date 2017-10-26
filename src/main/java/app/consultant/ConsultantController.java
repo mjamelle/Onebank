@@ -33,6 +33,7 @@ public class ConsultantController {
         LOGGER.debug(LinkPath.Web.IMMO_BOT + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         model.put("users", User.all());
+        model.put("data-access-token", SystemConfig.getSparkWidgetAccessToken());
         return ViewUtil.render(request, model, LinkPath.Template.IMMO_BOT);
     };    
 }
