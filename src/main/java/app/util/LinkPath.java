@@ -11,6 +11,7 @@ public class LinkPath {
         @Getter public static final String INDEX = "/index";
         @Getter public static final String CONTACT = "/contact";
         @Getter public static final String CONSULTANT = "/consultant";
+        @Getter public static final String IMMO_BOT = "/immobilien";
         @Getter public static final String SPARKWIDGET = "/sparkwidget/:id";
         @Getter public static final String BOTMESSAGE = "/webhook/messages";
         @Getter public static final String BOTROOMS = "/webhook/rooms";
@@ -34,6 +35,7 @@ public class LinkPath {
         public final static String INDEX = "/velocity/index/index.vm";
         public final static String CONTACT = "/velocity/contact/contact.vm";
         public final static String CONSULTANT = "/velocity/consultant/consultant.vm";
+        public final static String IMMO_BOT = "/velocity/consultant/immobilien_bot.vm";
         public final static String SPARKWIDGET = "/velocity/consultant/sparkwidget.vm";
         public final static String LOGIN = "/velocity/login/login.vm";
         public final static String ADMINUSER = "/velocity/admin/manageuser.vm";

@@ -23,7 +23,7 @@
                     <div class="mbr-testimonial card mbr-testimonial-lg">
                         <div class="card-block"><p>“its really very amazing app that makes me finish html page in 3 minutes ( that's usually takes more than 1 hours at least from me if i did it from scratch). i hope to have very big library and plugins for this APP thanks again for your nice application”</p></div>
                         <div class="mbr-author card-footer">
-                            <div class="mbr-author-img"><img src="assets/images/face3.jpg" class="img-circle"></div>
+                            <div class="mbr-author-img"><img src="../assets/images/face3.jpg" class="img-circle"></div>
                             <div class="mbr-author-name">Abanoub S.</div>
                             <small class="mbr-author-desc">User</small>
                         </div>

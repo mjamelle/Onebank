@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ConsultantController {
     private static final Logger LOGGER = LogManager.getLogger();
+    
     public static Route serveConsultantPage = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.CONSULTANT + " get request");
         LOGGER.debug(LinkPath.Web.CONSULTANT + " get request : " + request.body());
@@ -25,6 +26,13 @@ public class ConsultantController {
         model.put("consultant", consultant);
         model.put("data-access-token", SystemConfig.getSparkWidgetAccessToken());
         return ViewUtil.render(request, model, LinkPath.Template.SPARKWIDGET);
-    };
-    
+    };  
+            
+    public static Route serveImmoBotPage = (Request request, Response response) -> {
+        LOGGER.info(LinkPath.Web.IMMO_BOT + " get request");
+        LOGGER.debug(LinkPath.Web.IMMO_BOT + " get request : " + request.body());
+        Map<String, Object> model = new HashMap<>();
+        model.put("users", User.all());
+        return ViewUtil.render(request, model, LinkPath.Template.IMMO_BOT);
+    };    
 }

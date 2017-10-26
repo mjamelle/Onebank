@@ -36,7 +36,7 @@
                         <p>$msg.get("INDEX_PROPERTY_TEXT")<br></p>
                       </div>
 
-                      <div><a class="btn btn-warning" href="../consultant">$msg.get("INDEX_CONSULTATION")</a></div>
+                      <div><a class="btn btn-warning" href="$WebPath.getIMMO_BOT()">$msg.get("INDEX_CONSULTATION")</a></div>
                   </div>
 
                   <div class="mbr-table-cell mbr-left-padding-md-up mbr-valign-top col-md-7 image-size" style="width: 50%;">
@@ -73,7 +73,7 @@
                                     <p>$msg.get("INDEX_EMPLOYEES_TEXT")</p>
                                 </div>
 
-                                <div class="mbr-section-btn"><a class="btn btn-primary" href="../consultant">$msg.get("INDEX_CONSULTATION")</a></div>
+                                <div class="mbr-section-btn"><a class="btn btn-primary" href="$WebPath.getCONSULTANT()">$msg.get("INDEX_CONSULTATION")</a></div>
 
                             </div>
 
