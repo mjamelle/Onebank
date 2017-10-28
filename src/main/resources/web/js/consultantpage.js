@@ -11,7 +11,7 @@ app.controller('JGCtrl', function ($scope, ngDialog) {
     };
     $scope.clickToOpenJG  = function (UserEmail) {
       ngDialog.open({
-          template: '<iframe src="http://reachme.cisco.com/call/' + UserEmail + '?widget=true" width="600" height="400"></iframe>',
+          template: '<iframe src="https://reachme.cisco.com/call/' + UserEmail + '?widget=true" width="600" height="400"></iframe>',
           plain: true,
           width: 680,
           height: 480
