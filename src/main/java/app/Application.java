@@ -66,7 +66,7 @@ public class Application {
         CiscoSpark.ciscoSparkIni(SystemConfig.getBotAccessToken()); // Spark Object ini and access code from config file    
         logger.info("CiscoSpark Bot initialized");
         } catch (Exception e) {
-            logger.info("CiscoSpark Bot initiaten failed :  " + e);
+            logger.info("CiscoSpark Bot initialization failed :  " + e);
         }
         
         //--------------start Spark web server and set defaults-----------------
