@@ -30,8 +30,6 @@ import app.util.Filters;
 import app.util.LinkPath;
 import app.util.ViewUtil;
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 import org.apache.logging.log4j.Logger;
@@ -42,7 +40,7 @@ public class Application {
     
     //public static final Logger logger = LogManager.getLogger();
     
-    public static void main(String[] args) throws MalformedURLException, URISyntaxException {
+    public static void main(String[] args) {
         
                 
         //-------------------setup logging infrastructure-----------------------
@@ -51,7 +49,7 @@ public class Application {
         //Configurator.setLevel("root.Application", Level.DEBUG);
         
         //----------------get absolute location path on OS----------------------
-        File jarPath=new File(Application.class.getProtectionDomain().getCodeSource().getLocation().getPath());
+        File jarPath = new File(Application.class.getProtectionDomain().getCodeSource().getLocation().getPath());
         String locationPath=jarPath.getParentFile().getAbsolutePath();
         logger.info("Location Path : " + locationPath);
         
