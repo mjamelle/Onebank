@@ -36,6 +36,7 @@ public class AdminController {
             model.put("Roomamount", CiscoSpark.getRoomamount());
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
             model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
+            model.put("SystemName", SystemConfig.getSystemName());
             model.put("Webrequests", Filters.getWebrequests());
         return ViewUtil.render(request, model, LinkPath.Template.ADMINREPORT);
     };

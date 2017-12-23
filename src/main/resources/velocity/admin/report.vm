@@ -9,6 +9,7 @@
           <legend class="report-border">System</legend>
           <p>Uptime  : $SystemUpTime<p>
           <p>Memory  : $UsedMemory MByte</p>
+          <p>Version : $SystemName</p>
         </fieldset>  
         <fieldset class="report-field">
           <legend class="report-border">Maja Bot</legend>
