@@ -38,7 +38,7 @@ public class LoginController {
         model.put("authenticationSucceeded", true);
         model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
         LOGGER.info("User Login successful : "+ user.getDisplayName());
-        return ViewUtil.render(request, model, LinkPath.Template.LOGIN);
+        return null; 
     };
 
     public static Route handleLogoutPost = (Request request, Response response) -> {
@@ -46,7 +46,6 @@ public class LoginController {
         LOGGER.debug(LinkPath.Web.LOGOUT + " post request : " + request.body());
         request.session().removeAttribute("currentUser");
         request.session().attribute("loggedOut", true);
-        response.redirect(LinkPath.Web.INDEX);
         return null;
     };
 
