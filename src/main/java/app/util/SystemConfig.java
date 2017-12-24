@@ -19,6 +19,7 @@ package app.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import lombok.*;
+import app.Application;
 
 
 import java.io.FileInputStream;
@@ -28,6 +29,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.net.URISyntaxException;
 import java.util.Properties;
 import org.apache.logging.log4j.Level;
 
@@ -91,6 +93,11 @@ public class SystemConfig {
         memory = memory/1024/1024;
         String showusedMemory = Long.toString(memory);
     return showusedMemory;
+    }
+    
+    public static String getSystemName() {
+    String pathName = Application.class.getProtectionDomain().getCodeSource().getLocation().getFile(); 
+    return pathName;
     }
     
     public static void loadconfig ()  {
