@@ -81,9 +81,9 @@ public class LoginController {
     private static String oauthrequest () {
         try {
             OAuthClientRequest request = OAuthClientRequest
-                    .authorizationLocation("https://api.ciscospark.com/v1/authorize")
-                    .setClientId("Cd200d2f63e4c43629ec4c0648a6190609cfeec5309dfa6405e546e88d9874073")
-                    .setRedirectURI("https://localhost:4567/rest/sparkoauth")
+                    .authorizationLocation(SystemConfig.getOauthAuthorizationLocation())
+                    .setClientId(SystemConfig.getOauthClientId())
+                    .setRedirectURI(SystemConfig.getOauthRedirectURI())
                     .setResponseType("code")
                     .setScope("spark:all")
                     .buildQueryMessage();

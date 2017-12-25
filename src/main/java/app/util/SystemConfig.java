@@ -49,6 +49,10 @@ public class SystemConfig {
         @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
         @Getter @Setter    private static String postgresUser = "postgres";
         @Getter @Setter    private static String postgresPassword = "postgrespassword";
+        @Getter @Setter    private static String oauthAuthorizationLocation = "https://api.ciscospark.com/v1/authorize";
+        @Getter @Setter    private static String oauthClientId = "";
+        @Getter @Setter    private static String oauthClientSecret = "";
+        @Getter @Setter    private static String oauthRedirectURI = "";
 
 
     public static int getServerPort() {
@@ -113,16 +117,23 @@ public class SystemConfig {
 		prop.load(input);
 
 		// get the property values and copy to class
-                SystemConfig.ServerURL = prop.getProperty("ServerURL");
-                SystemConfig.botAccessToken = prop.getProperty("BotAccessToken");
-                SystemConfig.sparkWidgetAccessToken = prop.getProperty("SparkWidgetAccessToken");
-                SystemConfig.staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
-                SystemConfig.webhookMessageroute = prop.getProperty("WebhookMessageroute");
-                SystemConfig.webhookRoomsroute = prop.getProperty("WebhookRoomsroute");
-                SystemConfig.botUserName = prop.getProperty("BotUserName");
-                SystemConfig.postgresUser = prop.getProperty("PostgresUser");
-                SystemConfig.postgresPassword = prop.getProperty("PostgresPassword");
-                SystemConfig.webUserSessiontimeout = prop.getProperty("WebUserSessiontimeout");
+                ServerURL = prop.getProperty("ServerURL");
+                botAccessToken = prop.getProperty("BotAccessToken");
+                sparkWidgetAccessToken = prop.getProperty("SparkWidgetAccessToken");
+                staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
+                webhookMessageroute = prop.getProperty("WebhookMessageroute");
+                webhookRoomsroute = prop.getProperty("WebhookRoomsroute");
+                botUserName = prop.getProperty("BotUserName");
+                postgresUser = prop.getProperty("PostgresUser");
+                postgresPassword = prop.getProperty("PostgresPassword");
+                webUserSessiontimeout = prop.getProperty("WebUserSessiontimeout");
+                oauthAuthorizationLocation = prop.getProperty("OauthAuthorizationLocation");
+                oauthClientId = prop.getProperty("OauthClientId");
+                oauthClientSecret = prop.getProperty("OauthClientSecret");
+                oauthRedirectURI = prop.getProperty("OauthRedirectURI");                
+                
+                
+                
                 
         
                 LOGGER.info("loadconfig successful");
