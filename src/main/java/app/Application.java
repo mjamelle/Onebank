@@ -95,6 +95,7 @@ public class Application {
         get(LinkPath.Web.LOGIN,                 LoginController.serveLoginPage);
         post(LinkPath.Web.LOGIN,                LoginController.handleLoginPost);
         post(LinkPath.Web.LOGOUT,               LoginController.handleLogoutPost);
+        get(LinkPath.Web.RESTSPARKOAUTH,        LoginController.handleOAuthresponse);
         get(LinkPath.Web.ADMINDESIGN,           AdminController.serveAdminDesignPage);
         get(LinkPath.Web.ADMINUSER,             AdminController.serveAdminUserPage);
         get(LinkPath.Web.ADMINREPORT,           AdminController.serveAdminReportPage);

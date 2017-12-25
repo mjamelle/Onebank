@@ -8,6 +8,8 @@ import java.util.*;
 import static app.util.RequestUtil.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
+import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 
 public class LoginController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -23,21 +25,29 @@ public class LoginController {
     public static Route handleLoginPost = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.LOGIN + " post request");
         LOGGER.debug(LinkPath.Web.LOGIN + " post request : " + request.body());
+        
         Map<String, Object> model = new HashMap<>();
+        
         if (!UserController.authenticate(getQueryUsername(request), getQueryPassword(request))) {
             model.put("authenticationFailed", true);
             return ViewUtil.render(request, model, LinkPath.Template.LOGIN);
+        } else {
+            request.session().maxInactiveInterval(SystemConfig.getwebUserSessiontimeout()); //set user session timeout
+
+            User user = User.getUserByUsername(request.queryParams("username"));
+            request.session().attribute("currentUser", user);
+            /*
+            if (getQueryLoginRedirect(request) != null) {
+                response.redirect(getQueryLoginRedirect(request));
+            } else response.redirect(LinkPath.Web.INDEX);
+            */
+            model.put("authenticationSucceeded", true);
+            model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
+
+            LOGGER.info("User Login successful : "+ user.getDisplayName());
+
+            response.redirect(oauthrequest());  // test only
         }
-        request.session().maxInactiveInterval(SystemConfig.getwebUserSessiontimeout()); //set user session timeout
-        
-        User user = User.getUserByUsername(request.queryParams("username"));
-        request.session().attribute("currentUser", user);
-        if (getQueryLoginRedirect(request) != null) {
-            response.redirect(getQueryLoginRedirect(request));
-        } else response.redirect(LinkPath.Web.INDEX);
-        model.put("authenticationSucceeded", true);
-        model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
-        LOGGER.info("User Login successful : "+ user.getDisplayName());
         return null; 
     };
 
@@ -46,6 +56,14 @@ public class LoginController {
         LOGGER.debug(LinkPath.Web.LOGOUT + " post request : " + request.body());
         request.session().removeAttribute("currentUser");
         request.session().attribute("loggedOut", true);
+        return null;
+    };
+    
+    public static Route handleOAuthresponse = (Request request, Response response) -> {
+        LOGGER.info(LinkPath.Web.RESTSPARKOAUTH + " get request");
+        LOGGER.debug(LinkPath.Web.RESTSPARKOAUTH + " get request : " + request.body());
+        System.out.println("restsparkoauth   :  " + request.queryString());
+        response.redirect(LinkPath.Web.INDEX);
         return null;
     };
 
@@ -58,5 +76,22 @@ public class LoginController {
             response.redirect(LinkPath.Web.LOGIN);           
         }
     };
+    
+    private static String oauthrequest () {
+        try {
+            OAuthClientRequest request = OAuthClientRequest
+                    .authorizationLocation("https://api.ciscospark.com/v1/authorize")
+                    .setClientId("Cd200d2f63e4c43629ec4c0648a6190609cfeec5309dfa6405e546e88d9874073")
+                    .setRedirectURI("https://localhost:4567/rest/sparkoauth")
+                    .setResponseType("code")
+                    .setScope("spark:all")
+                    .buildQueryMessage();
+            System.out.println(request.getLocationUri());
+            return request.getLocationUri();
+        } catch (OAuthSystemException ex) {
+            LOGGER.info("oauth build message error  : " + ex.toString());
+        }
+        return null;
+    }
 
 }

@@ -28,7 +28,8 @@ public class LinkPath {
         @Getter public static final String RESTUPLOADUSERIMAGE = "/rest/uploaduserimage";
         @Getter public static final String RESTDESIGNCUSTOM = "/rest/designcustom";
         @Getter public static final String RESTUPLOADBACKGROUNDIMAGE = "/rest/uploadbackgroundimage";        
-        @Getter public static final String RESTBOTAPIAI = "/webhook/apiai";
+        @Getter public static final String RESTBOTAPIAI = "/webhook/apiai";  
+        @Getter public static final String RESTSPARKOAUTH = "/rest/sparkoauth";        
     }
 
     public static class Template {
