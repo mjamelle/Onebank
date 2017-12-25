@@ -30,6 +30,7 @@ public class LoginController {
         
         if (!UserController.authenticate(getQueryUsername(request), getQueryPassword(request))) {
             model.put("authenticationFailed", true);
+            LOGGER.info("User Login failed : " + getQueryUsername(request));
             return ViewUtil.render(request, model, LinkPath.Template.LOGIN);
         } else {
             request.session().maxInactiveInterval(SystemConfig.getwebUserSessiontimeout()); //set user session timeout
@@ -62,7 +63,7 @@ public class LoginController {
     public static Route handleOAuthresponse = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTSPARKOAUTH + " get request");
         LOGGER.debug(LinkPath.Web.RESTSPARKOAUTH + " get request : " + request.body());
-        System.out.println("restsparkoauth   :  " + request.queryString());
+        LOGGER.info("Received OAuth Response Key :  " + request.queryString());
         response.redirect(LinkPath.Web.INDEX);
         return null;
     };
@@ -86,10 +87,10 @@ public class LoginController {
                     .setResponseType("code")
                     .setScope("spark:all")
                     .buildQueryMessage();
-            System.out.println(request.getLocationUri());
+            LOGGER.info("Build oauth Request for Spark api  : " + request.getLocationUri());
             return request.getLocationUri();
         } catch (OAuthSystemException ex) {
-            LOGGER.info("oauth build message error  : " + ex.toString());
+            LOGGER.error("oauth build message error  : " + ex.toString());
         }
         return null;
     }
