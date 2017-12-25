@@ -10,7 +10,7 @@
           <legend class="report-border">Firmenname</legend>
         <div class="container">
           <form class="form-inline" role="form">
-            <div class="form-group">
+            <div class="form-group" data-toggle="tooltip" title="zur Übernahme Enter drücken">
               <div  data-toggle="tooltip" title="Default Onebank">
                 <input placeholder="Onebank" type="text" value='$!custom.getCompanyname()' class="form-control" id="company_text"  maxlength="30" size="30">               
               </div>
