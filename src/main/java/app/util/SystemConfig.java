@@ -51,6 +51,7 @@ public class SystemConfig {
         @Getter @Setter    private static String postgresUser = "postgres";
         @Getter @Setter    private static String postgresPassword = "postgrespassword";
         @Getter @Setter    private static String oauthAuthorizationLocation = "https://api.ciscospark.com/v1/authorize";
+        @Getter @Setter    private static String oauTokenLocation = "https://api.ciscospark.com/v1/access_token";
         @Getter @Setter    private static String oauthClientId = "";
         @Getter @Setter    private static String oauthClientSecret = "";
         @Getter @Setter    private static String oauthRedirectURI = "";
@@ -130,6 +131,7 @@ public class SystemConfig {
                 postgresPassword = prop.getProperty("PostgresPassword");
                 webUserSessiontimeout = prop.getProperty("WebUserSessiontimeout");
                 oauthAuthorizationLocation = prop.getProperty("OauthAuthorizationLocation");
+                oauTokenLocation = prop.getProperty("OauthTokenLocation");
                 oauthClientId = prop.getProperty("OauthClientId");
                 oauthClientSecret = prop.getProperty("OauthClientSecret");
                 oauthRedirectURI = prop.getProperty("OauthRedirectURI");                

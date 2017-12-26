@@ -8,8 +8,14 @@ import java.util.*;
 import static app.util.RequestUtil.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.oltu.oauth2.client.OAuthClient;
+import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
+import org.apache.oltu.oauth2.client.response.GitHubTokenResponse;
+import org.apache.oltu.oauth2.client.response.OAuthJSONAccessTokenResponse;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
+import org.apache.oltu.oauth2.common.message.types.GrantType;
+
 
 public class LoginController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -63,7 +69,8 @@ public class LoginController {
     public static Route handleOAuthresponse = (Request request, Response response) -> {
         LOGGER.info(LinkPath.Web.RESTSPARKOAUTH + " get request");
         LOGGER.debug(LinkPath.Web.RESTSPARKOAUTH + " get request : " + request.body());
-        LOGGER.info("Received OAuth Response Key :  " + request.queryString());
+        LOGGER.info("Received OAuth Response Key :  " + request.queryParams("code"));
+        oauthCodeToAccessToken(request.queryParams("code"));
         response.redirect(LinkPath.Web.INDEX);
         return null;
     };
@@ -87,10 +94,37 @@ public class LoginController {
                     .setResponseType("code")
                     .setScope("spark:all")
                     .buildQueryMessage();
+            
             LOGGER.info("Build oauth Request for Spark api  : " + request.getLocationUri());
             return request.getLocationUri();
         } catch (OAuthSystemException ex) {
             LOGGER.error("oauth build message error  : " + ex.toString());
+        }
+        return null;
+    }
+    
+        private static String oauthCodeToAccessToken (String code) {
+        try {
+            OAuthClientRequest request = OAuthClientRequest
+                .tokenLocation(SystemConfig.getOauTokenLocation())
+                .setGrantType(GrantType.AUTHORIZATION_CODE)
+                .setClientId(SystemConfig.getOauthClientId())
+                .setClientSecret(SystemConfig.getOauthClientSecret())
+                .setRedirectURI(SystemConfig.getOauthRedirectURI())    
+                .setCode(code)
+                .buildQueryMessage();
+            
+            OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
+            
+            OAuthJSONAccessTokenResponse oAuthResponse = oAuthClient.accessToken(request);
+           
+            LOGGER.info("oauthCodeToAccessToken receives  AccessToken :  " + oAuthResponse.getAccessToken()
+                    + "  + RefreshToken  : " + oAuthResponse.getRefreshToken());
+            return request.getLocationUri();
+        } catch (OAuthSystemException ex) {
+            LOGGER.error("oauthCodeToAccessToken message error  : " + ex.toString());
+        } catch (Exception e) {
+            LOGGER.error("Exception Error  : " + e);
         }
         return null;
     }
