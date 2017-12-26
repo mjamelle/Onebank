@@ -100,8 +100,9 @@ public class SystemConfig {
     }
     
     public static String getSystemName() {
-    String pathName = Application.class.getProtectionDomain().getCodeSource().getLocation().getFile(); 
-    return pathName;
+    String jarName = new java.io.File (Application.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+            .getName(); 
+    return jarName;
     }
     
     public static void loadconfig ()  {
