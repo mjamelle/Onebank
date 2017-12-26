@@ -46,7 +46,6 @@ public class Application {
         //-------------------setup logging infrastructure-----------------------
         System.setProperty("log4j.configurationFile","config/log4j2.xml");
         Logger logger = LogManager.getLogger();
-        //Configurator.setLevel("root.Application", Level.DEBUG);
         
         //----------------get absolute location path on OS----------------------
         File jarPath = new File(Application.class.getProtectionDomain().getCodeSource().getLocation().getPath());
@@ -72,7 +71,7 @@ public class Application {
         //String layout = locationPath + SystemConfig.LAYOUT;
         secure("config/keystore.jks", "supermarko", null, null);
         staticFileLocation(SystemConfig.getStaticWebFileLocation());
-        staticFiles.externalLocation("web");  //upload folder for user images
+        staticFiles.externalLocation(SystemConfig.getStaticFilesExternalLocation());  //upload folder for user images
         port(SystemConfig.getServerPort());
         staticFiles.expireTime(60);
         enableDebugScreen();

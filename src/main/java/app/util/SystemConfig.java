@@ -45,7 +45,8 @@ public class SystemConfig {
         @Getter @Setter    private static String sparkWidgetAccessToken = "Insert Access Token";
         @Getter @Setter    private static String webhookMessageroute = "webhook/messages";
         @Getter @Setter    private static String webhookRoomsroute = "webhook/rooms";
-        @Getter @Setter    private static String staticWebFileLocation = "/web";  
+        @Getter @Setter    private static String staticWebFileLocation = "/web";
+        @Getter @Setter    private static String staticFilesExternalLocation = "web";
         @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
         @Getter @Setter    private static String postgresUser = "postgres";
         @Getter @Setter    private static String postgresPassword = "postgrespassword";
