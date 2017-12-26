@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
-import org.apache.oltu.oauth2.client.response.GitHubTokenResponse;
 import org.apache.oltu.oauth2.client.response.OAuthJSONAccessTokenResponse;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.types.GrantType;
@@ -103,7 +102,7 @@ public class LoginController {
         return null;
     }
     
-        private static String oauthCodeToAccessToken (String code) {
+    private static String oauthCodeToAccessToken (String code) {
         try {
             OAuthClientRequest request = OAuthClientRequest
                 .tokenLocation(SystemConfig.getOauTokenLocation())
@@ -113,11 +112,11 @@ public class LoginController {
                 .setRedirectURI(SystemConfig.getOauthRedirectURI())    
                 .setCode(code)
                 .buildQueryMessage();
-            
+
             OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
-            
+
             OAuthJSONAccessTokenResponse oAuthResponse = oAuthClient.accessToken(request);
-           
+
             LOGGER.info("oauthCodeToAccessToken receives  AccessToken :  " + oAuthResponse.getAccessToken()
                     + "  + RefreshToken  : " + oAuthResponse.getRefreshToken());
             return request.getLocationUri();
