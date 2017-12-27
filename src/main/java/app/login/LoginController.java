@@ -116,7 +116,7 @@ public class LoginController {
             OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
 
             OAuthJSONAccessTokenResponse oAuthResponse = oAuthClient.accessToken(request);
-
+            
             LOGGER.info("oauthCodeToAccessToken receives  AccessToken :  " + oAuthResponse.getAccessToken()
                     + "  + RefreshToken  : " + oAuthResponse.getRefreshToken());
             return request.getLocationUri();

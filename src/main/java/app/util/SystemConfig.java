@@ -49,7 +49,8 @@ public class SystemConfig {
         @Getter @Setter    private static String staticFilesExternalLocation = "web";
         @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
         @Getter @Setter    private static String postgresUser = "postgres";
-        @Getter @Setter    private static String postgresPassword = "postgrespassword";
+        @Getter @Setter    private static String postgresPassword = "postgrespassword"; 
+        @Getter @Setter    private static String postgresDBLink = "jdbc:postgresql://localhost:5432/onebank";
         @Getter @Setter    private static String oauthAuthorizationLocation = "https://api.ciscospark.com/v1/authorize";
         @Getter @Setter    private static String oauTokenLocation = "https://api.ciscospark.com/v1/access_token";
         @Getter @Setter    private static String oauthClientId = "";
@@ -129,6 +130,7 @@ public class SystemConfig {
                 botUserName = prop.getProperty("BotUserName");
                 postgresUser = prop.getProperty("PostgresUser");
                 postgresPassword = prop.getProperty("PostgresPassword");
+                postgresDBLink = prop.getProperty("PostgresDBLink");
                 webUserSessiontimeout = prop.getProperty("WebUserSessiontimeout");
                 oauthAuthorizationLocation = prop.getProperty("OauthAuthorizationLocation");
                 oauTokenLocation = prop.getProperty("OauthTokenLocation");
