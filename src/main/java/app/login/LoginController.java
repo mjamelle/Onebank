@@ -97,7 +97,7 @@ public class LoginController {
             LOGGER.info("Build oauth Request for Spark api  : " + request.getLocationUri());
             return request.getLocationUri();
         } catch (OAuthSystemException ex) {
-            LOGGER.error("oauth build message error  : " + ex.toString());
+            LOGGER.error(ex);
         }
         return null;
     }
@@ -121,9 +121,9 @@ public class LoginController {
                     + "  + RefreshToken  : " + oAuthResponse.getRefreshToken());
             return request.getLocationUri();
         } catch (OAuthSystemException ex) {
-            LOGGER.error("oauthCodeToAccessToken message error  : " + ex.toString());
+            LOGGER.error(ex);
         } catch (Exception e) {
-            LOGGER.error("Exception Error  : " + e);
+            LOGGER.error(e);
         }
         return null;
     }
