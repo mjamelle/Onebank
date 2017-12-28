@@ -49,10 +49,14 @@ public class LoginController {
             */
             model.put("authenticationSucceeded", true);
             model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
-
+            if (user.getOauthAccessToken() == null) {
+               response.redirect(oauthrequest(user)); 
+            } else response.redirect(LinkPath.Web.INDEX);
+            /*
+              insert a routine to refresh Accesstoken with refresktoken 
+            */
+              
             LOGGER.info("User Login successful : "+ user.getDisplayName());
-
-            response.redirect(oauthrequest());  // test only
         }
         return null; 
     };
@@ -69,7 +73,9 @@ public class LoginController {
         LOGGER.info(LinkPath.Web.RESTSPARKOAUTH + " get request");
         LOGGER.debug(LinkPath.Web.RESTSPARKOAUTH + " get request : " + request.body());
         LOGGER.info("Received OAuth Response Key :  " + request.queryParams("code"));
-        oauthCodeToAccessToken(request.queryParams("code"));
+        LOGGER.info("Received OAuth State Key :  " + request.queryParams("state"));
+        User user = User.getUserByUsername(request.queryParams("state"));
+        oauthCodeToAccessToken(request.queryParams("code"), user);
         response.redirect(LinkPath.Web.INDEX);
         return null;
     };
@@ -84,13 +90,15 @@ public class LoginController {
         }
     };
     
-    private static String oauthrequest () {
+    // this methode forms the oauth request URL 
+    private static String oauthrequest (User user) {
         try {
             OAuthClientRequest request = OAuthClientRequest
                     .authorizationLocation(SystemConfig.getOauthAuthorizationLocation())
                     .setClientId(SystemConfig.getOauthClientId())
                     .setRedirectURI(SystemConfig.getOauthRedirectURI())
                     .setResponseType("code")
+                    .setState(user.getUsername())
                     .setScope("spark:all")
                     .buildQueryMessage();
             
@@ -102,7 +110,7 @@ public class LoginController {
         return null;
     }
     
-    private static String oauthCodeToAccessToken (String code) {
+    private static String oauthCodeToAccessToken (String code, User user) {
         try {
             OAuthClientRequest request = OAuthClientRequest
                 .tokenLocation(SystemConfig.getOauTokenLocation())
@@ -116,16 +124,19 @@ public class LoginController {
             OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
 
             OAuthJSONAccessTokenResponse oAuthResponse = oAuthClient.accessToken(request);
+            // Save Token in User Database 
+            user.setOauthAccessToken(oAuthResponse.getAccessToken());
+            user.setOauthRefreshToken(oAuthResponse.getRefreshToken());
+            user.updateOauth();
             
-            LOGGER.info("oauthCodeToAccessToken receives  AccessToken :  " + oAuthResponse.getAccessToken()
+            LOGGER.info("oauthCodeToAccessToken User " + user.getUsername() + " updated  AccessToken :  " + oAuthResponse.getAccessToken()
                     + "  + RefreshToken  : " + oAuthResponse.getRefreshToken());
-            return request.getLocationUri();
+            
         } catch (OAuthSystemException ex) {
             LOGGER.error(ex);
         } catch (Exception e) {
             LOGGER.error(e);
-        }
-        return null;
+        } return null;
     }
 
 }
