@@ -41,7 +41,6 @@ public class User {
   }
    
  public static int getUserCount() {
-    //int count = 4; 
     String sql = "SELECT COUNT (*) FROM users";
     try(Connection con = DB.sql2o.open()) {
         Integer  count = con.createQuery(sql)
@@ -96,56 +95,63 @@ public class User {
 
   public void update() {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "UPDATE users SET givenName = :givenName, surName = :surName, email = :email, jabber_use = :jabber_use,"
-            + "spark_use = :spark_use, adminprivilege = :adminprivilege, function = :function,"
-            + "username = :username, password= :password";
-    if (this.photolink != null) sql = sql + ", photolink = :photolink"; //fix when table is updated and link is null
-    sql = sql + " WHERE id = :id";
-    Query query = con.createQuery(sql)
-      .addParameter("givenName", this.givenName)
-      .addParameter("surName", this.surName)
-      .addParameter("email", this.email)
-      .addParameter("jabber_use", this.jabber_use)
-      .addParameter("spark_use", this.spark_use)
-      .addParameter("adminprivilege", this.adminprivilege)
-      .addParameter("username", this.username)
-      .addParameter("password", this.password)
-      .addParameter("function", this.function) 
-      .addParameter("id", id);
+        String sql = "UPDATE users SET givenName = :givenName, surName = :surName, email = :email, jabber_use = :jabber_use,"
+                + "spark_use = :spark_use, adminprivilege = :adminprivilege, function = :function,"
+                + "username = :username, password= :password";
+        if (this.photolink != null) sql = sql + ", photolink = :photolink"; //fix when table is updated and link is null
+        sql = sql + " WHERE id = :id";
+        Query query = con.createQuery(sql)
+          .addParameter("givenName", this.givenName)
+          .addParameter("surName", this.surName)
+          .addParameter("email", this.email)
+          .addParameter("jabber_use", this.jabber_use)
+          .addParameter("spark_use", this.spark_use)
+          .addParameter("adminprivilege", this.adminprivilege)
+          .addParameter("username", this.username)
+          .addParameter("password", this.password)
+          .addParameter("function", this.function) 
+          .addParameter("id", id);
     if (this.photolink != null) query.addParameter("photolink", this.photolink); //fix when table is updated and link is null        
       query.executeUpdate();
+    } catch (Exception e) {
+        LOGGER.error("Error in User update methode" + e);
     }
   }
 
     public void updateOauth() {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "UPDATE users SET oauthaccesstoken= :oauthaccesstoken, oauthrefreshtoken= :oauthrefreshtoken";
-    sql = sql + " WHERE id = :id";
-    Query query = con.createQuery(sql)
-      .addParameter("oauthaccesstoken", this.oauthAccessToken)
-      .addParameter("oauthrefreshtoken", this.oauthRefreshToken)      
-      .addParameter("id", id);        
-      query.executeUpdate();
+        String sql = "UPDATE users SET oauthaccesstoken= :oauthaccesstoken, oauthrefreshtoken= :oauthrefreshtoken";
+        sql = sql + " WHERE id = :id";
+        Query query = con.createQuery(sql)
+          .addParameter("oauthaccesstoken", this.oauthAccessToken)
+          .addParameter("oauthrefreshtoken", this.oauthRefreshToken)      
+          .addParameter("id", id);        
+          query.executeUpdate();
+    } catch (Exception e) {
+        LOGGER.error("Error in updateOauth methode" + e);
     }
   }
   
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "DELETE FROM users WHERE id = :id";
-    con.createQuery(sql)
-      .addParameter("id", id)
-      .executeUpdate();
+        String sql = "DELETE FROM users WHERE id = :id";
+        con.createQuery(sql)
+          .addParameter("id", id)
+          .executeUpdate();
+    } catch (Exception e) {
+        LOGGER.error("Error in User delete methode" + e);
     }
   }
 
-  
   public static User getUserByUsername(String username) {
-      try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM users where username=:username";
-      User user = con.createQuery(sql)
+    try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM users where username=:username";
+        User user = con.createQuery(sql)
         .addParameter("username", username)
         .executeAndFetchFirst(User.class);
-      return user;
-    }     
-  }      
+        return user;
+    } catch (Exception e) {
+        LOGGER.error("Error in User find methode" + e);
+    } return null;    
+  }     
 }
