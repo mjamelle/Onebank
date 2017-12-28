@@ -77,7 +77,7 @@ public class User {
         .getKey();
         
     } catch (Exception e) {
-        LOGGER.error("Error in User save methode" + e);
+        LOGGER.error(e);
     }
   }
 
@@ -89,11 +89,11 @@ public class User {
         .executeAndFetchFirst(User.class);
       return user;
     } catch (Exception e) {
-        LOGGER.error("Error in User find methode" + e);
+        LOGGER.error(e);
     } return null;
   }
 
-  public void update() {
+  public void update() throws Exception {
     try(Connection con = DB.sql2o.open()) {
         String sql = "UPDATE users SET givenName = :givenName, surName = :surName, email = :email, jabber_use = :jabber_use,"
                 + "spark_use = :spark_use, adminprivilege = :adminprivilege, function = :function,"
@@ -114,7 +114,7 @@ public class User {
     if (this.photolink != null) query.addParameter("photolink", this.photolink); //fix when table is updated and link is null        
       query.executeUpdate();
     } catch (Exception e) {
-        LOGGER.error("Error in User update methode" + e);
+        LOGGER.error(e);
     }
   }
 
@@ -128,7 +128,7 @@ public class User {
           .addParameter("id", id);        
           query.executeUpdate();
     } catch (Exception e) {
-        LOGGER.error("Error in updateOauth methode" + e);
+        LOGGER.error(e);
     }
   }
   
@@ -139,7 +139,7 @@ public class User {
           .addParameter("id", id)
           .executeUpdate();
     } catch (Exception e) {
-        LOGGER.error("Error in User delete methode" + e);
+        LOGGER.error(e);
     }
   }
 
@@ -151,7 +151,7 @@ public class User {
         .executeAndFetchFirst(User.class);
         return user;
     } catch (Exception e) {
-        LOGGER.error("Error in User find methode" + e);
+        LOGGER.error(e);
     } return null;    
   }     
 }

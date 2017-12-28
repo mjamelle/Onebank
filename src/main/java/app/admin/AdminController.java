@@ -75,6 +75,7 @@ public class AdminController {
             result.setResult("OK");
         } catch (Exception ex) {
             result.setResult("ERROR");
+            LOGGER.error(ex);
         }      
         return JsonUtil.dataToJson(result);
     };  
@@ -102,6 +103,7 @@ public class AdminController {
             result.setResult("OK");
         } catch (Exception ex) {
             result.setResult("ERROR");
+            LOGGER.error(ex);
         }      
         return JsonUtil.dataToJson(result);
     }; 
@@ -129,6 +131,7 @@ public class AdminController {
             obj.put("Result", "OK");
         } catch (Exception ex) {
             obj.put("Result", "ERROR");
+            LOGGER.error(ex);
         }      
         return obj.toJSONString();
     }; 
@@ -146,6 +149,7 @@ public class AdminController {
             obj.put("Result", "OK");
         } catch (Exception ex) {
             obj.put("Result", "ERROR");
+            LOGGER.error(ex);
         }      
         return obj.toJSONString();
     }; 
@@ -170,7 +174,7 @@ public class AdminController {
 
    
         } catch (Exception e) {
-            LOGGER.error("Can't write user image file ",e);
+            LOGGER.error("Can't write user image file  : ",e);
             return "upload failed";
         }
 
@@ -198,11 +202,9 @@ public class AdminController {
 
    
         } catch (Exception e) {
-            LOGGER.error("Can't write background image file ",e);
+            LOGGER.error("Can't write background image file  : ",e);
             return "upload failed";
         }
-
-        //LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
         return "upload successful";
     }; 
 }
