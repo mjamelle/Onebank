@@ -23,6 +23,8 @@ public class User {
   private boolean jabber_use;
   private boolean spark_use;
   private boolean adminprivilege;
+  private String oauthAccessToken = null;
+  private String oauthRefreshToken = null;
   
   public static List<User> all(String jtStartIndex, String jtPageSize, String jtSorting) {
     String sql = "SELECT * FROM users ORDER BY " + jtSorting + " LIMIT " + jtPageSize + " OFFSET " + jtStartIndex;
@@ -31,14 +33,13 @@ public class User {
     }
   }
   
-    public static List<User> all() {
+  public static List<User> all() {
     String sql = "SELECT * FROM users";
     try(Connection con = DB.sql2o.open()) {
      return con.createQuery(sql).executeAndFetch(User.class);
     }
   }
-  
-  
+   
  public static int getUserCount() {
     //int count = 4; 
     String sql = "SELECT COUNT (*) FROM users";
@@ -57,8 +58,9 @@ public class User {
   public void save() {
     try(Connection con = DB.sql2o.open()) {
         String sql = "INSERT INTO users(givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
-          + "username, password, function) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
-          + " :photolink, :username, :password, :function)";
+          + "username, password, function, oauthAccessToken, oauthRefreshToken) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
+          + " :photolink, :username, :password, :function, :oauthAccessToken, :oauthRefreshToken)";
+        System.out.println("this.oauthAccessToken : " + this.oauthAccessToken);
         this.id = (int) con.createQuery(sql, true)
         .addParameter("givenName", this.givenName)
         .addParameter("surName", this.surName)
@@ -69,20 +71,27 @@ public class User {
         .addParameter("photolink", this.photolink)
         .addParameter("username", this.username)
         .addParameter("password", this.password)
-        .addParameter("function", this.function)      
+        .addParameter("function", this.function)
+        .addParameter("oauthAccessToken", this.oauthAccessToken)
+        .addParameter("oauthRefreshToken", this.oauthRefreshToken)
         .executeUpdate()
         .getKey();
+        
+    } catch (Exception e) {
+        LOGGER.error("Error in User save methode" + e);
     }
   }
 
   public static User find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM users where id=:id";
-      User task = con.createQuery(sql)
+      User user = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(User.class);
-      return task;
-    }
+      return user;
+    } catch (Exception e) {
+        LOGGER.error("Error in User find methode" + e);
+    } return null;
   }
 
   public void update() {
@@ -101,13 +110,25 @@ public class User {
       .addParameter("adminprivilege", this.adminprivilege)
       .addParameter("username", this.username)
       .addParameter("password", this.password)
-      .addParameter("function", this.function)      
+      .addParameter("function", this.function) 
       .addParameter("id", id);
     if (this.photolink != null) query.addParameter("photolink", this.photolink); //fix when table is updated and link is null        
       query.executeUpdate();
     }
   }
 
+    public void updateOauth() {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "UPDATE users SET oauthaccesstoken= :oauthaccesstoken, oauthrefreshtoken= :oauthrefreshtoken";
+    sql = sql + " WHERE id = :id";
+    Query query = con.createQuery(sql)
+      .addParameter("oauthaccesstoken", this.oauthAccessToken)
+      .addParameter("oauthrefreshtoken", this.oauthRefreshToken)      
+      .addParameter("id", id);        
+      query.executeUpdate();
+    }
+  }
+  
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
     String sql = "DELETE FROM users WHERE id = :id";
@@ -121,10 +142,10 @@ public class User {
   public static User getUserByUsername(String username) {
       try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM users where username=:username";
-      User task = con.createQuery(sql)
+      User user = con.createQuery(sql)
         .addParameter("username", username)
         .executeAndFetchFirst(User.class);
-      return task;
+      return user;
     }     
   }      
 }
