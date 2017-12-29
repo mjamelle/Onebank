@@ -51,10 +51,11 @@ public class LoginController {
             model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
             if (user.getOauthAccessToken() == null) {
                response.redirect(oauthrequest(user)); 
-            } else response.redirect(LinkPath.Web.INDEX);
-            /*
-              insert a routine to refresh Accesstoken with refresktoken 
-            */
+            } else {
+                oauthRefreshToken(user);
+                response.redirect(LinkPath.Web.INDEX);
+            }
+
               
             LOGGER.info("User Login successful : "+ user.getDisplayName());
         }
@@ -130,6 +131,33 @@ public class LoginController {
             user.updateOauth();
             
             LOGGER.info("oauthCodeToAccessToken User " + user.getUsername() + " updated  AccessToken :  " + oAuthResponse.getAccessToken()
+                    + "  + RefreshToken  : " + oAuthResponse.getRefreshToken());
+            
+        } catch (OAuthSystemException ex) {
+            LOGGER.error(ex);
+        } catch (Exception e) {
+            LOGGER.error(e);
+        } return null;
+    }
+
+    private static String oauthRefreshToken (User user) {
+        try {
+            OAuthClientRequest request = OAuthClientRequest
+                .tokenLocation(SystemConfig.getOauTokenLocation())
+                .setGrantType(GrantType.REFRESH_TOKEN)
+                .setClientId(SystemConfig.getOauthClientId())
+                .setClientSecret(SystemConfig.getOauthClientSecret())
+                .setRefreshToken(user.getOauthRefreshToken())
+                .buildQueryMessage();
+
+            OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
+
+            OAuthJSONAccessTokenResponse oAuthResponse = oAuthClient.accessToken(request);
+            // Update Token in User Database 
+            user.setOauthAccessToken(oAuthResponse.getAccessToken());
+            user.updateOauth();
+            
+            LOGGER.info("oauthRefreshToken User " + user.getUsername() + " updated  AccessToken :  " + oAuthResponse.getAccessToken()
                     + "  + RefreshToken  : " + oAuthResponse.getRefreshToken());
             
         } catch (OAuthSystemException ex) {
