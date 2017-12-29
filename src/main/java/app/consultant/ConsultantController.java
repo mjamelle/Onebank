@@ -23,8 +23,17 @@ public class ConsultantController {
         LOGGER.debug(LinkPath.Web.SPARKWIDGET + request.params(":id") + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         User consultant = User.find(Integer.parseInt(request.params(":id")));
+        String dataaccesstoken;
+        User user = request.session().attribute("currentUser");
+        if (user != null) {
+            dataaccesstoken = user.getOauthAccessToken();
+        } else {
+            dataaccesstoken = SystemConfig.getSparkWidgetAccessToken();
+        }
         model.put("consultant", consultant);
-        model.put("data-access-token", SystemConfig.getSparkWidgetAccessToken());
+        model.put("data-access-token", dataaccesstoken);
+        LOGGER.info("serveSparkWidget User  :  " + user);
+        
         return ViewUtil.render(request, model, LinkPath.Template.SPARKWIDGET);
     };  
             
