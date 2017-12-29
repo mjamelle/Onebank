@@ -46,7 +46,8 @@ public class ConsultantController {
         if (user != null) {
             dataaccesstoken = user.getOauthAccessToken();
         } else {
-            dataaccesstoken = SystemConfig.getSparkWidgetAccessToken();
+            // using mjamlle access token as an interims solution
+            dataaccesstoken = "ZGE4MmNlODItNWY0YS00ZDlkLTgyODItNTlmYjRjZDAyMjJlNDRmZTZiY2UtMWJk";
         }
         model.put("data-access-token", dataaccesstoken);
         return ViewUtil.render(request, model, LinkPath.Template.IMMO_BOT);
