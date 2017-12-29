@@ -25,6 +25,7 @@ public class User {
   private boolean adminprivilege;
   private String oauthAccessToken = null;
   private String oauthRefreshToken = null;
+  private int personeladvisor;
   
   public static List<User> all(String jtStartIndex, String jtPageSize, String jtSorting) {
     String sql = "SELECT * FROM users ORDER BY " + jtSorting + " LIMIT " + jtPageSize + " OFFSET " + jtStartIndex;
