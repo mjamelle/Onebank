@@ -6,6 +6,7 @@ dist/
 nbdist/
 .nb-gradle/
 config/config.properties
+config/keystore.jks
 userimages/
 logs/bot.log
 logs/2*
