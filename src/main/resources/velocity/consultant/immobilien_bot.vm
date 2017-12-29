@@ -27,7 +27,7 @@
                                 <main
                                 class="ciscospark-space"
                                 data-toggle="ciscospark-space"
-                                data-access-token="ZGE4MmNlODItNWY0YS00ZDlkLTgyODItNTlmYjRjZDAyMjJlNDRmZTZiY2UtMWJk"
+                                data-access-token="$data-access-token"
                                 data-to-person-email="BankDemoBot@sparkbot.io"
                                 />
                         </div>
