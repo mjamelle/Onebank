@@ -34,7 +34,6 @@ public class CiscoSpark {
     
     final static private String SPARK_API_URL = "https://api.ciscospark.com/v1";
     final static private String DEFAULT_MESSAGE_WEBHOOK = "Maja Webhook";
-    final static private String DEFAULT_ROOM_WEBHOOK = "Maja Room Webhook";
     private static Spark ciscospark;
     private static Room sparkroom;
     private static List<Room> mySparkrooms = new ArrayList<Room>() ;
@@ -62,18 +61,18 @@ public class CiscoSpark {
         webhookRoomsLink = Dummy;
     }
 
-    public static void ciscoSparkIni (String AccessToken) throws MalformedURLException, URISyntaxException {
+    public static void ciscoSparkIni (String accessToken) throws MalformedURLException, URISyntaxException {
         
          // Initialize the Spark client
         ciscospark = Spark.builder()
         .baseUrl(URI.create(SPARK_API_URL))
-        .accessToken(AccessToken)
+        .accessToken(accessToken)
         .build();
         //load rooms into array
         iniRooms ();
         iniWebhooks();
         
-        logger.info("iniSpark successful AT : " + AccessToken);
+        logger.info("iniSpark successful AT : " + accessToken);
     }
     
     public static void iniRooms ()  {
