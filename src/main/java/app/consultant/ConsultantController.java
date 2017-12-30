@@ -14,7 +14,20 @@ public class ConsultantController {
         LOGGER.info(LinkPath.Web.CONSULTANT + " get request");
         LOGGER.debug(LinkPath.Web.CONSULTANT + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
-        model.put("users", User.all());
+        
+    // delete current session user from display list to avoid space loop
+        User currentuser = request.session().attribute("currentUser");
+        List<User> showusers = User.all();
+        if (currentuser != null) {
+            Iterator<User> i = showusers.iterator();
+            while (i.hasNext()) {
+               User o = i.next();
+               if (o.getId() == currentuser.getId()) i.remove();
+            }
+        }
+    //------------------------------------------------------------------
+    
+        model.put("users", showusers);
         return ViewUtil.render(request, model, LinkPath.Template.CONSULTANT);
     };
     
