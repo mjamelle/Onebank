@@ -125,7 +125,7 @@ public class LoginController {
             OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
 
             OAuthJSONAccessTokenResponse oAuthResponse = oAuthClient.accessToken(request);
-            // Save Token in User Database 
+            // Save Token into user database 
             user.setOauthAccessToken(oAuthResponse.getAccessToken());
             user.setOauthRefreshToken(oAuthResponse.getRefreshToken());
             user.updateOauth();
