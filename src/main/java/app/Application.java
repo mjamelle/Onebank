@@ -72,7 +72,7 @@ public class Application {
         secure("config/keystore.jks", "supermarko", null, null);
         staticFileLocation(SystemConfig.getStaticWebFileLocation());
         staticFiles.externalLocation(SystemConfig.getStaticFilesExternalLocation());  //upload folder for user images
-        port(SystemConfig.getServerPort());
+        port(SystemConfig.getServerURL().getPort());
         staticFiles.expireTime(60);
         enableDebugScreen();
         

@@ -30,6 +30,7 @@ import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Properties;
 import org.apache.logging.log4j.Level;
 
@@ -37,35 +38,25 @@ import org.apache.logging.log4j.Level;
 public class SystemConfig {
     
     private static final Logger LOGGER = LogManager.getLogger();
-        private static String serverPort = "4567";  
-        private static String webUserSessiontimeout = "600";
-        @Getter @Setter    private static String mConfigFile = "config/config.properties";
-        @Getter @Setter    private static String ServerURL = "http://www.example.com";
-        @Getter @Setter    private static String botAccessToken = "Insert Access Token";
-        @Getter @Setter    private static String sparkWidgetAccessToken = "Insert Access Token";
-        @Getter @Setter    private static String webhookMessageroute = "webhook/messages";
-        @Getter @Setter    private static String webhookRoomsroute = "webhook/rooms";
+    private static final String mConfigFile = "config/config.properties";  
+                           private static String webUserSessiontimeout = "600";   
+        @Getter @Setter    private static URL    ServerURL;
+        @Getter @Setter    private static String botAccessToken;
+        @Getter @Setter    private static String sparkWidgetAccessToken;
+        @Getter @Setter    private static String webhookMessageroute = "/webhook/messages";
+        @Getter @Setter    private static String webhookRoomsroute = "/webhook/rooms";
         @Getter @Setter    private static String staticWebFileLocation = "/web";
         @Getter @Setter    private static String staticFilesExternalLocation = "web";
         @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
         @Getter @Setter    private static String postgresUser = "postgres";
         @Getter @Setter    private static String postgresPassword = "postgrespassword"; 
         @Getter @Setter    private static String postgresDBLink = "jdbc:postgresql://localhost:5432/onebank";
-        @Getter @Setter    private static String oauthAuthorizationLocation = "https://api.ciscospark.com/v1/authorize";
-        @Getter @Setter    private static String oauTokenLocation = "https://api.ciscospark.com/v1/access_token";
-        @Getter @Setter    private static String oauthClientId = "";
-        @Getter @Setter    private static String oauthClientSecret = "";
-        @Getter @Setter    private static String oauthRedirectURI = "";
+        @Getter @Setter    private static URL    oauthAuthorizationLocation;
+        @Getter @Setter    private static URL    oauTokenLocation;
+        @Getter @Setter    private static String oauthClientId;
+        @Getter @Setter    private static String oauthClientSecret;
+        @Getter @Setter    private static URL    oauthRedirectURI;
 
-
-    public static int getServerPort() {
-        int value = Integer.parseInt(SystemConfig.serverPort);
-        return value;
-    }
-
-    public static void setServerPort(Integer serverPort) {
-        SystemConfig.serverPort = serverPort.toString();
-    }
     
     public static int getwebUserSessiontimeout() {
         int value = Integer.parseInt(SystemConfig.webUserSessiontimeout);
@@ -77,11 +68,11 @@ public class SystemConfig {
     }
    
     public static String getWebhookMessageLink() {
-        return ServerURL + "/" + webhookMessageroute;
+        return ServerURL + webhookMessageroute;
     }
 
     public static String getWebhookRoomsLink() {
-        return ServerURL + "/" + webhookRoomsroute;
+        return ServerURL + webhookRoomsroute;
     }    
  
     public static String getSystemUpTime()  {
@@ -103,25 +94,24 @@ public class SystemConfig {
     }
     
     public static String getSystemName() {
-    String jarName = new java.io.File (Application.class.getProtectionDomain().getCodeSource().getLocation().getPath())
-            .getName(); 
-    return jarName;
+        String jarName = new java.io.File (Application.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+                .getName(); 
+        return jarName;
     }
     
     public static void loadconfig ()  {
         
-    Properties prop = new Properties();
+        Properties prop = new Properties();
 	InputStream input = null;
 
 	try {
-
 		input = new FileInputStream(mConfigFile);
 
 		// load a properties file
 		prop.load(input);
 
 		// get the property values and copy to class
-                ServerURL = prop.getProperty("ServerURL");
+                ServerURL = new URL(prop.getProperty("ServerURL"));
                 botAccessToken = prop.getProperty("BotAccessToken");
                 sparkWidgetAccessToken = prop.getProperty("SparkWidgetAccessToken");
                 staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
@@ -132,31 +122,17 @@ public class SystemConfig {
                 postgresPassword = prop.getProperty("PostgresPassword");
                 postgresDBLink = prop.getProperty("PostgresDBLink");
                 webUserSessiontimeout = prop.getProperty("WebUserSessiontimeout");
-                oauthAuthorizationLocation = prop.getProperty("OauthAuthorizationLocation");
-                oauTokenLocation = prop.getProperty("OauthTokenLocation");
+                oauthAuthorizationLocation = new URL(prop.getProperty("OauthAuthorizationLocation"));
+                oauTokenLocation = new URL(prop.getProperty("OauthTokenLocation"));
                 oauthClientId = prop.getProperty("OauthClientId");
                 oauthClientSecret = prop.getProperty("OauthClientSecret");
-                oauthRedirectURI = prop.getProperty("OauthRedirectURI");                
-                
-                
-                
-                
-        
-                LOGGER.info("loadconfig successful");
-                LOGGER.debug("Loadconfig ServerURL : " + SystemConfig.ServerURL);
-                LOGGER.debug("Loadconfig BotAccessToken : " + SystemConfig.botAccessToken);
-                LOGGER.debug("Loadconfig sparkWidgetAccessToken : " + SystemConfig.sparkWidgetAccessToken);
-                LOGGER.debug("Loadconfig staticWebFileLocation : " + SystemConfig.staticWebFileLocation);
-                LOGGER.debug("Loadconfig webhookMessageroute : " + SystemConfig.webhookMessageroute);
-                LOGGER.debug("Loadconfig webhookRoomsroute : " + SystemConfig.webhookRoomsroute);
-                LOGGER.debug("Loadconfig botUserName : " + SystemConfig.botUserName);
-                LOGGER.debug("Loadconfig postgresUser : " + SystemConfig.postgresUser);
-                LOGGER.debug("Loadconfig postgresPassword : " + SystemConfig.postgresPassword);
-                LOGGER.debug("Loadconfig webUserSessiontimeout : " + SystemConfig.webUserSessiontimeout);
+                oauthRedirectURI = new URL(prop.getProperty("OauthRedirectURI"));                
                 
 	} catch (IOException ex) {
-		ex.printStackTrace();
-	} finally {
+            LOGGER.error(ex);                
+	} catch (Exception e) {
+            LOGGER.error(e);
+        } finally {
 		if (input != null) {
 			try {
 				input.close();
@@ -179,7 +155,7 @@ public class SystemConfig {
                 
 
 		// set the properties value
-                prop.setProperty("ServerURL", SystemConfig.ServerURL);
+                prop.setProperty("ServerURL", SystemConfig.ServerURL.toString());
                 prop.setProperty("BotAccessToken", SystemConfig.botAccessToken);
                 prop.setProperty("SparkWidgetAccessToken", SystemConfig.sparkWidgetAccessToken);
                 prop.setProperty("BotUserName", SystemConfig.botUserName);
@@ -200,8 +176,10 @@ public class SystemConfig {
                 
 
 	} catch (IOException io) {
-		io.printStackTrace();
-	} finally {
+            LOGGER.error(io);
+	} catch (Exception e) {
+            LOGGER.error(e);
+        } finally {
 		if (output != null) {
 			try {
                             output.close();

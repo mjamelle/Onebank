@@ -95,9 +95,9 @@ public class LoginController {
     private static String oauthrequest (User user) {
         try {
             OAuthClientRequest request = OAuthClientRequest
-                    .authorizationLocation(SystemConfig.getOauthAuthorizationLocation())
+                    .authorizationLocation(SystemConfig.getOauthAuthorizationLocation().toString())
                     .setClientId(SystemConfig.getOauthClientId())
-                    .setRedirectURI(SystemConfig.getOauthRedirectURI())
+                    .setRedirectURI(SystemConfig.getOauthRedirectURI().toString())
                     .setResponseType("code")
                     .setState(user.getUsername())
                     .setScope("spark:all")
@@ -114,11 +114,11 @@ public class LoginController {
     private static String oauthCodeToAccessToken (String code, User user) {
         try {
             OAuthClientRequest request = OAuthClientRequest
-                .tokenLocation(SystemConfig.getOauTokenLocation())
+                .tokenLocation(SystemConfig.getOauTokenLocation().toString())
                 .setGrantType(GrantType.AUTHORIZATION_CODE)
                 .setClientId(SystemConfig.getOauthClientId())
                 .setClientSecret(SystemConfig.getOauthClientSecret())
-                .setRedirectURI(SystemConfig.getOauthRedirectURI())    
+                .setRedirectURI(SystemConfig.getOauthRedirectURI().toString())    
                 .setCode(code)
                 .buildQueryMessage();
 
@@ -143,7 +143,7 @@ public class LoginController {
     private static String oauthRefreshToken (User user) {
         try {
             OAuthClientRequest request = OAuthClientRequest
-                .tokenLocation(SystemConfig.getOauTokenLocation())
+                .tokenLocation(SystemConfig.getOauTokenLocation().toString())
                 .setGrantType(GrantType.REFRESH_TOKEN)
                 .setClientId(SystemConfig.getOauthClientId())
                 .setClientSecret(SystemConfig.getOauthClientSecret())
