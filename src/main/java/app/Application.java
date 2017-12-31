@@ -46,6 +46,7 @@ public class Application {
         //-------------------setup logging infrastructure-----------------------
         System.setProperty("log4j.configurationFile","config/log4j2.xml");
         Logger logger = LogManager.getLogger();
+        logger.info("-----------------------------APPLICATION  START--------------------------");
         
         //----------------get absolute location path on OS----------------------
         File jarPath = new File(Application.class.getProtectionDomain().getCodeSource().getLocation().getPath());
