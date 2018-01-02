@@ -24,7 +24,6 @@ import app.index.IndexController;
 import app.login.LoginController;
 import app.rest.RestController;
 import app.util.*;
-import com.ciscospark.Spark;
 import java.io.File;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
