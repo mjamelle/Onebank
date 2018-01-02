@@ -15,14 +15,14 @@ public class ConsultantController {
         LOGGER.debug(LinkPath.Web.CONSULTANT + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
         
-    // delete current session user from display list to avoid space loop
+    // delete current session user from display list to avoid space loops f.i. build a 1:1 space to yourself
         User currentuser = request.session().attribute("currentUser");
         List<User> showusers = User.all();
         if (currentuser != null) {
-            Iterator<User> i = showusers.iterator();
-            while (i.hasNext()) {
-               User o = i.next();
-               if (o.getId() == currentuser.getId()) i.remove();
+            Iterator<User> user = showusers.iterator();
+            while (user.hasNext()) {
+               User o = user.next();
+               if (o.getId() == currentuser.getId()) user.remove();
             }
         }
     //------------------------------------------------------------------
