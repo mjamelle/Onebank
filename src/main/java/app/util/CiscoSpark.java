@@ -30,7 +30,7 @@ import org.apache.logging.log4j.Logger;
 
 public class CiscoSpark {
     
-    public static final Logger logger = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
     
     final static private String SPARK_API_URL = "https://api.ciscospark.com/v1";
     final static private String DEFAULT_MESSAGE_WEBHOOK = "Maja Webhook";
@@ -72,7 +72,7 @@ public class CiscoSpark {
         iniRooms ();
         iniWebhooks();
         
-        logger.info("iniSpark successful AT : " + accessToken);
+        LOGGER.info("iniSpark successful AT : " + accessToken);
     }
     
     public static void iniRooms ()  {
@@ -82,7 +82,7 @@ public class CiscoSpark {
             .iterate()
             .forEachRemaining(room -> {
                 mySparkrooms.add(room);
-                logger.info("iniRoom : "+room.getTitle());
+                LOGGER.info("iniRoom : "+room.getTitle());
             });        
         
     };
@@ -92,7 +92,7 @@ public class CiscoSpark {
         Room receive = new Room();
         receive = ciscospark.rooms().path("/"+id, Room.class).get();
         mySparkrooms.add(receive);
-        logger.info("addRoom : " + receive.getTitle());    
+        LOGGER.info("addRoom : " + receive.getTitle());    
     };
     
     public static int getRoomamount ()  {  
@@ -106,7 +106,7 @@ public class CiscoSpark {
             .iterate()
             .forEachRemaining(webhook -> {
                 myWebhooks.add(webhook);
-                logger.info("iniWebhook : " + webhook.getTargetUrl().toString());
+                LOGGER.info("iniWebhook : " + webhook.getTargetUrl().toString());
             });  
     
         //check if  Default Message Webhook exist 
@@ -161,7 +161,7 @@ public class CiscoSpark {
     }
     
     public static void sendMessage (Message message) {
-        logger.info("sendMessage : " + message.getText());
+        LOGGER.info("sendMessage : " + message.getText());
         ciscospark.messages().post(message);
     }
     

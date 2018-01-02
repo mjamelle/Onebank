@@ -17,18 +17,13 @@
 package app;
 
 import app.admin.AdminController;
-import app.bot.BotLogic;
 import app.bot.*;
 import app.contact.ContactController;
 import app.consultant.ConsultantController;
 import app.index.IndexController;
 import app.login.LoginController;
 import app.rest.RestController;
-import app.util.CiscoSpark;
-import app.util.SystemConfig;
-import app.util.Filters;
-import app.util.LinkPath;
-import app.util.ViewUtil;
+import app.util.*;
 import java.io.File;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
@@ -58,7 +53,7 @@ public class Application {
         SystemConfig.loadconfig();
         
         try {
-        BotLogic.initranslate();
+        BotController.initranslate();
         CiscoSpark.setWebhookMessageLink(SystemConfig.getWebhookMessageLink());
         CiscoSpark.setWebhookRoomsLink(SystemConfig.getWebhookRoomsLink());    
         CiscoSpark.ciscoSparkIni(SystemConfig.getBotAccessToken()); // Spark Object ini and access code from config file    
@@ -109,7 +104,7 @@ public class Application {
         post(LinkPath.Web.RESTUPLOADUSERIMAGE,          AdminController.serveRestUploadUserImage);
         post(LinkPath.Web.RESTDESIGNCUSTOM,             AdminController.serveRestDesignCustom);
         post(LinkPath.Web.RESTUPLOADBACKGROUNDIMAGE,    AdminController.serveRestUploadBackgroundImage);
-        post(LinkPath.Web.RESTBOTAPIAI,                 BotController.serveBotApiai);
+        post(LinkPath.Web.RESTTRANSLATE,                BotController.serveTranslate);
         
         get("*",                     ViewUtil.notFound);
         

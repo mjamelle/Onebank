@@ -1,6 +1,6 @@
 package app.admin;
 
-import app.bot.BotLogic;
+import app.bot.BotController;
 import app.db.User;
 import app.login.LoginController;
 import app.util.SystemConfig;
@@ -32,7 +32,7 @@ public class AdminController {
         LOGGER.debug(LinkPath.Web.ADMINREPORT + " get request : " + request.body());
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
-            model.put("Botrequestcounter", BotLogic.getBotrequestcounter());
+            model.put("Botrequestcounter", BotController.getBotrequestcounter());
             model.put("Roomamount", CiscoSpark.getRoomamount());
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
             model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
