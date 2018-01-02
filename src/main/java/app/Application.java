@@ -24,6 +24,7 @@ import app.index.IndexController;
 import app.login.LoginController;
 import app.rest.RestController;
 import app.util.*;
+import com.ciscospark.Spark;
 import java.io.File;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
@@ -75,8 +76,9 @@ public class Application {
         
         //-------Set up before-filters (called before each get/post)------------
         //before("*",                  Filters.addTrailingSlashes);
-        before("*",                  Filters.handleLocaleChange);
-        before(LinkPath.Web.SLASH,       Filters.forwardtoIndex);
+        before("*",                             Filters.handleLocaleChange);
+        before("*",                             Filters.countSessions);
+        before(LinkPath.Web.SLASH,              Filters.forwardtoIndex);
         
         //-----------------Set up Links and point to the controllers------------
         get(LinkPath.Web.INDEX,                 IndexController.serveIndexPage);
@@ -105,7 +107,7 @@ public class Application {
         post(LinkPath.Web.RESTDESIGNCUSTOM,             AdminController.serveRestDesignCustom);
         post(LinkPath.Web.RESTUPLOADBACKGROUNDIMAGE,    AdminController.serveRestUploadBackgroundImage);
         post(LinkPath.Web.RESTTRANSLATE,                BotController.serveTranslate);
-        
+
         get("*",                     ViewUtil.notFound);
         
         after("*",                   Filters.addGzipHeader);      

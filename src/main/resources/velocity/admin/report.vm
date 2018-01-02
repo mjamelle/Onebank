@@ -18,7 +18,7 @@
          </fieldset>
         <fieldset class="report-field">
           <legend class="report-border">Webserver</legend>
-            <p>Requests  : $Webrequests<p>
+            <p>Sessions  : $Webrequests<p>
          </fieldset>        
     </section>
 

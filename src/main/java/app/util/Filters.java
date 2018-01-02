@@ -37,7 +37,10 @@ public class Filters {
     // Enable GZIP for all responses
     public static Filter addGzipHeader = (Request request, Response response) -> {
         response.header("Content-Encoding", "gzip");
-        ++webrequests;
+    };
+    
+    public static Filter countSessions = (Request request, Response response) -> {
+        if (request.session().isNew()) webrequests++;
     };
 
 }
