@@ -68,7 +68,7 @@
                                     <a class="dropdown-item" href="$WebPath.getCONSULTANT()">$msg.get("COMMON_NAV_EMPLOYEE")</a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_HELP")</a><div class="dropdown-menu"><a class="dropdown-item" href="https://youtu.be/4eFHB-xKxNM?list=PL1D0EC047B2C903A1">Tutorials</a><a class="dropdown-item" href="../contact">$msg.get("COMMON_NAV_CONTACT")</a></div></li>
+                            <li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="../index" aria-expanded="false">$msg.get("COMMON_NAV_HELP")</a><div class="dropdown-menu"><a class="dropdown-item" href="https://developer.ciscospark.com/tutorials.html">Tutorials</a><a class="dropdown-item" href="../contact">$msg.get("COMMON_NAV_CONTACT")</a></div></li>
                         #if($currentUser)                          
                             <li id='logout_request' class="nav-item nav-btn"> 
                                 <button class="nav-link btn btn-white btn-white-outline">$msg.get("COMMON_NAV_LOGOUT")</button>
