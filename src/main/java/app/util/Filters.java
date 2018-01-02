@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Filters {
     @Getter private static int webrequests = 0;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     // If a user manually manipulates paths and forgets to add
     // a trailing slash, redirect the user to the correct path

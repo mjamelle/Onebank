@@ -109,6 +109,6 @@ public class Application {
         get("*",                     ViewUtil.notFound);
         
         after("*",                   Filters.addGzipHeader);      
-        };   
+    };   
 }
 
