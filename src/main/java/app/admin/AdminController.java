@@ -41,7 +41,7 @@ public class AdminController {
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
             model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
             model.put("SystemName", SystemConfig.getSystemName());
-            model.put("Webrequests", Filters.getWebrequests());
+            model.put("Webrequests", Filters.getWebSessions());
         return ViewUtil.render(request, model, LinkPath.Template.ADMINREPORT);
     };
     
