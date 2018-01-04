@@ -47,7 +47,6 @@ public class SystemConfig {
         @Getter @Setter    private static String webhookRoomsroute = "/webhook/rooms";
         @Getter @Setter    private static String staticWebFileLocation = "/web";
         @Getter @Setter    private static String staticFilesExternalLocation = "web";
-        @Getter @Setter    private static String botUserName = "maja@sparkbot.io";
         @Getter @Setter    private static String postgresUser = "postgres";
         @Getter @Setter    private static String postgresPassword = "postgrespassword"; 
         @Getter @Setter    private static String postgresDBLink = "jdbc:postgresql://localhost:5432/onebank";
@@ -117,7 +116,6 @@ public class SystemConfig {
                 staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
                 webhookMessageroute = prop.getProperty("WebhookMessageroute");
                 webhookRoomsroute = prop.getProperty("WebhookRoomsroute");
-                botUserName = prop.getProperty("BotUserName");
                 postgresUser = prop.getProperty("PostgresUser");
                 postgresPassword = prop.getProperty("PostgresPassword");
                 postgresDBLink = prop.getProperty("PostgresDBLink");
@@ -158,7 +156,6 @@ public class SystemConfig {
                 prop.setProperty("ServerURL", SystemConfig.ServerURL.toString());
                 prop.setProperty("BotAccessToken", SystemConfig.botAccessToken);
                 prop.setProperty("SparkWidgetAccessToken", SystemConfig.sparkWidgetAccessToken);
-                prop.setProperty("BotUserName", SystemConfig.botUserName);
                 prop.setProperty("StaticWebFileLocation", SystemConfig.staticWebFileLocation);
 		prop.setProperty("WebhookMessageroute", SystemConfig.webhookMessageroute);
                 prop.setProperty("WebhookRoomsroute", SystemConfig.webhookRoomsroute);
