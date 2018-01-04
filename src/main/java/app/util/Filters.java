@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Filters {
-    @Getter private static int webrequests = 0;
+    @Getter private static int webSessions = 0;
     private static final Logger LOGGER = LogManager.getLogger();
 
     // If a user manually manipulates paths and forgets to add
@@ -40,7 +40,7 @@ public class Filters {
     };
     
     public static Filter countSessions = (Request request, Response response) -> {
-        if (request.session().isNew()) webrequests++;
+        if (request.session().isNew()) webSessions++;
     };
 
 }
