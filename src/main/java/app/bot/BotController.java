@@ -2,12 +2,14 @@ package app.bot;
 
 import spark.*; 
 import lombok.*;
-import app.util.CiscoSpark;
 import static app.util.LinkPath.Web.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 import java.io.StringReader;
+import java.net.HttpURLConnection;
+import static java.net.HttpURLConnection.*;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -30,21 +32,29 @@ public class BotController {
         LOGGER.info(BOTMESSAGE + "  post request");
         LOGGER.debug(BOTMESSAGE + "  post request : " + request.body());
         ++botrequestcounter;
-        response.status(200);
-        return null;
+        response.status(HTTP_OK);
+        return "";
     };
     public static Route serveBotRooms = (Request request, Response response) -> {
         LOGGER.info(BOTROOMS + "  post request");
         LOGGER.debug(BOTROOMS + "  post request : " + request.body());
-        webHookRoomsTrigger(request);
-        response.status(200);
-        return null;
+        try {
+           ObjectMapper mapper = new ObjectMapper();
+           WebhookEvent webhook = mapper.readValue(request.body(), WebhookEvent.class);
+        } catch (Exception e) {
+           LOGGER.error(e);
+           response.status(HttpURLConnection.HTTP_BAD_REQUEST); // Hey, you did not send a valid request!
+           return "";            
+        }       
+        response.status(HttpURLConnection.HTTP_OK);
+        response.type("application/json; charset=utf-8");
+        return "";
     };
     public static Route serveTranslate = (Request request, Response response) -> {
         LOGGER.info(RESTTRANSLATE + "  post request");
         LOGGER.debug (RESTTRANSLATE + "  post request" + request.body());
         String translation = Translate(request);
-        response.status(200);
+        response.status(HTTP_OK);
         response.type("application/json; charset=utf-8");
         return "{ \"speech\": \"" + translation + "\", \"data\" : [{ \"translated-text\" : \"" + translation + "\"}]}";
     };
@@ -83,17 +93,4 @@ public class BotController {
 
         return translation.getTranslatedText();
     } 
-       
-    public static void webHookRoomsTrigger (Request request) {
-        
-        //read Json structure into message objects          
-        JsonReader jsonReader = Json.createReader(new StringReader(request.body()));
-        JsonObject messageBody = jsonReader.readObject();
-        JsonObject messageData = messageBody.getJsonObject("data");
-        jsonReader.close();
-        
-        //CiscoSpark.addRoom(messageData.getString("id"));
-        LOGGER.info("webHookTrigger  :   " + request.body());
-        
-    }
 }
