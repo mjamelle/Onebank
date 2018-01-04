@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import static app.Application.majabot;
+import java.net.HttpURLConnection;
 
 public class RestController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -14,7 +15,7 @@ public class RestController {
     public static Route serveRestAPI = (Request request, Response response) -> {
         LOGGER.info("/rest/config Web request");
         LOGGER.debug("/rest/config Web request : " + request.body());
-        response.status(200);
+        response.status(HttpURLConnection.HTTP_OK);
         response.type("application/json");
             
         //load config into JSONObject

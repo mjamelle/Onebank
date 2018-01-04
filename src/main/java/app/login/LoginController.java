@@ -59,7 +59,7 @@ public class LoginController {
               
             LOGGER.info("User Login successful : "+ user.getDisplayName());
         }
-        return null; 
+        return ""; 
     };
 
     public static Route handleLogoutPost = (Request request, Response response) -> {
@@ -67,7 +67,7 @@ public class LoginController {
         LOGGER.debug(LinkPath.Web.LOGOUT + " post request : " + request.body());
         request.session().removeAttribute("currentUser");
         request.session().attribute("loggedOut", true);
-        return null;
+        return "";
     };
     
     public static Route handleOAuthresponse = (Request request, Response response) -> {
@@ -78,7 +78,7 @@ public class LoginController {
         User user = User.getUserByUsername(request.queryParams("state"));
         oauthCodeToAccessToken(request.queryParams("code"), user);
         response.redirect(LinkPath.Web.INDEX);
-        return null;
+        return "";
     };
 
     // The origin of the request (request.pathInfo()) is saved in the session so
@@ -108,7 +108,7 @@ public class LoginController {
         } catch (OAuthSystemException ex) {
             LOGGER.error(ex);
         }
-        return null;
+        return "";
     }
     
     private static String oauthCodeToAccessToken (String code, User user) {
@@ -137,7 +137,7 @@ public class LoginController {
             LOGGER.error(ex);
         } catch (Exception e) {
             LOGGER.error(e);
-        } return null;
+        } return "";
     }
 
     private static String oauthRefreshToken (User user) {
@@ -164,7 +164,7 @@ public class LoginController {
             LOGGER.error(ex);
         } catch (Exception e) {
             LOGGER.error(e);
-        } return null;
+        } return "";
     }
 
 }
