@@ -41,15 +41,17 @@ public class SystemConfig {
     private static final String mConfigFile = "config/config.properties";  
                            private static String webUserSessiontimeout = "600";   
         @Getter @Setter    private static URL    ServerURL;
-        @Getter @Setter    private static String botAccessToken;
+        @Getter @Setter    private static String majaBotAccessToken;
+        @Getter @Setter    private static String bankBotAccessToken;
         @Getter @Setter    private static String sparkWidgetAccessToken;
-        @Getter @Setter    private static String webhookMessageroute = "/webhook/messages";
+        @Getter @Setter    private static String webhookMessageroute = "/webhook/messages"; 
         @Getter @Setter    private static String webhookRoomsroute = "/webhook/rooms";
         @Getter @Setter    private static String staticWebFileLocation = "/web";
         @Getter @Setter    private static String staticFilesExternalLocation = "web";
         @Getter @Setter    private static String postgresUser = "postgres";
         @Getter @Setter    private static String postgresPassword = "postgrespassword"; 
         @Getter @Setter    private static String postgresDBLink = "jdbc:postgresql://localhost:5432/onebank";
+        @Getter @Setter    private static URL    SparkApiUrl;        
         @Getter @Setter    private static URL    oauthAuthorizationLocation;
         @Getter @Setter    private static URL    oauTokenLocation;
         @Getter @Setter    private static String oauthClientId;
@@ -111,7 +113,8 @@ public class SystemConfig {
 
 		// get the property values and copy to class
                 ServerURL = new URL(prop.getProperty("ServerURL"));
-                botAccessToken = prop.getProperty("BotAccessToken");
+                majaBotAccessToken = prop.getProperty("MajaBotAccessToken");
+                bankBotAccessToken = prop.getProperty("BankBotAccessToken");
                 sparkWidgetAccessToken = prop.getProperty("SparkWidgetAccessToken");
                 staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
                 webhookMessageroute = prop.getProperty("WebhookMessageroute");
@@ -120,6 +123,7 @@ public class SystemConfig {
                 postgresPassword = prop.getProperty("PostgresPassword");
                 postgresDBLink = prop.getProperty("PostgresDBLink");
                 webUserSessiontimeout = prop.getProperty("WebUserSessiontimeout");
+                SparkApiUrl = new URL(prop.getProperty("SparkApiUrl"));        
                 oauthAuthorizationLocation = new URL(prop.getProperty("OauthAuthorizationLocation"));
                 oauTokenLocation = new URL(prop.getProperty("OauthTokenLocation"));
                 oauthClientId = prop.getProperty("OauthClientId");
@@ -148,42 +152,37 @@ public class SystemConfig {
 	OutputStream output = null;
 
 	try {
+            output = new FileOutputStream(mConfigFile);
 
-		output = new FileOutputStream(mConfigFile);
-                
+            // set the properties value
+            prop.setProperty("ServerURL", ServerURL.toString());
+            prop.setProperty("MajaBotAccessToken", majaBotAccessToken);
+            prop.setProperty("BankBotAccessToken", bankBotAccessToken);
+            prop.setProperty("SparkWidgetAccessToken", sparkWidgetAccessToken);
+            prop.setProperty("StaticWebFileLocation", staticWebFileLocation);
+            prop.setProperty("WebhookMessageroute", webhookMessageroute);
+            prop.setProperty("WebhookRoomsroute", webhookRoomsroute);
+            prop.setProperty("PostgresUser", postgresUser);
+            prop.setProperty("PostgresPassword", postgresPassword);
+            prop.setProperty("WebUserSessiontimeout", webUserSessiontimeout);
 
-		// set the properties value
-                prop.setProperty("ServerURL", SystemConfig.ServerURL.toString());
-                prop.setProperty("BotAccessToken", SystemConfig.botAccessToken);
-                prop.setProperty("SparkWidgetAccessToken", SystemConfig.sparkWidgetAccessToken);
-                prop.setProperty("StaticWebFileLocation", SystemConfig.staticWebFileLocation);
-		prop.setProperty("WebhookMessageroute", SystemConfig.webhookMessageroute);
-                prop.setProperty("WebhookRoomsroute", SystemConfig.webhookRoomsroute);
-                prop.setProperty("PostgresUser", SystemConfig.postgresUser);
-                prop.setProperty("PostgresPassword", SystemConfig.postgresPassword);
-                prop.setProperty("WebUserSessiontimeout", SystemConfig.webUserSessiontimeout);
+            // save properties to project config folder
+            prop.store(output, null);
 
-                
-                
-		// save properties to project config folder
-		prop.store(output, null);
-                
-                LOGGER.info("Config file written");
-                LOGGER.debug("Config file written : " + output);
-                
-
+            LOGGER.info("Config file written");
+            LOGGER.debug("Config file written : " + output);              
 	} catch (IOException io) {
             LOGGER.error(io);
 	} catch (Exception e) {
             LOGGER.error(e);
         } finally {
-		if (output != null) {
-			try {
-                            output.close();
-			} catch (IOException e) {
-                            LOGGER.log(Level.ERROR,"could'nt write config file ",e);
-			}
-		}
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    LOGGER.log(Level.ERROR,"could'nt write config file ",e);
+                }
+            }
 
 	}
     }
