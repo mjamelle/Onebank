@@ -34,12 +34,12 @@ public class CiscoSpark {
     
     final private URL SPARK_API_URL = SystemConfig.getSparkApiUrl();
     //final private String MAJA_MESSAGE_WEBHOOK = "Maja Webhook";
-    final static String webhookMessageLink = SystemConfig.getWebhookMessageLink();
-    final static String webhookRoomsLink = SystemConfig.getWebhookRoomsLink();
-    private Spark ciscospark;
+    final static String WEBHOOKMESSAGELINK = SystemConfig.getWebhookMessageLink();
+    final static String WEBHOOKROOMSLINK = SystemConfig.getWebhookRoomsLink();
+    final private Spark ciscospark;
     private String webhookName;
-    private List<Room> mySparkrooms = new ArrayList<Room>() ;
-    private List<Webhook> myWebhooks = new ArrayList<Webhook>() ;    
+    private List<Room> mySparkrooms = new ArrayList();
+    private List<Webhook> myWebhooks = new ArrayList();    
 
     public CiscoSpark(String accessToken, String webhookName) throws MalformedURLException, URISyntaxException {
         this.webhookName = webhookName;
@@ -109,14 +109,14 @@ public class CiscoSpark {
         //check if  Default Message Webhook exist 
         boolean webhookexist = false;
         for(Webhook intern : myWebhooks)  {
-            if (webhookMessageLink.equals(intern.getTargetUrl().toString())) webhookexist = true;
+            if (WEBHOOKMESSAGELINK.equals(intern.getTargetUrl().toString())) webhookexist = true;
         }
         //if not then add Default Message Webhook   
             if (!webhookexist) {
                 Webhook webhook = new Webhook();
                 webhook.setName(webhookName);
 
-                URL url = new URL(webhookMessageLink);
+                URL url = new URL(WEBHOOKMESSAGELINK);
                 URI uri = url.toURI();
 
                 webhook.setTargetUrl(uri);
@@ -128,14 +128,14 @@ public class CiscoSpark {
         //check if  Default Rooms Webhook exist 
         webhookexist = false;
         for(Webhook intern : myWebhooks)  {
-            if (webhookRoomsLink.equals(intern.getTargetUrl().toString())) webhookexist = true;
+            if (WEBHOOKROOMSLINK.equals(intern.getTargetUrl().toString())) webhookexist = true;
         }
         //if not then add Default Rooms Webhook   
             if (!webhookexist) {
                 Webhook webhook = new Webhook();
                 webhook.setName(webhookName);
 
-                URL url = new URL(webhookRoomsLink);
+                URL url = new URL(WEBHOOKROOMSLINK);
                 URI uri = url.toURI();
 
                 webhook.setTargetUrl(uri);
