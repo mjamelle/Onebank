@@ -53,10 +53,8 @@ public class Application {
         SystemConfig.loadconfig();
         
         try {
-        BotController.initranslate();
-        CiscoSpark.setWebhookMessageLink(SystemConfig.getWebhookMessageLink());
-        CiscoSpark.setWebhookRoomsLink(SystemConfig.getWebhookRoomsLink());    
-        CiscoSpark.ciscoSparkIni(SystemConfig.getBotAccessToken()); // Spark Object ini and access code from config file    
+        BotController.initranslate(); 
+        CiscoSpark.ciscoSparkIni(SystemConfig.getMajaBotAccessToken()); // Spark Object ini and access code from config file    
         logger.info("CiscoSpark Bot initialized");
         } catch (Exception e) {
             logger.info("CiscoSpark Bot initialization failed :  " + e);

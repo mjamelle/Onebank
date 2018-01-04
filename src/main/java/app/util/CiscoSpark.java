@@ -32,46 +32,27 @@ public class CiscoSpark {
     
     public static final Logger LOGGER = LogManager.getLogger();
     
-    final static private String SPARK_API_URL = "https://api.ciscospark.com/v1";
-    final static private String DEFAULT_MESSAGE_WEBHOOK = "Maja Webhook";
+    final static private URL SPARK_API_URL = SystemConfig.getSparkApiUrl();
+    final static private String MAJA_MESSAGE_WEBHOOK = "Maja Webhook";
+    final private static String webhookMessageLink = SystemConfig.getWebhookMessageLink();
+    final private static String webhookRoomsLink = SystemConfig.getWebhookRoomsLink();
     private static Spark ciscospark;
-    private static Room sparkroom;
     private static List<Room> mySparkrooms = new ArrayList<Room>() ;
-    private static Webhook webhook;
     private static List<Webhook> myWebhooks = new ArrayList<Webhook>() ;    
-    private static String accessToken;
-    private static String webhookMessageLink;
-    private static String webhookRoomsLink;
 
 
-
-    public static String getWebhookMessageLink() {
-        return webhookMessageLink;
-    }
-
-    public static void setWebhookMessageLink(String Dummy) {
-        webhookMessageLink = Dummy;
-    }
-    
-    public static String getWebhookRoomsLink() {
-        return webhookRoomsLink;
-    }
-    
-    public static void setWebhookRoomsLink(String Dummy) {
-        webhookRoomsLink = Dummy;
-    }
 
     public static void ciscoSparkIni (String accessToken) throws MalformedURLException, URISyntaxException {
         
          // Initialize the Spark client
         ciscospark = Spark.builder()
-        .baseUrl(URI.create(SPARK_API_URL))
+        .baseUrl(SPARK_API_URL.toURI())
         .accessToken(accessToken)
         .build();
         //load rooms into array
         iniRooms ();
         iniWebhooks();
-        
+
         LOGGER.info("iniSpark successful AT : " + accessToken);
     }
     
@@ -117,7 +98,7 @@ public class CiscoSpark {
         //if not then add Default Message Webhook   
             if (!webhookexist) {
                 Webhook webhook = new Webhook();
-                webhook.setName(DEFAULT_MESSAGE_WEBHOOK);
+                webhook.setName(MAJA_MESSAGE_WEBHOOK);
 
                 URL url = new URL(webhookMessageLink);
                 URI uri = url.toURI();
@@ -136,7 +117,7 @@ public class CiscoSpark {
         //if not then add Default Rooms Webhook   
             if (!webhookexist) {
                 Webhook webhook = new Webhook();
-                webhook.setName(DEFAULT_MESSAGE_WEBHOOK);
+                webhook.setName(MAJA_MESSAGE_WEBHOOK);
 
                 URL url = new URL(webhookRoomsLink);
                 URI uri = url.toURI();
