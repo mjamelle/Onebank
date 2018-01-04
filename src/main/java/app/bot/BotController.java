@@ -19,15 +19,13 @@ import org.apache.logging.log4j.Logger;
 public class BotController {
     private static final Logger LOGGER = LogManager.getLogger();
     @Getter private static int botrequestcounter = 0;
-    @Getter private static int translatecounter = 0;
+    @Getter private static int translatencounter = 0;
     private static Translate translate; //needed for Google translation 
     
     public static void initranslate () {
         translate = TranslateOptions.getDefaultInstance().getService();
     }
-    
-    
-    
+     
     public static Route serveBotMessage = (Request request, Response response) -> {
         LOGGER.info(BOTMESSAGE + "post request");
         LOGGER.debug(BOTMESSAGE + "post request : " + request.body());
@@ -52,7 +50,7 @@ public class BotController {
     };
     
     public static String Translate (Request request) {
-        ++translatecounter;      
+        ++translatencounter;      
         
         String text="",langto="",langfrom ="";       
        
@@ -94,6 +92,7 @@ public class BotController {
         JsonObject messageData = messageBody.getJsonObject("data");
         jsonReader.close();
         
-        CiscoSpark.addRoom(messageData.getString("id"));
+        //CiscoSpark.addRoom(messageData.getString("id"));
+        
     }
 }

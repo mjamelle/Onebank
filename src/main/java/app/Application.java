@@ -32,6 +32,8 @@ import org.apache.logging.log4j.LogManager;
 
 
 public class Application {
+    static public CiscoSpark majabot;
+    static public CiscoSpark bankdemobot;
     
     //public static final Logger logger = LogManager.getLogger();
     
@@ -54,8 +56,11 @@ public class Application {
         
         try {
         BotController.initranslate(); 
-        CiscoSpark.ciscoSparkIni(SystemConfig.getMajaBotAccessToken()); // Spark Object ini and access code from config file    
-        logger.info("CiscoSpark Bot initialized");
+        //CiscoSpark.ciscoSparkIni(SystemConfig.getMajaBotAccessToken()); // Spark Object ini and access code from config file    
+        majabot = new CiscoSpark(SystemConfig.getMajaBotAccessToken(), "Maja Webhook");
+        logger.info("CiscoSpark Bot Maja initialized");
+        bankdemobot = new CiscoSpark(SystemConfig.getBankBotAccessToken(), "BankBotWebhook");
+        logger.info("CiscoSpark BankBot initialized");
         } catch (Exception e) {
             logger.info("CiscoSpark Bot initialization failed :  " + e);
         }

@@ -12,13 +12,15 @@
           <p>Version : $SystemName</p>
         </fieldset>  
         <fieldset class="report-field">
-          <legend class="report-border">Maja Bot</legend>
-            <p>Requests         : $Botrequestcounter<p>
-            <p>Invited in $Roomamount rooms</p>
+          <legend class="report-border">Bot usage since server start</legend>
+            <p>Bot requests : $Botrequestcounter<p>
+            <p>Translation requests : $Translatencounter<p>    
+            <p>Maja currently invited in $Majarooms rooms</p>
+            <p>BankDemo currently invited in $Bankdemorooms rooms</p>
          </fieldset>
         <fieldset class="report-field">
-          <legend class="report-border">Webserver</legend>
-            <p>Sessions  : $Webrequests<p>
+          <legend class="report-border">Webserver values since server start</legend>
+            <p>Sessions : $Webrequests<p>
          </fieldset>        
     </section>
 

@@ -1,5 +1,6 @@
 package app.admin;
 
+import static app.Application.bankdemobot;
 import app.bot.BotController;
 import app.db.User;
 import app.login.LoginController;
@@ -15,6 +16,7 @@ import java.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
+import static app.Application.majabot;
 
 public class AdminController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -33,7 +35,9 @@ public class AdminController {
         LoginController.ensureAdminIsLoggedIn(request, response);
         Map<String, Object> model = new HashMap<>();
             model.put("Botrequestcounter", BotController.getBotrequestcounter());
-            model.put("Roomamount", CiscoSpark.getRoomamount());
+            model.put("Translatencounter", BotController.getTranslatencounter());
+            model.put("Majarooms", majabot.getRoomamount());
+            model.put("Bankdemorooms", bankdemobot.getRoomamount());
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
             model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
             model.put("SystemName", SystemConfig.getSystemName());

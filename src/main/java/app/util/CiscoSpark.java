@@ -32,31 +32,47 @@ public class CiscoSpark {
     
     public static final Logger LOGGER = LogManager.getLogger();
     
-    final static private URL SPARK_API_URL = SystemConfig.getSparkApiUrl();
-    final static private String MAJA_MESSAGE_WEBHOOK = "Maja Webhook";
-    final private static String webhookMessageLink = SystemConfig.getWebhookMessageLink();
-    final private static String webhookRoomsLink = SystemConfig.getWebhookRoomsLink();
-    private static Spark ciscospark;
-    private static List<Room> mySparkrooms = new ArrayList<Room>() ;
-    private static List<Webhook> myWebhooks = new ArrayList<Webhook>() ;    
+    final private URL SPARK_API_URL = SystemConfig.getSparkApiUrl();
+    //final private String MAJA_MESSAGE_WEBHOOK = "Maja Webhook";
+    final static String webhookMessageLink = SystemConfig.getWebhookMessageLink();
+    final static String webhookRoomsLink = SystemConfig.getWebhookRoomsLink();
+    private Spark ciscospark;
+    private String webhookName;
+    private List<Room> mySparkrooms = new ArrayList<Room>() ;
+    private List<Webhook> myWebhooks = new ArrayList<Webhook>() ;    
 
+    public CiscoSpark(String accessToken, String webhookName) throws MalformedURLException, URISyntaxException {
+        this.webhookName = webhookName;
+         // Initialize the Spark client
+        ciscospark = Spark.builder()
+        .baseUrl(SPARK_API_URL.toURI())
+        .accessToken(accessToken)
+        .build();
+        
+        //load rooms into array
+        iniRooms ();
+        iniWebhooks();
 
-
-    public static void ciscoSparkIni (String accessToken) throws MalformedURLException, URISyntaxException {
+        LOGGER.info("iniSpark successful AT : " + accessToken);
+    }    
+/*
+    public void ciscoSparkIni (String accessToken) throws MalformedURLException, URISyntaxException {
         
          // Initialize the Spark client
         ciscospark = Spark.builder()
         .baseUrl(SPARK_API_URL.toURI())
         .accessToken(accessToken)
         .build();
+        
         //load rooms into array
         iniRooms ();
         iniWebhooks();
 
         LOGGER.info("iniSpark successful AT : " + accessToken);
     }
+    */
     
-    public static void iniRooms ()  {
+    private void iniRooms ()  {
         
         // List the rooms that I'm in
         ciscospark.rooms()
@@ -68,7 +84,7 @@ public class CiscoSpark {
         
     };
     
-    public static void addRoom (String id)  { 
+    public void addRoom (String id)  { 
         // add room
         Room receive = new Room();
         receive = ciscospark.rooms().path("/"+id, Room.class).get();
@@ -76,11 +92,11 @@ public class CiscoSpark {
         LOGGER.info("addRoom : " + receive.getTitle());    
     };
     
-    public static int getRoomamount ()  {  
+    public int getRoomamount ()  {  
         return mySparkrooms.size();
     };   
         
-    public static void iniWebhooks () throws MalformedURLException, URISyntaxException {
+    private void iniWebhooks () throws MalformedURLException, URISyntaxException {
         
         // List and initialize the Webhooks  Bot is in
         ciscospark.webhooks()
@@ -98,7 +114,7 @@ public class CiscoSpark {
         //if not then add Default Message Webhook   
             if (!webhookexist) {
                 Webhook webhook = new Webhook();
-                webhook.setName(MAJA_MESSAGE_WEBHOOK);
+                webhook.setName(webhookName);
 
                 URL url = new URL(webhookMessageLink);
                 URI uri = url.toURI();
@@ -117,7 +133,7 @@ public class CiscoSpark {
         //if not then add Default Rooms Webhook   
             if (!webhookexist) {
                 Webhook webhook = new Webhook();
-                webhook.setName(MAJA_MESSAGE_WEBHOOK);
+                webhook.setName(webhookName);
 
                 URL url = new URL(webhookRoomsLink);
                 URI uri = url.toURI();
@@ -130,18 +146,18 @@ public class CiscoSpark {
             }
     }; 
     
-    public static int getWebhookscounter ()  {  
+    public int getWebhookscounter ()  {  
         return myWebhooks.size();
     };  
     
        
-    public static Message getMessage(String id) {
+    public Message getMessage(String id) {
         Message receive = new Message();
         receive = ciscospark.messages().path("/"+ id, Message.class).get();
     return (receive);
     }
     
-    public static void sendMessage (Message message) {
+    public void sendMessage (Message message) {
         LOGGER.info("sendMessage : " + message.getText());
         ciscospark.messages().post(message);
     }
