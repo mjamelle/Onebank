@@ -43,10 +43,10 @@ public class BotController {
            WebhookEvent webhook = mapper.readValue(request.body(), WebhookEvent.class);
         } catch (Exception e) {
            LOGGER.error(e);
-           response.status(HttpURLConnection.HTTP_BAD_REQUEST); // Hey, you did not send a valid request!
+           response.status(HTTP_BAD_REQUEST); // Hey, you did not send a valid request!
            return "";            
         }       
-        response.status(HttpURLConnection.HTTP_OK);
+        response.status(HTTP_OK);
         response.type("application/json; charset=utf-8");
         return "";
     };
