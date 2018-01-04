@@ -27,15 +27,15 @@ public class BotController {
     }
      
     public static Route serveBotMessage = (Request request, Response response) -> {
-        LOGGER.info(BOTMESSAGE + "post request");
-        LOGGER.debug(BOTMESSAGE + "post request : " + request.body());
+        LOGGER.info(BOTMESSAGE + "  post request");
+        LOGGER.debug(BOTMESSAGE + "  post request : " + request.body());
         ++botrequestcounter;
         response.status(200);
         return null;
     };
     public static Route serveBotRooms = (Request request, Response response) -> {
-        LOGGER.info(BOTROOMS + "post request");
-        LOGGER.debug(BOTROOMS + "post request : " + request.body());
+        LOGGER.info(BOTROOMS + "  post request");
+        LOGGER.debug(BOTROOMS + "  post request : " + request.body());
         webHookRoomsTrigger(request);
         response.status(200);
         return null;
@@ -93,6 +93,7 @@ public class BotController {
         jsonReader.close();
         
         //CiscoSpark.addRoom(messageData.getString("id"));
+        LOGGER.info("webHookTrigger  :   " + request.body());
         
     }
 }
