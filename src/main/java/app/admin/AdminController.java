@@ -17,6 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import static app.Application.majabot;
+import static java.net.HttpURLConnection.*;
 
 public class AdminController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -61,6 +62,7 @@ public class AdminController {
         WebCustomize.setCompanyname(request.queryParams("companyname"));
         WebCustomize.setBackgroundcustomized(request.queryParams("backgroundcustomized"));
         LOGGER.info("Companybackground set to  :  " + request.queryParams("backgroundcustomized"));
+        response.status(HTTP_OK);
         return "successful";
     };    
     
@@ -77,8 +79,10 @@ public class AdminController {
             result.setRecords(User.all(jtStartIndex, jtPageSize, jtSorting));
             result.setTotalRecordCount(User.getUserCount());
             result.setResult("OK");
+            response.status(HTTP_OK);
         } catch (Exception ex) {
             result.setResult("ERROR");
+            response.status(HTTP_BAD_REQUEST);
             LOGGER.error(ex);
         }      
         return JsonUtil.dataToJson(result);
@@ -105,9 +109,11 @@ public class AdminController {
             user.save();
             result.setRecord(User.find(user.getId()));
             result.setResult("OK");
-        } catch (Exception ex) {
+            response.status(HTTP_OK);
+        } catch (Exception e) {
             result.setResult("ERROR");
-            LOGGER.error(ex);
+            response.status(HTTP_BAD_REQUEST);
+            LOGGER.error(e);
         }      
         return JsonUtil.dataToJson(result);
     }; 
@@ -133,8 +139,10 @@ public class AdminController {
             user.setAdminprivilege(Boolean.parseBoolean(request.queryParams("adminprivilege")));
             user.update();
             obj.put("Result", "OK");
+            response.status(HTTP_OK);
         } catch (Exception ex) {
             obj.put("Result", "ERROR");
+            response.status(HTTP_BAD_REQUEST);
             LOGGER.error(ex);
         }      
         return obj.toJSONString();
@@ -151,8 +159,10 @@ public class AdminController {
             user.setId(Integer.parseInt(request.queryParams("id")));
             user.delete();
             obj.put("Result", "OK");
+            response.status(HTTP_OK);
         } catch (Exception ex) {
             obj.put("Result", "ERROR");
+            response.status(HTTP_BAD_REQUEST);
             LOGGER.error(ex);
         }      
         return obj.toJSONString();
@@ -179,10 +189,10 @@ public class AdminController {
    
         } catch (Exception e) {
             LOGGER.error("Can't write user image file  : ",e);
+            response.status(HTTP_BAD_REQUEST);
             return "upload failed";
         }
-
-        //LOGGER.info("Uploaded file '" + getFileName(request.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
+        response.status(HTTP_OK);
         return "upload successful";
     };   
     
@@ -207,8 +217,10 @@ public class AdminController {
    
         } catch (Exception e) {
             LOGGER.error("Can't write background image file  : ",e);
+            response.status(HTTP_BAD_REQUEST);
             return "upload failed";
         }
+        response.status(HTTP_OK);
         return "upload successful";
     }; 
 }
