@@ -37,8 +37,8 @@ public class AdminController {
         Map<String, Object> model = new HashMap<>();
             model.put("Botrequestcounter", BotController.getBotrequestcounter());
             model.put("Translatencounter", BotController.getTranslatencounter());
-            model.put("Majarooms", majabot.getRoomamount());
-            model.put("Bankdemorooms", bankdemobot.getRoomamount());
+            model.put("Majarooms", majabot.getMySparkrooms().size());
+            model.put("Bankdemorooms", bankdemobot.getMySparkrooms().size());
             model.put("SystemUpTime", SystemConfig.getSystemUpTime());
             model.put("UsedMemory", SystemConfig.getSystemUsedMemory());
             model.put("SystemName", SystemConfig.getSystemName());

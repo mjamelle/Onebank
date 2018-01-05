@@ -17,6 +17,7 @@
 package app.util;
 
 import com.ciscospark.*;
+import lombok.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,16 +31,16 @@ import org.apache.logging.log4j.Logger;
 
 public class CiscoSpark {
     
-    public static final Logger LOGGER = LogManager.getLogger();
-    
-    final private URL SPARK_API_URL = SystemConfig.getSparkApiUrl();
-    //final private String MAJA_MESSAGE_WEBHOOK = "Maja Webhook";
-    final static String WEBHOOKMESSAGELINK = SystemConfig.getWebhookMessageLink();
-    final static String WEBHOOKROOMSLINK = SystemConfig.getWebhookRoomsLink();
-    final private Spark ciscospark;
-    private String webhookName;
-    private List<Room> mySparkrooms = new ArrayList();
-    private List<Webhook> myWebhooks = new ArrayList();    
+            public static final Logger LOGGER = LogManager.getLogger();
+
+            final private URL SPARK_API_URL = SystemConfig.getSparkApiUrl();
+            //final private String MAJA_MESSAGE_WEBHOOK = "Maja Webhook";
+            final static String WEBHOOKMESSAGELINK = SystemConfig.getWebhookMessageLink();
+            final static String WEBHOOKROOMSLINK = SystemConfig.getWebhookRoomsLink();
+            final private Spark ciscospark;
+@Getter     private String webhookName;
+@Getter     private List<Room> mySparkrooms = new ArrayList();
+@Getter     private List<Webhook> myWebhooks = new ArrayList();    
 
     public CiscoSpark(String accessToken, String webhookName) throws MalformedURLException, URISyntaxException {
         this.webhookName = webhookName;
@@ -55,22 +56,6 @@ public class CiscoSpark {
 
         LOGGER.info("iniSpark successful AT : " + accessToken);
     }    
-/*
-    public void ciscoSparkIni (String accessToken) throws MalformedURLException, URISyntaxException {
-        
-         // Initialize the Spark client
-        ciscospark = Spark.builder()
-        .baseUrl(SPARK_API_URL.toURI())
-        .accessToken(accessToken)
-        .build();
-        
-        //load rooms into array
-        iniRooms ();
-        iniWebhooks();
-
-        LOGGER.info("iniSpark successful AT : " + accessToken);
-    }
-    */
     
     private void iniRooms ()  {
         
@@ -89,12 +74,8 @@ public class CiscoSpark {
         Room receive = new Room();
         receive = ciscospark.rooms().path("/"+id, Room.class).get();
         mySparkrooms.add(receive);
-        LOGGER.info("addRoom : " + receive.getTitle());    
-    };
-    
-    public int getRoomamount ()  {  
-        return mySparkrooms.size();
-    };   
+        LOGGER.info("addRoom in " + webhookName + " Title : " + receive.getTitle());    
+    };  
         
     private void iniWebhooks () throws MalformedURLException, URISyntaxException {
         
@@ -145,12 +126,7 @@ public class CiscoSpark {
                 ciscospark.webhooks().post(webhook);    
             }
     }; 
-    
-    public int getWebhookscounter ()  {  
-        return myWebhooks.size();
-    };  
-    
-       
+        
     public Message getMessage(String id) {
         Message receive = new Message();
         receive = ciscospark.messages().path("/"+ id, Message.class).get();

@@ -21,7 +21,7 @@ public class RestController {
         //load config into JSONObject
         JSONObject obj = new JSONObject();
         obj.put("Botrequest", BotController.getBotrequestcounter());
-        obj.put("Rooms", majabot.getRoomamount());
+        obj.put("Rooms", majabot.getMySparkrooms().size());
         LOGGER.debug("/rest/config Web response : " + obj.toJSONString());
         return obj.toJSONString();
     };

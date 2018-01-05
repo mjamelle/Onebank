@@ -1,5 +1,7 @@
 package app.bot;
 
+import static app.Application.bankdemobot;
+import static app.Application.majabot;
 import spark.*; 
 import lombok.*;
 import static app.util.LinkPath.Web.*;
@@ -8,7 +10,6 @@ import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 import java.io.StringReader;
-import java.net.HttpURLConnection;
 import static java.net.HttpURLConnection.*;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -41,11 +42,15 @@ public class BotController {
         try {
            ObjectMapper mapper = new ObjectMapper();
            WebhookEvent webhook = mapper.readValue(request.body(), WebhookEvent.class);
+           //switch to the right Bot and add the room based on the ID
+           if (webhook.getName().equals(majabot.getWebhookName())) majabot.addRoom(webhook.getData().getId());
+           if (webhook.getName().equals(bankdemobot.getWebhookName())) bankdemobot.addRoom(webhook.getData().getId());
+           
         } catch (Exception e) {
            LOGGER.error(e);
            response.status(HTTP_BAD_REQUEST); // Hey, you did not send a valid request!
            return "";            
-        }       
+        }
         response.status(HTTP_OK);
         response.type("application/json; charset=utf-8");
         return "";
