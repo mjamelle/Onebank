@@ -34,6 +34,7 @@ public class LinkPath {
 
     public static class Template {
         public final static String INDEX = "/velocity/index/index.vm";
+        public final static String INDEXLOGIN = "/velocity/index/index_login.vm";
         public final static String CONTACT = "/velocity/contact/contact.vm";
         public final static String CONSULTANT = "/velocity/consultant/consultant.vm";
         public final static String IMMO_BOT = "/velocity/consultant/immobilien_bot.vm";
