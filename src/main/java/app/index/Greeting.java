@@ -16,18 +16,18 @@
  */
 package app.index;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalTime;
+import java.time.ZoneId;
 
 /**
  *
  * @author mjamelle
  */
 public class Greeting {
-    LocalDateTime  time; 
+    LocalTime  time; 
 
     public Greeting() {
-        this.time = LocalDateTime.now();
+        this.time = LocalTime.now(ZoneId.of("Europe/Berlin"));
     }
     
     public String getGreeting() {
