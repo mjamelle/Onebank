@@ -154,5 +154,18 @@ public class User {
     } catch (Exception e) {
         LOGGER.error(e);
     } return null;    
-  }     
+  } 
+  
+  public String getPersonalAdvisorName() {
+    try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM users where id = :id";
+        User user = con.createQuery(sql)
+        .addParameter("id", personeladvisor)
+        .executeAndFetchFirst(User.class);
+        return user.getDisplayName();
+    } catch (Exception e) {
+        LOGGER.error(e);
+    } return null;    
+  }
+  
 }

@@ -12,10 +12,10 @@
                         
                         <div class="mbr-author card-footer lead" style="margin-top:40">
                         <div  class="mbr-author-img" style="margin-bottom:10"> <img src="../assets/images/person.jpeg" alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mich anzurufen"></div>
-                        <p >Mein Name ist Patrick Glanz und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie in sämtlichen Fragen. 
+                        <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie in sämtlichen Fragen. 
                         Klicken sie auf die Taste, um mich zu kontaktieren
                         </p>
-                        <div style="height: 350px;  margin-left: 150; margin-right: 150;   border: solid black 2px"></div>
+                        <div style="height: 350px;  margin-left: 150; margin-right: 150; margin-bottom: 30; border: solid black 2px"></div>
                         </div>
                         
         </div>
