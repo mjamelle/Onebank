@@ -37,9 +37,10 @@ $(document).ready(function () {
             },
             fields: {
                 id: {
+                    title: 'ID',
                     key: true,
                     create: false,
-                    list: false
+                    list: true
                 },
                 givenName: {
                     title: 'Vorname',
@@ -72,6 +73,10 @@ $(document).ready(function () {
                     list: true,
                     title: 'Bezeichnung',
                     width: '50%'
+                },
+                personeladvisor: {
+                    title: 'Pers. Berater ID',
+                    list: false
                 },
                 jabber_use: {
                     title: 'Jabber Berater',
@@ -187,7 +192,8 @@ $(document).ready(function () {
                 function: selectedUserRecord.function,
                 jabber_use: selectedUserRecord.jabber_use,
                 spark_use: selectedUserRecord.spark_use,
-                adminprivilege: selectedUserRecord.adminprivilege
+                adminprivilege: selectedUserRecord.adminprivilege,
+                personeladvisor: selectedUserRecord.personeladvisor
             }
         });
     }

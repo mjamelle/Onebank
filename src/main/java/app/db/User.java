@@ -58,8 +58,8 @@ public class User {
   public void save() {
     try(Connection con = DB.sql2o.open()) {
         String sql = "INSERT INTO users(givenName, surName, email, jabber_use, spark_use, adminprivilege, photolink,"
-          + "username, password, function, oauthAccessToken, oauthRefreshToken) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
-          + " :photolink, :username, :password, :function, :oauthAccessToken, :oauthRefreshToken)";
+          + "username, password, function, oauthAccessToken, oauthRefreshToken, personeladvisor) VALUES (:givenName, :surName, :email, :jabber_use, :spark_use, :adminprivilege,"
+          + " :photolink, :username, :password, :function, :oauthAccessToken, :oauthRefreshToken, :personeladvisor)";
         System.out.println("this.oauthAccessToken : " + this.oauthAccessToken);
         this.id = (int) con.createQuery(sql, true)
         .addParameter("givenName", this.givenName)
@@ -74,6 +74,7 @@ public class User {
         .addParameter("function", this.function)
         .addParameter("oauthAccessToken", this.oauthAccessToken)
         .addParameter("oauthRefreshToken", this.oauthRefreshToken)
+        .addParameter("personeladvisor", this.personeladvisor)        
         .executeUpdate()
         .getKey();
         
@@ -98,7 +99,7 @@ public class User {
     try(Connection con = DB.sql2o.open()) {
         String sql = "UPDATE users SET givenName = :givenName, surName = :surName, email = :email, jabber_use = :jabber_use,"
                 + "spark_use = :spark_use, adminprivilege = :adminprivilege, function = :function,"
-                + "username = :username, password= :password";
+                + "username = :username, password= :password, personeladvisor= :personeladvisor";
         if (this.photolink != null) sql = sql + ", photolink = :photolink"; //fix when table is updated and link is null
         sql = sql + " WHERE id = :id";
         Query query = con.createQuery(sql)
@@ -111,7 +112,8 @@ public class User {
           .addParameter("username", this.username)
           .addParameter("password", this.password)
           .addParameter("function", this.function) 
-          .addParameter("id", id);
+          .addParameter("personeladvisor", this.personeladvisor)      
+          .addParameter("id", id);       
     if (this.photolink != null) query.addParameter("photolink", this.photolink); //fix when table is updated and link is null        
       query.executeUpdate();
     } catch (Exception e) {

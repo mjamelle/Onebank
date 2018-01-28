@@ -106,6 +106,7 @@ public class AdminController {
             user.setJabber_use(Boolean.parseBoolean(request.queryParams("jabber_use")));
             user.setSpark_use(Boolean.parseBoolean(request.queryParams("spark_use")));
             user.setAdminprivilege(Boolean.parseBoolean(request.queryParams("adminprivilege")));
+            user.setPersoneladvisor(Integer.parseInt(request.queryParams("personeladvisor")));
             user.save();
             result.setRecord(User.find(user.getId()));
             result.setResult("OK");
@@ -137,6 +138,7 @@ public class AdminController {
             user.setJabber_use(Boolean.parseBoolean(request.queryParams("jabber_use")));
             user.setSpark_use(Boolean.parseBoolean(request.queryParams("spark_use")));
             user.setAdminprivilege(Boolean.parseBoolean(request.queryParams("adminprivilege")));
+            user.setPersoneladvisor(Integer.parseInt(request.queryParams("personeladvisor")));
             user.update();
             obj.put("Result", "OK");
             response.status(HTTP_OK);
