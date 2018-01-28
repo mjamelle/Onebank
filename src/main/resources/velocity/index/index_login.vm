@@ -11,8 +11,13 @@
                         <h1 class="text-md-left">Guten Morgen, $!currentUser.getGivenName()</h1>
                         
                         <div class="mbr-author card-footer lead" style="margin-top:40">
-                        <div  class="mbr-author-img" style="margin-bottom:10"> <img src="../assets/images/person.jpeg" alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mich anzurufen"></div>
-                        <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie in sämtlichen Fragen. 
+                        <div  class="mbr-author-img" style="margin-bottom:10"> <img src=
+                                      #if ($!currentUser.getPersonalAdvisorPhotoLink() == '')
+                                        "../assets/images/person.jpeg"
+                                        #else "$!currentUser.getPersonalAdvisorPhotoLink()"
+                                      #end
+                                      alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mich anzurufen"></div>
+                        <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie. 
                         Klicken sie auf die Taste, um mich zu kontaktieren
                         </p>
                         <div style="height: 350px;  margin-left: 150; margin-right: 150; margin-bottom: 30; border: solid black 2px"></div>

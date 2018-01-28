@@ -168,4 +168,16 @@ public class User {
     } return null;    
   }
   
+  public String getPersonalAdvisorPhotoLink() {
+    try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM users where id = :id";
+        User user = con.createQuery(sql)
+        .addParameter("id", personeladvisor)
+        .executeAndFetchFirst(User.class);
+        return user.photolink;
+    } catch (Exception e) {
+        LOGGER.error(e);
+    } return null;    
+  }  
+  
 }
