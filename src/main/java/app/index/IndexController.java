@@ -13,6 +13,8 @@ public class IndexController {
         logger.info(LinkPath.Web.INDEX + " get request");
         logger.debug(LinkPath.Web.INDEX + " get request : " + request.body());
         Map<String, Object> model = new HashMap<>();
+        Greeting greeting = new Greeting();
+        model.put("greeting", greeting);
         //call right page dependent of user login
         String callpage = (request.session().attribute("currentUser") == null) ? callpage = LinkPath.Template.INDEX : LinkPath.Template.INDEXLOGIN;
         
