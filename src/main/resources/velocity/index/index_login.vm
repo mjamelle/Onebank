@@ -26,7 +26,7 @@
                                 <a href="#" class="btn btn-primary btn-danger" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
                             </div>
                             <div class="large-6 columns">    
-                                <div style="height: 350px;  margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px">Under Construction!!!</div>
+                                <div style="height: 350px; width: 400px; margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px"></div>
                             </div>
                         </div>
                         </div>
