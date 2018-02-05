@@ -5,32 +5,30 @@
     <section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-1">
         <div style="margin-top: 100; margin-left: 50; margin-right: 50">
 
+            <h1 class="text-md-left">$!greeting.getGreeting(), $!currentUser.getGivenName()</h1>
 
+            <div class="mbr-author card-footer lead" style="margin-top:40">
+                <div  class="mbr-author-img" style="margin-bottom:10"> <img src=
+                    #if ($!currentUser.getPersonalAdvisorPhotoLink() == '')
+                      "../assets/images/person.jpeg"
+                      #else "$!currentUser.getPersonalAdvisorPhotoLink()"
+                    #end
+                    alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mich anzurufen">
+                </div>
+            <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie. 
+            Klicken sie auf die Taste, um mich zu kontaktieren
+            </p>
+            <div class="row">
+                <div class="col-4">
+                    <a href="#" class="btn btn-primary btn-success" data-toggle="tooltip" title="Klicken, um mich anzurufen"><span class="glyphicon glyphicon-facetime-video"></span> Anrufen</a>
+                    <a href="#" class="btn btn-primary btn-danger" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
+                </div>
+                <div class="col-8">    
+                    <div style="height: 350px; width: 400px;  margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px"></div>
+                </div>
+            </div>
+            </div>
 
-                        <h1 class="text-md-left">$!greeting.getGreeting(), $!currentUser.getGivenName()</h1>
-                        
-                        <div class="mbr-author card-footer lead" style="margin-top:40">
-                            <div  class="mbr-author-img" style="margin-bottom:10"> <img src=
-                                #if ($!currentUser.getPersonalAdvisorPhotoLink() == '')
-                                  "../assets/images/person.jpeg"
-                                  #else "$!currentUser.getPersonalAdvisorPhotoLink()"
-                                #end
-                                alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mich anzurufen">
-                            </div>
-                        <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie. 
-                        Klicken sie auf die Taste, um mich zu kontaktieren
-                        </p>
-                        <div class="row">
-                            <div class="large-6 columns">
-                                <a href="#" class="btn btn-primary btn-success" data-toggle="tooltip" title="Klicken, um mich anzurufen"><span class="glyphicon glyphicon-facetime-video"></span> Anrufen</a>
-                                <a href="#" class="btn btn-primary btn-danger" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
-                            </div>
-                            <div class="large-6 columns">    
-                                <div style="height: 350px; width: 400px; margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px"></div>
-                            </div>
-                        </div>
-                        </div>
-                        
         </div>
                        
         <div class="mbr-arrow mbr-arrow-floating" aria-hidden="true"><a href="#footer1-2"><i class="mbr-arrow-icon"></i></a></div>
