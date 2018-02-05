@@ -23,9 +23,9 @@
                     <a href="#" class="btn btn-primary btn-success" data-toggle="tooltip" title="Klicken, um mich anzurufen"><span class="glyphicon glyphicon-facetime-video"></span> Anrufen</a>
                     <a href="#" class="btn btn-primary btn-danger" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
                 </div>
-                <div class="col-8">    
-                    <div style="height: 350px; width: 400px;  margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px"></div>
-                </div>
+                   
+                    <div class="col-8" style="height: 350px; width: 400px;  margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px"></div>
+                
             </div>
             </div>
 
