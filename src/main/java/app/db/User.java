@@ -180,6 +180,18 @@ public class User {
     } catch (Exception e) {
         LOGGER.error(e);
     } return null;    
-  }  
+  }
+
+  public String getPersonalAdvisorEmail() {
+    try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM users where id = :id";
+        User user = con.createQuery(sql)
+        .addParameter("id", personeladvisor)
+        .executeAndFetchFirst(User.class);
+        return user.email;
+    } catch (Exception e) {
+        LOGGER.error(e);
+    } return null;    
+  }
   
 }

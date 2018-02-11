@@ -15,23 +15,31 @@
                     #end
                     alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mich anzurufen">
                 </div>
-            <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie. 
-            Klicken sie auf die Taste, um mich zu kontaktieren
-            </p>
-            <div class="row">
-                <div class="col-4">
-                    <a href="#" class="btn btn-primary btn-success" data-toggle="tooltip" title="Klicken, um mich anzurufen"><span class="glyphicon glyphicon-facetime-video"></span> Anrufen</a>
-                    <a href="#" class="btn btn-primary btn-danger" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
+                <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie. 
+                Klicken sie auf die Taste, um mich zu kontaktieren
+                </p>
+                <div class="row">
+                    <div class="col-4">
+                        <a id="dial" class="btn btn-primary btn-success" data-toggle="tooltip" title="Klicken, um mich anzurufen"><span class="glyphicon glyphicon-facetime-video"></span> Anrufen</a>
+                        <a id="hangup" class="btn btn-primary btn-danger" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
+                    </div>
+                    <!--Testimplementation for Spark SDK Calling function --->
+                    <Input id="access-token" hidden="false" value="$!currentUser.getOauthAccessToken()">
+                    <Input id="dialer" hidden="true" value="$!currentUser.getPersonalAdvisorEmail()">
+                    <p id="connection-status">disconnected</p>
+                    Eigenansicht
+                    <div class="col-8" style="height: 100px; width: 140px;  margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px">
+                        <video id="self-view" muted autoplay style="height:inherit ; width:inherit>"</video>                       
+                    </div>
+                      <div style="height: 150px; width: 150px">
+                        <audio id="remote-view-audio" autoplay></audio>
+                        <video id="remote-view-video" autoplay></video>
+                      </div>
                 </div>
-                   
-                    <div class="col-8" style="height: 350px; width: 400px;  margin-left: 50; margin-right: 50; margin-bottom: 30; border: solid black 2px"></div>
-                
             </div>
-            </div>
-
         </div>
                        
-        <div class="mbr-arrow mbr-arrow-floating" aria-hidden="true"><a href="#footer1-2"><i class="mbr-arrow-icon"></i></a></div>
+    <div class="mbr-arrow mbr-arrow-floating" aria-hidden="true"><a href="#footer1-2"><i class="mbr-arrow-icon"></i></a></div>
 
     </section>
 
@@ -95,4 +103,9 @@
             </div>
         </div>       
     </section>
+    <!--Testimplementation for Spark SDK Calling function --->
+        <!-- /sparksdk_bundle.js is the bundled CiscoSpark JavaScript SDK -->
+        <script src="js/sparksdk_bundle.js"></script>
+        <!-- sparksdk_app.js is your application code -->
+        <script src="js/sparksdk_app.js"></script>
 #end
