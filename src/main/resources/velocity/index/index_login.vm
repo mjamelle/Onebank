@@ -2,12 +2,12 @@
 #@mainLayout()
     
     <section class="engine"><a rel="external" href="http://www.cisco.com">cisco.com</a></section>
-    <section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-1">
+    <section class="mbr-section mbr-section-hero mbr-section-full mbr-parallax-background mbr-section-with-arrow mbr-after-navbar" id="header1-1" style="background-image: url(../assets/images/Fruehling.jpg)">
         <div style="margin-top: 100; margin-left: 50; margin-right: 50">
 
-            <h1 class="text-md-left">$!greeting.getGreeting(), $!currentUser.getGivenName()</h1>
+            <h1 class="text-md-left" style="color: white; font-weight: bold">$!greeting.getGreeting(), $!currentUser.getGivenName()</h1>
 
-            <div class="mbr-author card-footer lead" style="margin-top:40">
+            <div class="mbr-author card-footer lead" style="margin-top:30; margin-bottom:30">
                 <div  class="mbr-author-img" style="margin-bottom:10"> <img src=
                     #if ($!currentUser.getPersonalAdvisorPhotoLink() == '')
                       "../assets/images/person.jpeg"
@@ -16,24 +16,22 @@
                     alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mich anzurufen">
                 </div>
                 <p >Mein Name ist $!currentUser.getPersonalAdvisorName() und ich bin ihr persönlicher Ansprechpartner. Gerne berate ich sie. 
-                Klicken sie auf die Taste, um mich zu kontaktieren
+                Klicken sie auf die grüne Anruftaste , um mich zu kontaktieren
                 </p>
                 <div class="row">
                     <div class="col-4">
-                        <a id="dial" class="btn btn-primary btn-success" data-toggle="tooltip" title="Klicken, um mich anzurufen"><span class="glyphicon glyphicon-facetime-video"></span> Anrufen</a>
-                        <a id="hangup" class="btn btn-primary btn-danger" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
+                        <a id="dial" class="btn btn-primary btn-success" style="color: black; font-weight: bold; font-style: normal; font-family: 'Raleway', sans-serif;" data-toggle="tooltip" title="Klicken, um mich anzurufen"><span class="glyphicon glyphicon-facetime-video"></span> Anrufen</a>
+                        <a id="hangup" class="btn btn-primary btn-danger" style="color: black; font-weight: bold; font-style: normal; font-family: 'Raleway', sans-serif;" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
                     </div>
                     <!--Testimplementation for Spark SDK Calling function --->
                     <Input id="access-token" hidden="false" value="$!currentUser.getOauthAccessToken()">
                     <Input id="dialer" hidden="true" value="$!currentUser.getPersonalAdvisorEmail()">
-                    <p id="connection-status">disconnected</p>
-
-                    Eigenansicht
-                        <div style="height: 100px; width: 140px;  margin-left: 50; margin-right: 50; margin-bottom: 30">
+                    <p style="float: left;">Eigenansicht</p>
+                        <div style="height: 120px; width: 160px; float: left; margin-left: 50; margin-right: 50; margin-bottom: 30">
                             <video id="self-view" muted autoplay style="height:inherit ; width:inherit ; border: solid black 2px"</video>                       
                         </div>
-                        Berateransicht
-                        <div style="height: 300px; width: 440px; margin-left: 50; margin-right: 50; margin-bottom: 30">
+                    <p style="float: left;">Berateransicht</p>
+                        <div style="height: 272x; width: 480px; float: left; margin-left: 50; margin-right: 50; margin-bottom: 30">
                             <audio id="remote-view-audio" autoplay></audio>
                             <video id="remote-view-video" autoplay style="height:inherit ; width:inherit ; border: solid black 2px"></video>
                         </div>
@@ -69,7 +67,7 @@
         </div>
     </section>
 
-    <section class="mbr-section mbr-section-hero mbr-section-full header2 mbr-parallax-background" id="header2-3" style="background-image: url(../assets/images/landscape.jpg);">
+    <section class="mbr-section mbr-section-hero mbr-section-full header2 mbr-parallax-background" id="header2-3" style="background-image: url(../assets/images/landscape.jpg)">
 
         <div class="mbr-overlay" style="opacity: 0.3; background-color: rgb(0, 0, 0);">
         </div>

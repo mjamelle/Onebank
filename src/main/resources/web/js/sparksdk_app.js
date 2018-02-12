@@ -87,7 +87,7 @@ function connect() {
         // really matter for the example
         document.body.classList.add('listening');
 
-        document.getElementById('connection-status').innerHTML = 'connected';
+        console.info('Spark SDK connected');
       })
       // This is a terrible way to handle errors, but anything more specific is
       // going to depend a lot on your app
