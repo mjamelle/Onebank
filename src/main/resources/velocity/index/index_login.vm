@@ -106,7 +106,7 @@
     </section>
     <!--Testimplementation for Spark SDK Calling function --->
         <!-- /sparksdk_bundle.js is the bundled CiscoSpark JavaScript SDK -->
-        <script src="js/sparksdk_bundle.js"></script>
+        <script src="../js/sparksdk_bundle.js"></script>
         <!-- sparksdk_app.js is your application code -->
-        <script src="js/sparksdk_app.js"></script>
+        <script src="../js/sparksdk_app.js"></script>
 #end
