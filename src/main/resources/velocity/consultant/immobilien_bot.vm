@@ -28,7 +28,7 @@
                                 class="ciscospark-space"
                                 data-toggle="ciscospark-space"
                                 data-access-token="$data-access-token"
-                                data-to-person-email="BankDemoBot@sparkbot.io"
+                                data-to-person-email="BankDemoBot@webex.bot"
                                 />
                         </div>
                         <div class="mbr-author card-footer">
