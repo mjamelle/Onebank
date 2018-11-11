@@ -1,2 +1,2 @@
 # Onebank
-Project to showcase differente Cisco SPARK integrations for different vertical industies.
+Project to showcase several Cisco Teams integrations for different vertical industies.
