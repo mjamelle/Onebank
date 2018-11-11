@@ -57,6 +57,8 @@ public class SystemConfig {
         @Getter @Setter    private static String oauthClientId;
         @Getter @Setter    private static String oauthClientSecret;
         @Getter @Setter    private static URL    oauthRedirectURI;
+        @Getter @Setter    private static String guestIssuerID;
+        @Getter @Setter    private static String guestIssuerSharedSecret;
 
     
     public static int getwebUserSessiontimeout() {
@@ -128,7 +130,9 @@ public class SystemConfig {
                 oauTokenLocation = new URL(prop.getProperty("OauthTokenLocation"));
                 oauthClientId = prop.getProperty("OauthClientId");
                 oauthClientSecret = prop.getProperty("OauthClientSecret");
-                oauthRedirectURI = new URL(prop.getProperty("OauthRedirectURI"));                
+                oauthRedirectURI = new URL(prop.getProperty("OauthRedirectURI"));
+                guestIssuerID = prop.getProperty("GuestIssuerID");
+                guestIssuerSharedSecret = prop.getProperty("GuestIssuerSharedSecret");
                 
 	} catch (IOException ex) {
             LOGGER.error(ex);                
