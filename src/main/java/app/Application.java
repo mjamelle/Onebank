@@ -79,7 +79,7 @@ public class Application {
         //-------Set up before-filters (called before each get/post)------------
         //before("*",                  Filters.addTrailingSlashes);
         before("*",                             Filters.handleLocaleChange);
-        before(LinkPath.Web.INDEX,              Filters.countSessions);  //Counts Sessions only through Webbrowser request on index page
+        before("*",                             Filters.newSessions);  //initialize new Sessions with a session counter and guest issuer token
         before(LinkPath.Web.SLASH,              Filters.forwardtoIndex);
         
         //-----------------Set up Links and point to the controllers------------
