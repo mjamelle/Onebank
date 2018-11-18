@@ -2,13 +2,21 @@ package app.util;
 
 import spark.*;
 import static app.util.RequestUtil.*;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTCreationException;
+import java.nio.charset.StandardCharsets;
+import org.apache.commons.codec.binary.Base64;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import lombok.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Filters {
     @Getter private static int webSessions = 0;
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     // If a user manually manipulates paths and forgets to add
     // a trailing slash, redirect the user to the correct path
@@ -39,8 +47,10 @@ public class Filters {
         response.header("Content-Encoding", "gzip");
     };
     
-    public static Filter countSessions = (Request request, Response response) -> {
-        if (request.session().isNew()) webSessions++;
+    public static Filter newSessions = (Request request, Response response) -> {
+        if (request.session().isNew()) {
+            webSessions++;
+        }
     };
 
 }
