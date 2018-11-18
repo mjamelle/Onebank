@@ -15,6 +15,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.oltu.oauth2.client.OAuthClient;
@@ -182,15 +184,20 @@ public class LoginController {
             String token;
             Gson gson = new Gson();
 
-            java.sql.Date expiresAt = new java.sql.Date(2018,11,17);
+            Date expiresAt = new java.sql.Date(2018,11,17);
+            String guestUserID = String.valueOf(request.session().creationTime());
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter df;
+            df = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
+            String anzeigeKontaktZeit = now.format(df);
 
             byte[] decodedSecret = org.apache.commons.codec.binary.Base64.decodeBase64(SystemConfig.getGuestIssuerSharedSecret());
-
+            
             try {
                 Algorithm algorithm = Algorithm.HMAC256(decodedSecret);
                 token = JWT.create()
-                    .withSubject("Guest_User_Test7")
-                    .withClaim("name", "Onebank Kundenanfrage")
+                    .withSubject("Guest_User_" + guestUserID)
+                    .withClaim("name", "Onebank Kundenanfrage vom " + anzeigeKontaktZeit)
                     .withIssuer(SystemConfig.getGuestIssuerID())
                     .withExpiresAt(expiresAt)    
                     .sign(algorithm);
