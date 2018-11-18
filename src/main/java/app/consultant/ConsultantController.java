@@ -41,7 +41,7 @@ public class ConsultantController {
         if (user != null) {
             dataaccesstoken = user.getOauthAccessToken();
         } else {
-            dataaccesstoken = SystemConfig.getSparkWidgetAccessToken();
+            dataaccesstoken = request.session().attribute("guestusertoken");
         }
         model.put("consultant", consultant);
         model.put("data-access-token", dataaccesstoken);
@@ -60,7 +60,7 @@ public class ConsultantController {
             dataaccesstoken = user.getOauthAccessToken();
         } else {
             // using mjamlle access token as an interims solution
-            dataaccesstoken = "ZWZjYmQ4YjctNDRjNS00ZjVjLWI0MDQtNWIzN2ZmNDg4ZjNhMDA1ZmY3NjYtYTA1";
+            dataaccesstoken = request.session().attribute("guestusertoken");
         }
         model.put("data-access-token", dataaccesstoken);
         return ViewUtil.render(request, model, LinkPath.Template.IMMO_BOT);
