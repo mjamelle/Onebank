@@ -205,11 +205,11 @@ public class LoginController {
 
                 GuestIssuerResponse issuerResponse = gson.fromJson(jsonReply, GuestIssuerResponse.class);
 
-                LOGGER.info("con.Response Message : " + con.getResponseMessage());
+                LOGGER.info("Webex Guest Login Response Message : " + con.getResponseMessage());
                 LOGGER.info("IssuerResponse.getToken : " + issuerResponse.getToken());
                 LOGGER.info("IssuerResponse.getExpiresIn : " + issuerResponse.getExpiresIn());
                 
-
+                //Store guest token in web session
                 request.session().attribute("guestusertoken", issuerResponse.getToken());                
 
             } catch (Exception e){
