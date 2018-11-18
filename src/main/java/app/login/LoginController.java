@@ -189,7 +189,7 @@ public class LoginController {
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter df;
             df = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");
-            String anzeigeKontaktZeit = now.format(df);
+            String showContactTime = now.format(df);
 
             byte[] decodedSecret = org.apache.commons.codec.binary.Base64.decodeBase64(SystemConfig.getGuestIssuerSharedSecret());
             
@@ -197,7 +197,7 @@ public class LoginController {
                 Algorithm algorithm = Algorithm.HMAC256(decodedSecret);
                 token = JWT.create()
                     .withSubject("Guest_User_" + guestUserID)
-                    .withClaim("name", "Onebank Kundenanfrage vom " + anzeigeKontaktZeit)
+                    .withClaim("name", "Onebank Kundenanfrage vom " + showContactTime)
                     .withIssuer(SystemConfig.getGuestIssuerID())
                     .withExpiresAt(expiresAt)    
                     .sign(algorithm);
