@@ -79,7 +79,8 @@ public class Application {
         //-------Set up before-filters (called before each get/post)------------
         //before("*",                  Filters.addTrailingSlashes);
         before("*",                             Filters.handleLocaleChange);
-        before("*",                             Filters.newSessions);  //initialize new Sessions with a session counter and guest issuer token
+        before("*",                             Filters.newSessions);  
+        before("*",                             LoginController.checkNewUser); //initialize new Sessions with guest issuer token
         before(LinkPath.Web.SLASH,              Filters.forwardtoIndex);
         
         //-----------------Set up Links and point to the controllers------------
