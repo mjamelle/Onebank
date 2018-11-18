@@ -43,7 +43,6 @@ public class SystemConfig {
         @Getter @Setter    private static URL    ServerURL;
         @Getter @Setter    private static String majaBotAccessToken;
         @Getter @Setter    private static String bankBotAccessToken;
-        @Getter @Setter    private static String sparkWidgetAccessToken;
         @Getter @Setter    private static String webhookMessageroute = "/webhook/messages"; 
         @Getter @Setter    private static String webhookRoomsroute = "/webhook/rooms";
         @Getter @Setter    private static String staticWebFileLocation = "/web";
@@ -117,7 +116,6 @@ public class SystemConfig {
                 ServerURL = new URL(prop.getProperty("ServerURL"));
                 majaBotAccessToken = prop.getProperty("MajaBotAccessToken");
                 bankBotAccessToken = prop.getProperty("BankBotAccessToken");
-                sparkWidgetAccessToken = prop.getProperty("SparkWidgetAccessToken");
                 staticWebFileLocation = prop.getProperty("StaticWebFileLocation");
                 webhookMessageroute = prop.getProperty("WebhookMessageroute");
                 webhookRoomsroute = prop.getProperty("WebhookRoomsroute");
@@ -162,7 +160,6 @@ public class SystemConfig {
             prop.setProperty("ServerURL", ServerURL.toString());
             prop.setProperty("MajaBotAccessToken", majaBotAccessToken);
             prop.setProperty("BankBotAccessToken", bankBotAccessToken);
-            prop.setProperty("SparkWidgetAccessToken", sparkWidgetAccessToken);
             prop.setProperty("StaticWebFileLocation", staticWebFileLocation);
             prop.setProperty("WebhookMessageroute", webhookMessageroute);
             prop.setProperty("WebhookRoomsroute", webhookRoomsroute);
