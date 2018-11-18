@@ -6,6 +6,15 @@ import app.util.*;
 import spark.*;
 import java.util.*;
 import static app.util.RequestUtil.*;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.google.gson.Gson;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.oltu.oauth2.client.OAuthClient;
@@ -165,6 +174,71 @@ public class LoginController {
         } catch (Exception e) {
             LOGGER.error(e);
         } return "";
+    }
+    
+    public static Filter checkNewUser = (Request request, Response response) -> {
+        if (request.session().isNew()) {
+
+            String token;
+            Gson gson = new Gson();
+
+            java.sql.Date expiresAt = new java.sql.Date(2018,11,17);
+
+            byte[] decodedSecret = org.apache.commons.codec.binary.Base64.decodeBase64(SystemConfig.getGuestIssuerSharedSecret());
+
+            try {
+                Algorithm algorithm = Algorithm.HMAC256(decodedSecret);
+                token = JWT.create()
+                    .withSubject("Guest_User_Test7")
+                    .withClaim("name", "Onebank Kundenanfrage")
+                    .withIssuer(SystemConfig.getGuestIssuerID())
+                    .withExpiresAt(expiresAt)    
+                    .sign(algorithm);
+                LOGGER.info("Calculated JWT : " + token);
+
+                URL url = new URL("https://api.ciscospark.com/v1/jwt/login");
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Authorization","Bearer " + token);
+                InputStream loginresponse = con.getInputStream();
+                String jsonReply = convertStreamToString(loginresponse);
+
+                GuestIssuerResponse issuerResponse = gson.fromJson(jsonReply, GuestIssuerResponse.class);
+
+                LOGGER.info("con.Response Message : " + con.getResponseMessage());
+                LOGGER.info("IssuerResponse.getToken : " + issuerResponse.getToken());
+                LOGGER.info("IssuerResponse.getExpiresIn : " + issuerResponse.getExpiresIn());
+                
+
+                request.session().attribute("guestusertoken", issuerResponse.getToken());                
+
+            } catch (Exception e){
+                LOGGER.error("Exception durring guest issuer request : " + e);
+            }
+            
+        }
+    };
+    
+        private static String convertStreamToString(InputStream is) {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            LOGGER.error("Error convertStreamToString  " + e);
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                LOGGER.error("Error convertStreamToString  " + e);
+            }
+        }
+        return sb.toString();
     }
 
 }
