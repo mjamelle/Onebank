@@ -1,18 +1,22 @@
 <html>
     <head>
- <!--     <link rel="stylesheet" href="https://code.s4d.io/widget-space/latest/main.css">
-      <script src="https://code.s4d.io/widget-space/latest/bundle.js"></script>  -->
+      <meta charset="utf8">
+     <!--- <script src="https://code.s4d.io/widget-space/latest/bundle.js"></script> 
+      <link rel="stylesheet" href="https://code.s4d.io/widget-space/latest/main.css"> -->
+      <script src="https://code.s4d.io/widget-space/production/bundle.js"></script>
       <link rel="stylesheet" href="https://code.s4d.io/widget-space/production/main.css">
+      
     </head>
     <body>
-      <div style="width: 600px; height: 400px;">
-        <main
-        class="ciscospark-space"
-        data-toggle="ciscospark-space"
-        data-access-token="$data-access-token"
-        data-to-person-email="$consultant.getEmail()"
-        />
-      </div>
-      <script src="https://code.s4d.io/widget-space/production/bundle.js"></script>
+        <div id="my-webexteams-widget" style="width: 500px; height: 500px;"/>
+        <script>
+          var widgetEl = document.getElementById('my-webexteams-widget');
+          // Init a new widget
+          ciscospark.widget(widgetEl).spaceWidget({
+            accessToken: '$data-access-token',
+            destinationType: 'email',
+            destinationId: '$consultant.getEmail()'
+          });
+        </script>    
     </body>
 </html>
