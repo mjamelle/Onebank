@@ -8,7 +8,7 @@
       
     </head>
     <body>
-        <div id="my-webexteams-widget" style="width: 500px; height: 500px;"/>
+        <div id="my-webexteams-widget" style="width: 600px; height: 400px;"/>
         <script>
           var widgetEl = document.getElementById('my-webexteams-widget');
           // Init a new widget
