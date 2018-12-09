@@ -14,18 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+  
+//Name der Kunden-Support-Vorlage: Onebank
+//Name der Organisation: mjamelle.webexsandbox.co
   (function(document, script) {
   var bubbleScript = document.createElement(script);
   e = document.getElementsByTagName(script)[0];
   bubbleScript.async = true;
   bubbleScript.CiscoAppId =  'cisco-chat-bubble-app';
   bubbleScript.DC = 'produs1.ciscoccservice.com';
-  bubbleScript.orgId = '0910066f-d089-4edd-b2f3-5d62b691e7bf';
-  bubbleScript.templateId = '11c13360-436d-11e7-a5c5-05f7f4ec4979';
+  bubbleScript.orgId = 'ced45728-4485-4c4f-8206-2ad6779be802';
+  bubbleScript.templateId = '9aca0e40-fbac-11e8-a413-af0e771e9299';
   bubbleScript.src = 'https://bubble.produs1.ciscoccservice.com/bubble.js';
   bubbleScript.type = 'text/javascript';
   bubbleScript.setAttribute('charset', 'utf-8');
   e.parentNode.insertBefore(bubbleScript, e);
   })(document, 'script');
-
