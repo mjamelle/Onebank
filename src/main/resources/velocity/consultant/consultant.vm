@@ -41,10 +41,10 @@
                                         "../assets/images/person.jpeg"
                                         #else "$!user.getPhotolink()"
                                       #end
-                                      alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mit mir zu 'sparken'"></div>
+                                      alt="Photo missing" class="img-circle" data-toggle="tooltip" title="Klicken, um mit mir zu reden"></div>
                                 #end
                                 #if ($!user.isJabber_use())
-                                <div ng-click="clickToOpenJG('$!user.getEmail()')" class="mbr-author-img"><img src="$!user.getPhotolink()" class="img-circle" data-toggle="tooltip" title="Klicken, um mit mir zu 'jabbern'"></div>
+                                <div ng-click="clickToOpenJG('$!user.getEmail()')" class="mbr-author-img"><img src="$!user.getPhotolink()" class="img-circle" data-toggle="tooltip" title="Klicken, um mit mir zu reden"></div>
                                 #end
                                 <div class="mbr-author-name">$!user.getGivenName()  $!user.getSurName()</div>
                                 <small class="mbr-author-desc">Berater</small>
