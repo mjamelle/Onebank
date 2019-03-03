@@ -57,7 +57,8 @@ public class ConsultantController {
         String dataaccesstoken;
         User user = request.session().attribute("currentUser");
         if (user != null) {
-            dataaccesstoken = user.getOauthAccessToken();
+            //dataaccesstoken = user.getOauthAccessToken();
+            dataaccesstoken = request.session().attribute("guestusertoken");
         } else {
             // using mjamlle access token as an interims solution
             dataaccesstoken = request.session().attribute("guestusertoken");

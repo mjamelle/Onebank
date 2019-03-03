@@ -17,6 +17,8 @@ public class IndexController {
         model.put("greeting", greeting);
         //call right page dependent of user login
         String callpage = (request.session().attribute("currentUser") == null) ? callpage = LinkPath.Template.INDEX : LinkPath.Template.INDEXLOGIN;
+        //extension for guest token
+        model.put("data-access-token", request.session().attribute("guestusertoken"));
         
         return ViewUtil.render(request, model, callpage);
     };

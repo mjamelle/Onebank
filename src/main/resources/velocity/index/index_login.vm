@@ -24,7 +24,7 @@
                         <a id="hangup" class="btn btn-primary btn-danger" style="color: black; font-weight: bold; font-style: normal; font-family: 'Raleway', sans-serif;" data-toggle="tooltip" title="Klicken, um aufzulegen"><span class="glyphicon glyphicon-facetime-video"></span> Auflegen</a>
                     </div>
                     <!--Testimplementation for Spark SDK Calling function --->
-                    <Input id="access-token" hidden="false" value="$!currentUser.getOauthAccessToken()">
+                    <Input id="access-token" hidden="false" value="$data-access-token">
                     <Input id="dialer" hidden="true" value="$!currentUser.getPersonalAdvisorEmail()">
                     <p style="float: left;">Eigenansicht</p>
                         <div style="height: 120px; width: 160px; float: left; margin-left: 50; margin-right: 50; margin-bottom: 30">

@@ -53,21 +53,20 @@ public class LoginController {
 
             User user = User.getUserByUsername(request.queryParams("username"));
             request.session().attribute("currentUser", user);
-            /*
-            if (getQueryLoginRedirect(request) != null) {
-                response.redirect(getQueryLoginRedirect(request));
-            } else response.redirect(LinkPath.Web.INDEX);
-            */
+
             model.put("authenticationSucceeded", true);
             model.put("loginRedirect", removeSessionAttrLoginRedirect(request));
+            
+            /* disable the oauth mechansim in order to just use guest issuer token
             if (user.getOauthAccessToken() == null) {
                response.redirect(oauthrequest(user)); 
             } else {
                 oauthRefreshToken(user);
                 response.redirect(LinkPath.Web.INDEX);
             }
-
-              
+            */
+            
+            response.redirect(LinkPath.Web.INDEX);
             LOGGER.info("User Login successful : "+ user.getDisplayName());
         }
         return ""; 
